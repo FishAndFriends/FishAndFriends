@@ -4,8 +4,7 @@ jdk:
 branches:
   only:
   - master
-script: ./grailsw refresh-dependencies && ./grailsw "test-app unit:" && ./grailsw
-  refresh-dependencies && ./grailsw "test-app functional:"
+script: ./grailsw refresh-dependencies && ./grailsw "test-app unit:" && ./grailsw refresh-dependencies && ./grailsw "test-app functional:"
 deploy:
   provider: heroku
   api_key:
