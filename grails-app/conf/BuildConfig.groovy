@@ -56,16 +56,20 @@ grails.project.dependency.resolution = {
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.54"
+        build ":codenarc:0.24.1"
 
         // plugins for the compile step
         compile ":scaffolding:2.0.3"
         compile ':cache:1.1.7'
+        compile ":codenarc:0.24.1"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.16" // or ":hibernate4:4.3.5.4"
         runtime ":database-migration:1.4.0"
         runtime ":jquery:1.11.1"
         runtime ":resources:1.2.8"
+        runtime ':twitter-bootstrap:3.3.5'
+
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"
@@ -79,5 +83,7 @@ grails.project.dependency.resolution = {
         //compile ":less-asset-pipeline:1.5.3"
         //compile ":coffee-asset-pipeline:1.5.0"
         //compile ":handlebars-asset-pipeline:1.3.0.1"
+
+        test ":code-coverage:2.0.3-3"
     }
 }
