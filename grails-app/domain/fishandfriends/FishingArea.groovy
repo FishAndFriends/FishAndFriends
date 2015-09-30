@@ -12,6 +12,9 @@ class FishingArea {
     /** Location (e.g Toulouse)*/
     String location
 
+    /** List of fishing man, fishes and catch for a FishingArea */
+    static hasMany = [fishingMan : FishingMan, fish : Fish, catch : Catch]
+
     static constraints = {
 
     }

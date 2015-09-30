@@ -20,6 +20,8 @@ class FishingMan {
     /** Gender of the fishing man/woman. */
     String gender
 
+
+
     static constraints = {
         firstname nullable: false , blank: false
         lastname nullable: false , blank: false

@@ -14,6 +14,15 @@ class Catch {
     /** Size of the fish catching */
     Float size
 
+    /** Fishing man which caught the fish */
+    FishingMan fishingMan
+
+    /** Fishing area where the fish has been catch */
+    FishingArea fishingArea
+
+    /** Fish which has been catch by the fishing man in the Fishing area */
+    Fish fish
+
     static constraints = {
     }
 }
