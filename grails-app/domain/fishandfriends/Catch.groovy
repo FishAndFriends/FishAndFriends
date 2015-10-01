@@ -8,10 +8,10 @@ class Catch {
     /** Date of the catch */
     Date date
 
-    /** Weight of the fish catching */
+    /** Weight of the fish catching (in "kg" unit) */
     Float weight
 
-    /** Size of the fish catching */
+    /** Size of the fish catching (in "cm" unit) */
     Float size
 
     /** Fishing man which caught the fish */
@@ -24,5 +24,13 @@ class Catch {
     Fish fish
 
     static constraints = {
+        date nullable: false, validator: {
+            val, obj -> val?.after(new Date())
+        }
+        weight min: 0.1F, nullable: false
+        size min: 0.1F, nullable: false
+        fishingMan nullable: false
+        fishingArea nullable: false
+        fish nullable: false
     }
 }
