@@ -88,4 +88,3 @@ class FishingManSpec extends Specification {
 
     } */
 }
-}
