@@ -50,7 +50,7 @@ class NoteSpec extends Specification {
         when:"validating the note"
         def isValid = note.validate()
 
-        then:"the note is valid"
+        then:"the note is not valid"
         isValid == false
 
         where:

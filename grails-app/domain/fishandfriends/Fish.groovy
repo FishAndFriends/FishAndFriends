@@ -9,11 +9,14 @@ class Fish {
     String name
 
     /** Weight for this type of fish */
-    Float weightAverage
+    float weightAverage
 
     /** Size for this type of fish */
-    Float sizeAverage
+    float sizeAverage
 
     static constraints = {
+        name(nullable: false, blank: false)
+        weightAverage(min: 0f)
+        sizeAverage(min: 0f)
     }
 }

@@ -10,7 +10,7 @@ class FishingMan {
 
     /** Lastname of the fishing man */
     String lastname
-
+    
     /** Email of the fishing man */
     String email
 
