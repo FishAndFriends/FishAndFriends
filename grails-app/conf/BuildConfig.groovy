@@ -51,6 +51,7 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.27'
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.3"
+        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
     }
 
     plugins {
@@ -85,5 +86,8 @@ grails.project.dependency.resolution = {
         //compile ":handlebars-asset-pipeline:1.3.0.1"
 
         test ":code-coverage:2.0.3-3"
+        test(":spock:0.7") {
+            exclude "spock-grails-support"
+        }
     }
 }

@@ -1,6 +1,7 @@
 package fishandfriends
 
 import grails.test.mixin.TestFor
+import spock.lang.Shared
 import spock.lang.Specification
 
 /**
@@ -9,12 +10,48 @@ import spock.lang.Specification
 @TestFor(Comment)
 class CommentSpec extends Specification {
 
+    Comment comment
+    @Shared FishingArea fishingArea
+    @Shared FishingMan fishingMan
     def setup() {
+        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', password: 'qksjnfl', gender: 'H')
+        fishingArea = new FishingArea(name: 'azetr', location: 'loc')
+        comment = new Comment()
     }
 
     def cleanup() {
     }
 
-    void "test something"() {
+    void "test validate"() {
+        given:"a comment"
+        comment.fishingMan = fishingMan
+        comment.commentable = fishingArea
+        comment.text = "text"
+
+        when:"validating the fishingman"
+        def isValid = comment.validate()
+
+        then:"the fishingman is valid"
+        isValid == true
+    }
+
+    void "test invalidate"() {
+        given:"a comment"
+        comment.fishingMan = fishingManTest
+        comment.commentable = commentableTest
+        comment.text = textTest
+
+        when:"validating the fishingman"
+        def isValid = comment.validate()
+
+        then:"the fishingman is valid"
+        isValid == false
+
+        where:
+        fishingManTest      | commentableTest      |  textTest
+        null                | fishingArea          |  "text"
+        null                | fishingArea          |  ""
+        fishingMan          | fishingArea          |  null
+        fishingMan          | null                 |  "text"
     }
 }
