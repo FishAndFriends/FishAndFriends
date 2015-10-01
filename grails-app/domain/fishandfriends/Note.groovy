@@ -8,12 +8,15 @@ class Note {
     /** Fishing man link to the Note */
     FishingMan fishingMan
 
-    /** Fishing man link to the Note */
+    /* Rated Fishing Area*/
     FishingArea fishingArea
 
     /** Value of the note */
     int value
 
     static constraints = {
+        value(range: 1..5)
+        fishingMan(nullable: false)
+        fishingArea(nullable: false)
     }
 }
