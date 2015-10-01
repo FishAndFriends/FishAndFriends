@@ -27,7 +27,7 @@ class FishSpec extends Specification {
 
 
         when:"validating the fish"
-        def isValid = note.validate()
+        def isValid = fish.validate()
 
         then:"the fish is valid"
         isValid == true
@@ -47,7 +47,7 @@ class FishSpec extends Specification {
 
 
         when:"validating the fish"
-        def isValid = note.validate()
+        def isValid = fish.validate()
 
         then:"the fish is not valid"
         isValid == false

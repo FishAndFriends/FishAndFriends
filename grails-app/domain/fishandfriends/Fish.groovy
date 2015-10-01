@@ -16,7 +16,7 @@ class Fish {
 
     static constraints = {
         name(nullable: false, blank: false)
-        weightAverage(min: 0)
-        sizeAverage(min: 0)
+        weightAverage(min: 0f)
+        sizeAverage(min: 0f)
     }
 }
