@@ -13,9 +13,12 @@ class FishingArea {
     String location
 
     /** List of fishing man, fishes and catch for a FishingArea */
-    static hasMany = [fishingMan : FishingMan, fish : Fish, catch : Catch]
+    static hasMany = [fishingMen: FishingMan, fishes: Fish, catches : Catch]
 
     static constraints = {
+
+        name nullable: false, blank: false
+        location nullable: false, blank: false
 
     }
 }
