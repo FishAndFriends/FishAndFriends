@@ -4,7 +4,7 @@ package fishandfriends
  * Class for a Fishing area. A fishing area contains information on a area added
  * by a fishing man.
  */
-class FishingArea {
+class FishingArea extends AbstractCommentable {
 
     /** Name of the fishing area (e.g Garonne) */
     String name
