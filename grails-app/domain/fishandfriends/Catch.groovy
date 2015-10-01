@@ -31,6 +31,6 @@ class Catch {
         size min: 0.1F, nullable: false
         fishingMan nullable: false
         fishingArea nullable: false
-
+        fish nullable: false
     }
 }
