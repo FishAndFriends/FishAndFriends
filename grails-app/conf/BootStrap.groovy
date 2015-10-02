@@ -20,8 +20,8 @@ class BootStrap {
         fishingMan.save(flush: true)
         fishingMan2.save(flush: true)
 
-        fishingArea2.save(flush: true)
         fishingArea.save(flush: true)
+        fishingArea2.save(flush: true)
 
         comment.save(flush: true)
     }
