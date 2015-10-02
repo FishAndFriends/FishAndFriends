@@ -25,7 +25,7 @@ class FishingMan {
     static constraints = {
         firstname nullable: false , blank: false
         lastname nullable: false , blank: false
-        email email: true , nullable: false ,blank: false
+        email email: true , nullable: false ,blank: false, unique: true
         password minSize: 5 , nullable: false , blank: false
         gender inList: ["H","F"]
     }
