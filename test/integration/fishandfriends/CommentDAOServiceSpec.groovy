@@ -13,13 +13,15 @@ class CommentDAOServiceSpec extends IntegrationSpec {
     FishingArea fishingArea
 
     def setup() {
-        fishingMan = new FishingMan(firstname:"Jean-Michel",email:"jm@yahoo.fr",password: "mypassword",lastname: "Dupont",gender: "H")
+        fishingMan = new FishingMan(firstname:"Jean-Michel",email:"jzevnk@yahoo.fr",password: "mypassword",lastname: "Dupont",gender: "H")
         fishingArea = new FishingArea(location: "zknvznv", name: "zonvzlnv")
         fishingArea.save(flush: true)
         //fishingMan.save(flush: true)
     }
 
     def cleanup() {
+        fishingMan.delete()
+        fishingArea.delete()
     }
 
     void "test comment creation"() {
@@ -30,10 +32,13 @@ class CommentDAOServiceSpec extends IntegrationSpec {
         comment.commentable = fishingArea
 
         when: "save"
-        comment = commentDAOService.saveComment(comment)
+        def commentSaved = commentDAOService.saveComment(comment)
 
         then: "the instance is stored in db"
-        comment.id != null
-        comment.dateCreated != null
+        commentSaved != null
+        commentSaved.id != null
+        commentSaved.dateCreated != null
+
+        commentSaved.delete()
     }
 }
