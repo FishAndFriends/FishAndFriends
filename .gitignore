@@ -102,3 +102,5 @@ hs_err_pid*
 
 /web-app/WEB-INF/tld/fmt.tld
 /web-app/WEB-INF/tld/c.tld
+
+cobertura.ser
