@@ -1,107 +1,63 @@
 package fishandfriends
 
-
-
-import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
-
-@Transactional(readOnly = true)
 class CommentController {
 
+    def commentDAOService
     def commentService
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond Comment.list(params), model:[commentInstanceCount: Comment.count()]
+    /**
+     * Used to display the comment's page for a commentable object.
+     * Call this method with params (model attribute) :
+     *      - commentable : object with comments
+     *      - fishingMan : the current logged user
+     *
+     * @return the view with the ability to post comments and to see all others comments
+     */
+    def index() {
+        if (params.commentable == null) {
+            // FIXME : Display error !!!
+            System.out.println("[CommentController][index] COMMENTABLE NOT SET")
+            params.commentable = FishingArea.findById(1)
+        }
+        if (params.fishingMan == null) {
+            // FIXME : Display error !!!
+            System.out.println("[CommentController][index] FISHMAN NOT SET")
+            params.fishingMan = FishingMan.findById(1)
+        }
+
+        render(view: "index", model: [fishingMan: params.fishingMan, commentable: params.commentable])
     }
 
-    def show(Comment commentInstance) {
-        respond commentInstance
+    /**
+     * Method called by the template "_showAllComments".
+     * To use that template, just put this line on the code :
+     * <g:include controller="comment" action="showAllComment" params="[commentable:<ABSTRACT_COMMANTABLE>]" />
+     *
+     * @return the template rendered with all comments for the commentable object
+     */
+    def showAllComment() {
+        if (params.commentable == null) {
+            // FIXME : Display error !!!
+            System.out.println("[CommentController][showAllComment] COMMENTABLE NOT SET")
+            params.commentable = FishingArea.findById(1)
+        }
+
+        def comments = commentService.getAllCommentsForCommentable(params.commentable)
+
+        render(template: "showAllComments", model: [comments: comments])
     }
 
-    def create() {
-        respond new Comment(params)
-    }
+    /**
+     * This method is called when a user wants to create a comment.
+     * If you want to display the form to submit comments, just put this line :
+     * <g:render template="createComment" model="[commentable:<ABSTRACT_COMMENTABLE>,fishingMan:<FISHING_MAN>]"/>
+     *
+     * @return to the same page (normally)
+     */
+    def createComment() {
+        Comment comment = new Comment(params)
+        commentDAOService.saveComment(comment)
 
-    @Transactional
-    def save(Comment commentInstance) {
-        if (commentInstance == null) {
-            notFound()
-            return
-        }
-
-        if (commentInstance.hasErrors()) {
-            respond commentInstance.errors, view:'create'
-            return
-        }
-
-        //commentInstance.save flush:true
-        commentService.saveComment(commentInstance)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'comment.label', default: 'Comment'), commentInstance.id])
-                redirect commentInstance
-            }
-            '*' { respond commentInstance, [status: CREATED] }
-        }
-    }
-
-    def edit(Comment commentInstance) {
-        respond commentInstance
-    }
-
-    @Transactional
-    def update(Comment commentInstance) {
-        if (commentInstance == null) {
-            notFound()
-            return
-        }
-
-        if (commentInstance.hasErrors()) {
-            respond commentInstance.errors, view:'edit'
-            return
-        }
-
-        //commentInstance.save flush:true
-        commentService.saveComment(commentInstance)
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'Comment.label', default: 'Comment'), commentInstance.id])
-                redirect commentInstance
-            }
-            '*'{ respond commentInstance, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def delete(Comment commentInstance) {
-
-        if (commentInstance == null) {
-            notFound()
-            return
-        }
-
-        commentInstance.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'Comment.label', default: 'Comment'), commentInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
-
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'comment.label', default: 'Comment'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*'{ render status: NOT_FOUND }
-        }
+        redirect action: "index"
     }
 }
