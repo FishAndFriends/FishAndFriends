@@ -16,7 +16,7 @@ class CommentServiceSpec extends IntegrationSpec {
     FishingArea fishingArea1
 
     def setup() {
-        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', password: 'qksjnfl', gender: 'H')
+        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl', gender: 'H')
         fishingArea = new FishingArea(name: 'azkrgzetr', location: 'legeegeoc')
         fishingArea1 = new FishingArea(name: 'sdzgrekv,dv', location: 'loehegrc')
 

@@ -6,12 +6,12 @@ class BootStrap {
 
     def init = { servletContext ->
         // FishingMan
-        FishingMan fishingMan = new FishingMan(firstname: "Jean-Michel", email: "jm@yahoo.fr", password: "mypassword", lastname: "Dupont", gender: "H")
-        FishingMan fishingMan2 = new FishingMan(firstname: "Jaqueline", email: "jaja@yahoo.fr", password: "miam", lastname: "Dupont", gender: "F")
+        FishingMan fishingMan = new FishingMan(firstname: "Jean-Michel", email: "jm@yahoo.fr", hashedPassword: "mypassword", lastname: "Dupont", gender: "H")
+        FishingMan fishingMan2 = new FishingMan(firstname: "Jaqueline", email: "jaja@yahoo.fr", hashedPassword: "miam", lastname: "Dupont", gender: "F")
 
         // FishingArea
-        FishingArea fishingArea = new FishingArea(location: "Toulouse", name: "L'étan du petit village")
-        FishingArea fishingArea2 = new FishingArea(location: "Toutouland", name: "Pêche de chiens")
+        FishingArea fishingArea = new FishingArea(location: "Toulouse", name: "L'ï¿½tan du petit village")
+        FishingArea fishingArea2 = new FishingArea(location: "Toutouland", name: "Pï¿½che de chiens")
 
         // Comment
         Comment comment = new Comment(fishingMan: fishingMan, commentable: fishingArea)

@@ -29,7 +29,7 @@
 
 </div>
 
-<div class="fieldcontain ${hasErrors(bean: fishingManInstance, field: 'password', 'error')} required">
+<div class="fieldcontain ${hasErrors(bean: fishingManInstance, field: 'hashedPassword', 'error')} required">
 	<label for="password">
 		<g:message code="fishingMan.password.label" default="Password" />
 		<span class="required-indicator">*</span>
