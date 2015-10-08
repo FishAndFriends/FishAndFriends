@@ -25,7 +25,7 @@ class FishingAreaServiceSpec extends IntegrationSpec {
 
     void "test research of fishingArea"() {
         when:"searching for multiple fishingArea"
-        def result = fishingAreaService.getFishingAreaByNameOrLocation("Lac")
+        def result = fishingAreaService.search(5,0,"Lac")
 
         then:"the result is correct"
         result.size() == 3
@@ -37,7 +37,7 @@ class FishingAreaServiceSpec extends IntegrationSpec {
 
     void "test research of one fishingArea instead of 3"() {
         when:"searching for 2 out of 5 fishingArea"
-        def result2 = fishingAreaService.getFishingAreaByNameOrLocation("mon")
+        def result2 = fishingAreaService.search(5,0,"mon")
 
         then:"the result is correct"
         result2.size() == 2
@@ -49,7 +49,7 @@ class FishingAreaServiceSpec extends IntegrationSpec {
 
     void "test research of one fishingArea instead of 2"() {
         when:"searching for multiple fishingArea"
-        def result3 = fishingAreaService.getFishingAreaByNameOrLocation("Paris")
+        def result3 = fishingAreaService.search(5,0,"Paris")
 
         then:"the result is correct"
         result3.size() == 1

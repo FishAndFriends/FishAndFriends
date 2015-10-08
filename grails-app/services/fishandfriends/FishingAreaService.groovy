@@ -3,22 +3,18 @@ package fishandfriends
 import grails.transaction.Transactional
 
 @Transactional
-class FishingAreaService {
+class FishingAreaService implements ISearchService{
 
 
-    def getFishingAreaByNameOrLocation(String value) {
-
+    def search(int max, int offset, String query) {
         def criteria = FishingArea.createCriteria()
 
-        List<FishingArea> result = criteria.listDistinct {
+        List<FishingArea> result = criteria.list(max: max, offset: offset) {
             or {
-                ilike 'name', "%${value}%"
-                ilike 'location',"%${value}%"
+                ilike 'name', "%${query}%"
+                ilike 'location',"%${query}%"
             }
         }
         result
     }
-
-
-
 }
