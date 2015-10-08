@@ -32,7 +32,7 @@ class LoginController {
             session.fishingMan = fishingMan
         }
 
-        render(view: "index", model: [fishingManInstance: fishingMan])
+        redirect(view: "index", model: [fishingManInstance: fishingMan])
     }
 
     def connexion() {
@@ -62,15 +62,11 @@ class LoginController {
             }
         }
 
-        if (session.fishingMan) {
-            redirect(uri:'/')
-        } else {
-            render(view: "index", model: [errors: errors])
-        }
+        redirect(view: "index", model: [errors: errors])
     }
 
     def deconnexion() {
         session.removeAttribute("fishingMan")
-        redirect(uri:'/')
+        redirect(view: "index")
     }
 }
