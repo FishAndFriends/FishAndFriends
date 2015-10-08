@@ -14,7 +14,7 @@ class CommentSpec extends Specification {
     @Shared FishingArea fishingArea
     @Shared FishingMan fishingMan
     def setup() {
-        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', password: 'qksjnfl', gender: 'H')
+        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl', gender: 'H')
         fishingArea = new FishingArea(name: 'azetr', location: 'loc')
         comment = new Comment()
     }

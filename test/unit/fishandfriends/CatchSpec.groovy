@@ -21,7 +21,7 @@ class CatchSpec extends Specification {
                     firstname: 'azerty',
                     lastname: 'azertry',
                     email: 'azert@azert.fr',
-                    password: 'qksjnfl',
+                    hashedPassword: 'qksjnfl',
                     gender: 'H')
         fishingArea =
                 new FishingArea(

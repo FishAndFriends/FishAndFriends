@@ -1,9 +1,6 @@
 package fishandfriends
 
-
-import spock.lang.Specification
 import grails.test.spock.IntegrationSpec
-import grails.transaction.Transactional
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
@@ -19,7 +16,7 @@ class FishingManServiceSpec extends IntegrationSpec {
                 firstname: 'azerty',
                 lastname: 'azertry',
                 email: 'azert@azert.fr',
-                password: 'qksjnfl',
+                hashedPassword: 'qksjnfl',
                 gender: 'H')
     }
 

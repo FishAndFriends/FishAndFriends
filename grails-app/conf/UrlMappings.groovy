@@ -7,7 +7,11 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
+
+//        "/"(view:"/index")
+        // http://stackoverflow.com/a/5910294
+        "/"(controller: 'login', action: 'index')
+
         "500"(view:'/error')
 	}
 }
