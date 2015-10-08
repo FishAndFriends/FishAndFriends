@@ -5,6 +5,7 @@ import spock.lang.Unroll
 
 
 class FishingAreaServiceSpec extends IntegrationSpec {
+    // TODO : Move to unit test
 
     def fishingAreaService = new FishingAreaService()
     FishingArea fishingArea,fishingArea2,fishingArea3,fishingArea4

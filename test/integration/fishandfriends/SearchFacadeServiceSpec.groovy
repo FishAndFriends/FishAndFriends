@@ -36,5 +36,21 @@ class SearchFacadeServiceSpec extends IntegrationSpec {
         result.result.size() == 2
     }
 
+    void "test search error"(){
+        when: "search with an unknown type"
+        boolean isError = false
+        try{
+            def result = searchFacadeService.search(0,"roll your head on your keyboard !", "It's fun, you know !")
+            isError = false
+        }catch(RuntimeException e){
+            isError = true
+        }
+
+        then:"Error is thrown"
+        isError == true
+
+
+    }
+
     // TODO : other searchEngines !
 }

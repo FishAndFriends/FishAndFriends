@@ -65,4 +65,17 @@ class SearchResultControllerSpec extends Specification {
         searchResultController.modelAndView.model.hasMore == false
         searchResultController.modelAndView.model.result != null
     }
+
+    void "test bad search type"(){
+        given:
+        searchResultController.params.page = "1"
+        searchResultController.params.want = "Macho macho man !"
+        searchResultController.params.query = "I gotta be a macho man !"
+
+        when:
+        searchResultController.index()
+
+        then:
+        searchResultController.modelAndView.model.error == true
+    }
 }
