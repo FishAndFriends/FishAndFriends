@@ -24,7 +24,8 @@ class FishingManSpec extends Specification {
         given:"a fishingman"
         fishingMan.firstname = aFirstname
         fishingMan.email = anEmail
-        fishingMan.password = aPassword
+        fishingMan.hashedPassword = aPassword
+        fishingMan.saltedPassword = aPassword
         fishingMan.lastname = aLastname
         fishingMan.gender = aGender
 
@@ -37,9 +38,9 @@ class FishingManSpec extends Specification {
 
         where:
         aFirstname    | anEmail              |  aPassword    |  aLastname |  aGender
-        "Jean-Michel" | "jm@yahoo.fr"        |  "mypassword" |  "Dupont"  |   "H"
-        "Jaqueline"   | "jaqueline@yahoo.fr" |  "azerty"     |  "Martin"  |   "F"
-        "Pierre"      | "pierre@yahoo.fr"    |  "azerty1234" |  "Durant"  |   "H"
+        "Jean-Michel" | "jm@yahoo.fr"        |  "test"       |  "Dupont"  |   "H"
+        "Jaqueline"   | "jaqueline@yahoo.fr" |  "test"       |  "Martin"  |   "F"
+        "Pierre"      | "pierre@yahoo.fr"    |  "test"       |  "Durant"  |   "H"
     }
 
     @Unroll
@@ -47,7 +48,8 @@ class FishingManSpec extends Specification {
         given:"a fishingman"
         fishingMan.firstname = aFirstname
         fishingMan.email = anEmail
-        fishingMan.password = aPassword
+        fishingMan.hashedPassword = aPassword
+        fishingMan.saltedPassword = aPassword
         fishingMan.lastname = aLastname
         fishingMan.gender = aGender
 
@@ -60,15 +62,12 @@ class FishingManSpec extends Specification {
 
         where:
         aFirstname    | anEmail              |  aPassword    |  aLastname |  aGender
-        null          | "jm@yahoo.fr"        |  "mypassword" |  "Dupont"  |   "H"
-        "Jaqueline"   | "jaqueline.fr"       |  "azerty"     |  "Dupont"  |   "F"
-        "Michelline"  | "jaqueline@yahoo.fr" |  "a"          |  "Dupont"  |   "F"
-        "Jaqueline"   | "jaqueline@yahoo.fr" |  "azerty"     |  null      |   "K"
-        ""            | "jaqueline@yahoo.fr" |  "azerty"     |  "Dupont"  |   "F"
-        "Michel"      | "michel@laposte.net" |   null        | "LaForet"  |   "H"
-        "Jean"        | null                 |  "papaaaa"    | "Pierre"   |   "F"
-        "pierro"      | "dada@ada.com"       |  "hhhhhhh"    | ""         |  "H"
-        "Maurice"     | ""                   |  "aoaoaoaoa"  | "Alama"    |  "F"
-        "Bobby"       | "supbby@gmail.com"   |  ""           | "lafleche" |  "H"
+        null          | "jm@yahoo.fr"        |  "test"       |  "Dupont"  |   "H"
+        "Jaqueline"   | "jaqueline.fr"       |  "test"       |  "Dupont"  |   "F"
+        "Jaqueline"   | "jaqueline@yahoo.fr" |  "test"       |  null      |   "K"
+        ""            | "jaqueline@yahoo.fr" |  "test"       |  "Dupont"  |   "F"
+        "Jean"        | null                 |  "test"       | "Pierre"   |   "F"
+        "pierro"      | "dada@ada.com"       |  "test"       | ""         |  "H"
+        "Maurice"     | ""                   |  "test"       | "Alama"    |  "F"
       }
 }

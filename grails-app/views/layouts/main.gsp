@@ -12,9 +12,9 @@
 
     %{--TODO: Penser à retirer ce debug à la fin--}%
     <style type="text/css">
-        /*.debug {
-            diplay: none;
-        }*/
+    /*.debug {
+        diplay: none;
+    }*/
     </style>
     <r:require modules="bootstrap"/>
     <g:layoutHead/>
