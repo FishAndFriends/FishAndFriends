@@ -36,27 +36,50 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li ${controllerName == null ? 'class="active"' : ''}><a href="/">Accueil</a></li>
-                <li><a href="#">Rick Asley <span class="glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
+                <li ${controllerName == null ? 'class="active"' : ''}><a href="/"><i class="fa fa-home"></i> Accueil</a></li>
+                <g:if test="${session.fishingMan != null}">
+                    <li><a href="#"><i class="fa ${session.fishingMan.gender.equals("H") ? 'fa-male':'fa-female'}"></i> ${session.fishingMan.firstname} ${session.fishingMan.lastname}</a></li>
+                    <li><a href="#" id="signout"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+                </g:if>
             </ul>
-
-            <form class="navbar-form navbar-right">
-                <select class="form-control">
-                    <option>Lieu</option>
-                    <option>Pêcheur</option>
-                    <option>Poisson</option>
-                </select>
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Rechercher...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                    </span>
-                </div><!-- /input-group -->
-            </form>
+            <g:if test="${session.fishingMan != null}">
+                <g:form class="navbar-form navbar-right" url="[action: 'index', controller: 'searchResult']">
+                    <select id="want" name="want" class="form-control">
+                        <option value="fishingArea">Lieu</option>
+                        <option value="fishingMan">Pêcheur</option>
+                        <option value="fish">Poisson</option>
+                    </select>
+                    <div class="input-group">
+                        <input type="text" id="query" name="query" class="form-control" placeholder="Rechercher...">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </g:form>
+            </g:if>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 <g:layoutBody/>
+<g:if test="${session.fishingMan != null}">
+    <div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="mySmallModalLabel">Déconnexion</h4>
+                </div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir vous déconnecter ?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                    <a href="${createLink(controller:'login', action:'deconnexion')}" class="btn btn-danger" role="button">Se déconnecter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</g:if>
 <r:layoutResources/>
 </body>
 </html>

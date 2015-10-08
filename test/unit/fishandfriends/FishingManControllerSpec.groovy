@@ -7,7 +7,7 @@ import spock.lang.*
 @TestFor(FishingManController)
 @Mock(FishingMan)
 class FishingManControllerSpec extends Specification {
-
+    /*
     def populateValidParams(params) {
         assert params != null
         // TODO: Populate valid properties like...
@@ -145,4 +145,5 @@ class FishingManControllerSpec extends Specification {
         response.redirectedUrl == '/fishingMan/index'
         flash.message != null
     }
+    */
 }

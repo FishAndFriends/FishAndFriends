@@ -8,3 +8,19 @@ body {
 	padding-right: 30px !important;
 	margin-top: 16px !important;
 }
+
+.pagination-btn {
+	text-align: center;
+	padding-top: 10px;
+}
+
+.warning-text {
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.error {
+	color: red;
+	text-align: center;
+}
