@@ -15,5 +15,8 @@ class FishingManService {
         fishingMan.save(flush:true)
     }
 
+    FishingMan findByEmail(String mail) {
+        return FishingMan.findByEmail(mail)
+    }
 
 }

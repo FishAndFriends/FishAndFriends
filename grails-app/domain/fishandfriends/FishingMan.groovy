@@ -14,19 +14,21 @@ class FishingMan {
     /** Email of the fishing man */
     String email
 
-    /** Password of connection. */
-    String password
+    /** Hashed password of connection. */
+    String hashedPassword
+
+    /** Salted password of connection **/
+    String saltedPassword
 
     /** Gender of the fishing man/woman. */
     String gender
 
-
-
     static constraints = {
-        firstname nullable: false , blank: false
-        lastname nullable: false , blank: false
-        email email: true , nullable: false ,blank: false, unique: true
-        password minSize: 5 , nullable: false , blank: false
-        gender inList: ["H","F"]
+        firstname nullable: false, blank: false
+        lastname nullable: false, blank: false
+        email email: true, nullable: false, blank: false, unique: true
+        hashedPassword nullable: false, blank: false
+        saltedPassword nullable: false, blank: false
+        gender inList: ["H", "F"]
     }
 }

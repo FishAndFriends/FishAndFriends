@@ -30,7 +30,7 @@
 					
 						<g:sortableColumn property="email" title="${message(code: 'fishingMan.email.label', default: 'Email')}" />
 					
-						<g:sortableColumn property="password" title="${message(code: 'fishingMan.password.label', default: 'Password')}" />
+						<g:sortableColumn property="password" title="${message(code: 'fishingMan.hashedPassword.label', default: 'Password')}" />
 					
 						<g:sortableColumn property="gender" title="${message(code: 'fishingMan.gender.label', default: 'Gender')}" />
 					
@@ -46,7 +46,7 @@
 					
 						<td>${fieldValue(bean: fishingManInstance, field: "email")}</td>
 					
-						<td>${fieldValue(bean: fishingManInstance, field: "password")}</td>
+						<td>${fieldValue(bean: fishingManInstance, field: "hashedPassword")}</td>
 					
 						<td>${fieldValue(bean: fishingManInstance, field: "gender")}</td>
 					
