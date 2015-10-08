@@ -33,11 +33,6 @@ class FishingManController {
         }
     }
 
-    /**
-     * Return TRUE if the user <i></i>
-     * @param fishingManInstance
-     * @return
-     */
     def editProfile(FishingMan fishingManInstance) {
         if (fishingManInstance == null) {
             notFound()
