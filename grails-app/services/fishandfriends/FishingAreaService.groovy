@@ -6,18 +6,11 @@ import grails.transaction.Transactional
 class FishingAreaService {
 
 
-
-    def serviceMethod() {
-
-    }
-
-
-
-    List<FishingArea> getFishingAreaByNameOrLocation(String value) {
+    def getFishingAreaByNameOrLocation(String value) {
 
         def criteria = FishingArea.createCriteria()
 
-        List<FishingArea> result = criteria.list {
+        List<FishingArea> result = criteria.listDistinct {
             or {
                 ilike 'name', "%${value}%"
                 ilike 'location',"%${value}%"
@@ -25,9 +18,6 @@ class FishingAreaService {
         }
         result
     }
-
-
-
 
 
 

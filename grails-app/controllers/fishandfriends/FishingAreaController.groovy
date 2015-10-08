@@ -7,7 +7,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class FishingAreaController {
 
-    def fishingAreaService
+    def fishingAreaDAOService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -108,6 +108,13 @@ class FishingAreaController {
         fishingAreaList.sort()
         render(view: 'index', model: [fishingAreaInstanceList: fishingAreaList, fishingAreaInstanceCount: fishingAreaList.size()])
 
+    }
+
+    def createFishingArea() {
+        FishingArea fishingArea = new FishingArea(params)
+        fishingAreaDAOService.saveFishingArea(fishingArea)
+
+        redirect action: "index"
     }
     
 
