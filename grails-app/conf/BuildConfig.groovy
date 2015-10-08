@@ -52,6 +52,7 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.3"
         test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+        runtime 'postgresql:postgresql:8.4-702.jdbc3'
     }
 
     plugins {
@@ -70,6 +71,7 @@ grails.project.dependency.resolution = {
         runtime ":jquery:1.11.1"
         runtime ":resources:1.2.8"
         runtime ':twitter-bootstrap:3.3.5'
+
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
