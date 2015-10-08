@@ -4,27 +4,45 @@ import fishandfriends.FishingMan
 
 class BootStrap {
 
+    def fishingManList = []
+    def fishingAreaList = []
+    def commentList = []
+
     def init = { servletContext ->
         // FishingMan
-        FishingMan fishingMan = new FishingMan(firstname: "Jean-Michel", email: "jm@yahoo.fr", hashedPassword: "mypassword", lastname: "Dupont", gender: "H")
-        FishingMan fishingMan2 = new FishingMan(firstname: "Jaqueline", email: "jaja@yahoo.fr", hashedPassword: "miam", lastname: "Dupont", gender: "F")
+        FishingMan fishingMan = new FishingMan(firstname: "Jean-Michel", email: "jm@yahoo.fr", password: "mypassword", lastname: "Dupont", gender: "H")
+        fishingManList << fishingMan
+        fishingManList << new FishingMan(firstname: "Jaqueline", email: "jaja@yahoo.fr", password: "miam", lastname: "Dupont", gender: "F")
 
         // FishingArea
-        FishingArea fishingArea = new FishingArea(location: "Toulouse", name: "L'�tan du petit village")
-        FishingArea fishingArea2 = new FishingArea(location: "Toutouland", name: "P�che de chiens")
+        FishingArea fishingArea = new FishingArea(location: "Toulouse", name: "L'étan du petit village")
+        fishingAreaList << fishingArea
+        fishingAreaList << new FishingArea(location: "Toutouland", name: "Pêche de chiens")
 
         // Comment
-        Comment comment = new Comment(fishingMan: fishingMan, commentable: fishingArea)
+        commentList << new Comment(fishingMan: fishingMan, commentable: fishingArea)
 
         // Save them all !
-        fishingMan.save(flush: true)
-        fishingMan2.save(flush: true)
-
-        fishingArea.save(flush: true)
-        fishingArea2.save(flush: true)
-
-        comment.save(flush: true)
+        fishingManList.each {
+            it.save(flush: true)
+        }
+        fishingAreaList.each {
+            it.save(flush: true)
+        }
+        commentList.each {
+            it.save(flush: true)
+        }
     }
     def destroy = {
+        // Release them all !
+        fishingManList.each {
+            it.delete(flush: true)
+        }
+        fishingAreaList.each {
+            it.delete(flush: true)
+        }
+        commentList.each {
+            it.delete(flush: true)
+        }
     }
 }
