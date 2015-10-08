@@ -1,23 +1,58 @@
 
-<%@ page import="fishandfriends.FishingMan" %>
+<%@ page import="fishandfriends.Catch; fishandfriends.FishingMan" %>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<g:set var="entityName" value="${message(code: 'fishingMan.label', default: 'FishingMan')}" />
-		<title><g:message code="default.show.label" args="[entityName]" /></title>
+
+		<title>${fishingManInstance.firstname} ${fishingManInstance.lastname}</title>
 	</head>
 	<body>
-		<a href="#show-fishingMan" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div class="nav" role="navigation">
-			<ul>
-				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-				<li><g:link class="list" action="index"><g:message code="default.list.label" args="[entityName]" /></g:link></li>
-				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-			</ul>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-offset-2 col-md-8">
+				<div class="homebox jumbotron">
+					<div class="row">
+						<div class="col-md-2">
+							<i class="fa ${fishingManInstance.gender.equals("H") ? 'fa-male':'fa-female'} fa-5x"></i>
+						</div>
+						<div class="col-md-10">
+							<p>
+								<h2><b>${fishingManInstance.firstname}</b> ${fishingManInstance.lastname}</h2>
+								Poids moyen des prises : 0 kg <br/>
+								Taille moyenne des prises : 0 cm <br/>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+		<div class="row">
+			<div class="col-md-offset-2 col-md-2">
+				<div class="homebox jumbotron">
+					<h2>Lieux</h2>
+					<ul>
+						<g:each var="fishingArea" in="${fishingAreas}">
+							<li>${fishingArea.name}, ${fishingArea.location}</li>
+						</g:each>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<g:each var="singleCatch" in="${catches}">
+					<div class="row">
+						<div class="col-md-12">
+							<g:render template="showCatch" model="[singleCatch: singleCatch]"></g:render>
+						</div>
+					</div>
+				</g:each>
+			</div>
+		</div>
+	</div>
 		<div id="show-fishingMan" class="content scaffold-show" role="main">
-			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
+
+
+			<h1></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -49,16 +84,7 @@
 					
 				</li>
 				</g:if>
-			
-				<g:if test="${fishingManInstance?.password}">
-				<li class="fieldcontain">
-					<span id="password-label" class="property-label"><g:message code="fishingMan.password.label" default="Password" /></span>
-					
-						<span class="property-value" aria-labelledby="password-label"><g:fieldValue bean="${fishingManInstance}" field="password"/></span>
-					
-				</li>
-				</g:if>
-			
+
 				<g:if test="${fishingManInstance?.gender}">
 				<li class="fieldcontain">
 					<span id="gender-label" class="property-label"><g:message code="fishingMan.gender.label" default="Gender" /></span>

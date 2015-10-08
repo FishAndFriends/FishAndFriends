@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Fish & Friends</title>
     <meta name="layout" content="main"/>
 </head>
 
