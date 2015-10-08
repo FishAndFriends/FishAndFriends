@@ -25,7 +25,8 @@
 						</div>
 						<g:if test="${fishingManInstance.id}.equals(${session.fishingMan.id})">
 							<div class="col-md-2">
-								<a href="/login/deconnexion" class="btn btn-success" role="button"><i class="fa fa-pencil"></i> Modifier</a>
+								<a href="${createLink(action: "edit", controller: "fishingMan", resource: fishingManInstance)}"
+								   class="btn btn-success" role="button"><i class="fa fa-pencil"></i> Modifier</a>
 							</div>
 						</g:if>
 					</div>

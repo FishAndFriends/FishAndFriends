@@ -19,6 +19,10 @@ class FishingManController {
         respond fishingManInstance
     }
 
+    def edit(FishingMan fishingManInstance) {
+        respond fishingManInstance
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {
@@ -27,5 +31,31 @@ class FishingManController {
             }
             '*' { render status: NOT_FOUND }
         }
+    }
+
+    /**
+     * Return TRUE if the user <i></i>
+     * @param fishingManInstance
+     * @return
+     */
+    def editProfile(FishingMan fishingManInstance) {
+        if (fishingManInstance == null) {
+            notFound()
+            return
+        }
+
+        if (fishingManInstance.hasErrors()) {
+            render(view: "edit", model:[fishingManInstance: fishingManInstance])
+        }
+
+        if (params.firstnameEdit) {
+            fishingManInstance.firstname = params.firstnameEdit
+        }
+
+        if (params.lastnameEdit) {
+            fishingManInstance.firstname = params.lastnameEdit
+        }
+
+        fishingManService.insertOrUpdateFishingMan(fishingManInstance)
     }
 }
