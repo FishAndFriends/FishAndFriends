@@ -15,13 +15,13 @@
             <g:if test="${result.size > 0}">
                 <g:each in="${result}" var="r">
                     <g:if test="${r instanceof fishandfriends.FishingMan}">
-                        <g:render template="fishingManResultItem" model="[object: r]"/>
+                        <g:render template="fishingManResultItem" model="[r: r]"/>
                     </g:if>
                     <g:elseif test="${r instanceof fishandfriends.FishingArea}">
-                        <g:render template="fishingAreaResultItem" model="[object: r]"/>
+                        <g:render template="fishingAreaResultItem" model="[r: r]"/>
                     </g:elseif>
                     <g:elseif test="${r instanceof fishandfriends.Fish}">
-                        <g:render template="fishResultItem" model="[object: r]"/>
+                        <g:render template="fishResultItem" model="[r: r]"/>
                     </g:elseif>
                     <g:else>
                         ${r}
