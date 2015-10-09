@@ -40,7 +40,7 @@ class SearchFacadeServiceSpec extends IntegrationSpec {
         when: "search with an unknown type"
         boolean isError = false
         try{
-            def result = searchFacadeService.search(0,"roll your head on your keyboard !", "It's fun, you know !")
+            def result = searchFacadeService.search(0,"Roll your head on your keyboard !", "It's fun, you know !")
             isError = false
         }catch(RuntimeException e){
             isError = true
@@ -48,9 +48,28 @@ class SearchFacadeServiceSpec extends IntegrationSpec {
 
         then:"Error is thrown"
         isError == true
-
-
     }
 
-    // TODO : other searchEngines !
+    void "test search fishingMan"() {
+        when: "search fishingMan"
+        def result = searchFacadeService.search(0,"fishingMan","Jean")
+        System.out.println FishingMan.count()
+
+        then:"Result with 1 fishingMan"
+        result != null
+        result.hasMore == false
+        result.result.size() == 1
+        result.result[0] instanceof FishingMan
+    }
+
+    void "test search fish"() {
+        when: "search fishingMan"
+        def result = searchFacadeService.search(0,"fish","Nemo")
+
+        then:"Result with 1 fish"
+        result != null
+        result.hasMore == false
+        result.result.size() == 1
+        result.result[0] instanceof Fish
+    }
 }
