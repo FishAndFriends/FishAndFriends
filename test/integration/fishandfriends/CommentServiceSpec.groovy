@@ -4,8 +4,7 @@ import grails.test.spock.IntegrationSpec
 
 /**
  * This test should be an unit test.
- * BUT : Grails criteria on abstract propertie doesn't work with unit test.
- *
+ * BUT : Grails criteria on abstract properties doesn't work with unit test.
  */
 class CommentServiceSpec extends IntegrationSpec {
 
@@ -16,7 +15,7 @@ class CommentServiceSpec extends IntegrationSpec {
     FishingArea fishingArea1
 
     def setup() {
-        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl',saltedPassword:'zjhdduzudhe', gender: 'H')
+        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl', saltedPassword: 'zjhdduzudhe', gender: 'H')
         fishingArea = new FishingArea(name: 'azkrgzetr', location: 'legeegeoc')
         fishingArea1 = new FishingArea(name: 'sdzgrekv,dv', location: 'loehegrc')
 

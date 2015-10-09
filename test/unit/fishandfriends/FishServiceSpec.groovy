@@ -1,10 +1,13 @@
 package fishandfriends
 
-import grails.test.spock.IntegrationSpec
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
+import spock.lang.Specification
 
-class FishServiceSpec extends IntegrationSpec {
+@TestFor(FishService)
+@Mock([Fish])
+class FishServiceSpec extends Specification {
 
-    def fishService
     Fish fish,fish2,fish3,fish4,fish5
 
     def setup() {
@@ -25,7 +28,7 @@ class FishServiceSpec extends IntegrationSpec {
 
     void "test searching 3 fishes"() {
         when:"searching for fishes"
-        def result = fishService.search(5,0,"carpe")
+        def result = service.search(5,0,"carpe")
 
         then:"the result contains 3 fishes"
         result.size() == 3
@@ -38,7 +41,7 @@ class FishServiceSpec extends IntegrationSpec {
 
     void "test searching one fish in particular"() {
         when:"searching for one fish"
-        def result = fishService.search(5,0,"silure")
+        def result = service.search(5,0,"silure")
 
         then:"the result contains 1 fish"
         result.size() == 1
@@ -51,7 +54,7 @@ class FishServiceSpec extends IntegrationSpec {
 
     void "test search return 0 result"() {
         when:"searching for a fish not in the database"
-        def result = fishService.search(5,0,"brochet")
+        def result = service.search(5,0,"brochet")
 
         then:"the result contains nothing"
         result.size() == 0

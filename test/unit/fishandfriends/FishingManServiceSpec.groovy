@@ -1,14 +1,17 @@
 package fishandfriends
 
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
 import grails.test.spock.IntegrationSpec
+import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
+@TestFor(FishingManService)
+@Mock([FishingMan])
+class FishingManServiceSpec extends Specification {
 
-class FishingManServiceSpec extends IntegrationSpec {
-
-    def fishingManService = new FishingManService()
     FishingMan fishingMan,fishingMan1,fishingMan2,fishingMan3,fishingMan4,fishingMan5
 
     def setup() {
@@ -68,7 +71,7 @@ class FishingManServiceSpec extends IntegrationSpec {
     void "test insert or update of a fishingMan"() {
         given:"a FishingMan"
         when:"we try to retreive the fishingMan from the database "
-        FishingMan resFishingMan = fishingManService.insertOrUpdateFishingMan(fishingMan)
+        FishingMan resFishingMan = service.insertOrUpdateFishingMan(fishingMan)
 
         then:"the fishingMan is the same as the initial fishingMan"
         resFishingMan == fishingMan
@@ -84,7 +87,7 @@ class FishingManServiceSpec extends IntegrationSpec {
 
     void "test a valid search multiple fishingman"() {
         when:"searching for fishingmen whith firstname"
-        def result = fishingManService.search(5,0,"Chris")
+        def result = service.search(5,0,"Chris")
 
         then:"the list of all fishing man with this name is displayed"
         result.size() == 2
@@ -94,7 +97,7 @@ class FishingManServiceSpec extends IntegrationSpec {
 
     void "test a valid search of a fishingman"() {
         when:"searching for a fishingman with lastname "
-        def result = fishingManService.search(5,0,"Smith")
+        def result = service.search(5,0,"Smith")
 
         then:"the list of all fishingman with this lastname"
         result.size() == 1
@@ -104,7 +107,7 @@ class FishingManServiceSpec extends IntegrationSpec {
 
     void "test an invalid search of fishingman"() {
         when:"searching for a fishingman that does not exist"
-        def result = fishingManService.search(5,0,"fjebefjhsf")
+        def result = service.search(5,0,"fjebefjhsf")
 
         then:"the list is empty"
         result.size() == 0
