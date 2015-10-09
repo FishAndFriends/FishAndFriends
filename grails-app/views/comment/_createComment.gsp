@@ -28,7 +28,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form url="[action: 'createComment', controller: 'comment']">
+    <g:form id="sub" url="[action: 'createComment', controller: 'comment']">
         <div class="panel panel-primary commentDisplay">
             <div class="panel-heading">Ajouter un commentaire</div>
 
@@ -64,4 +64,20 @@
             </div>
         </div>
     </g:form>
+    <script>
+
+        $("#sub").submit(function (ev) {
+            ev.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '${createLink(action: "createComment", controller: "comment")}',
+                data: $("#sub").serialize(),
+                success: function (data) {
+                    location.reload();
+                }
+            });
+        });
+
+    </script>
 </div>
