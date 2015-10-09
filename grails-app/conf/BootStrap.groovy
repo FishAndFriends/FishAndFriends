@@ -1,11 +1,13 @@
 import fishandfriends.Comment
 import fishandfriends.FishingArea
 import fishandfriends.FishingMan
+import fishandfriends.Fish
 
 class BootStrap {
 
     def fishingManList = []
     def fishingAreaList = []
+    def fishList = []
     def commentList = []
 
     def init = { servletContext ->
@@ -22,6 +24,16 @@ class BootStrap {
         // Comment
         commentList << new Comment(fishingMan: fishingMan, commentable: fishingArea)
 
+        //Fish
+        Fish carpe = new Fish(name: "Carpe",weightAwerage: 0.5, sizeAverage: 10.0)
+        Fish brochet = new Fish(name: "Brochet",weightAwerage: 7.2, sizeAverage: 100)
+        Fish requinBlanc = new Fish(name: "Requin blanc",weightAwerage: 1500, sizeAverage: 400)
+        Fish requinTaureau = new Fish(name: "Requin taureau",weightAwerage: 999, sizeAverage: 250)
+        fishList << carpe
+        fishList << brochet
+        fishList << requinBlanc
+        fishList << requinTaureau
+
         // Save them all !
         fishingManList.each {
             it.save(flush: true)
@@ -32,6 +44,11 @@ class BootStrap {
         commentList.each {
             it.save(flush: true)
         }
+        fishList.each {
+            it.save(flush: true)
+        }
+
+
     }
     def destroy = {
         // Release them all !
@@ -42,6 +59,9 @@ class BootStrap {
             it.delete(flush: true)
         }
         commentList.each {
+            it.delete(flush: true)
+        }
+        fishList.each {
             it.delete(flush: true)
         }
     }
