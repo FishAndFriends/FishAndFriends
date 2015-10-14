@@ -1,2 +1,7 @@
-<!-- TODO Implement that template -->
-${object} - Template not implemented
+<div class="jumbotron">
+    <p>
+        <h2>${r.name}</h2>
+     <br/>
+Poids: ${r.weightAverage} kg, Taille: ${r.sizeAverage} cm
+    </p>
+</div>
