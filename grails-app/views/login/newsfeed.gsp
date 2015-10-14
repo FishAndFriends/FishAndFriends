@@ -13,15 +13,19 @@
         </div>
         <div class="col-md-offset-2 col-md-8">
             <div class="homebox jumbotron">
-                <label class="col-md-2 control-label">Partager une prise</label>
-                <button type="submit" class="btn btn-success"><i class="fa fa-share"></i> Partager</button>
+                <div class="col-md-12">
+                    <label class="col-md-2 control-label">Partager une prise</label>
+                    <button type="submit" class="btn btn-success"><i class="fa fa-share"></i> Partager</button>
+                </div>
             </div>
             <div class="homebox jumbotron">
-                <ul>
-                    <g:each var="fishingMan" in="${}">
-                        <li>${fishingArea.name}, ${fishingArea.location}</li>
-                    </g:each>
-                </ul>
+                <g:each var="singleCatch" in="${catches}">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <g:render template="showNewsFeedsCatch" model="[singleCatch: singleCatch]"></g:render>
+                        </div>
+                    </div>
+                </g:each>
             </div>
         </div>
     </div>
