@@ -1,5 +1,7 @@
 package fishandfriends
 
+import javax.persistence.Transient
+
 /**
  * Class of <b>FishingMan</b> which contains data of a fishing man.
  */
@@ -23,6 +25,9 @@ class FishingMan {
     /** Gender of the fishing man/woman. */
     String gender
 
+    @Transient
+    String tmpPassword
+
     static constraints = {
         firstname nullable: false, blank: false
         lastname nullable: false, blank: false
@@ -30,5 +35,8 @@ class FishingMan {
         hashedPassword nullable: false, blank: false
         saltedPassword nullable: false, blank: false
         gender inList: ["H", "F"]
+        tmpPassword nullable: true, validator: { val ->
+            val == null || val.length() >= 8
+        }
     }
 }

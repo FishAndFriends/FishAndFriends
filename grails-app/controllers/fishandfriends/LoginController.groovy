@@ -13,19 +13,10 @@ class LoginController {
         }
     }
 
-    def generator = { String alphabet, int n ->
-        new Random().with {
-            (1..n).collect { alphabet[ nextInt( alphabet.length() ) ] }.join()
-        }
-    }
-
     def inscription(){
         FishingMan fishingMan = new FishingMan(firstname:params.signupFirstname,lastname:params.signupLastname,email:params.signupMail,
-                gender:params.radioGender)
+                gender:params.radioGender, tmpPassword: params.signupPwd)
 
-        // http://stackoverflow.com/a/8138604
-        fishingMan.saltedPassword = generator((('A'..'Z')+('0'..'9')).join(), 9)
-        fishingMan.hashedPassword = (fishingMan.saltedPassword + params.signupPwd).encodeAsSHA1()
         fishingManService.insertOrUpdateFishingMan(fishingMan)
 
         if (fishingMan.id != null) {
@@ -48,15 +39,8 @@ class LoginController {
 
         if (errors.isEmpty()) {
             FishingMan fishingMan = fishingManService.findByEmail(params.connectMail)
-            if (fishingMan) {
-                def password = fishingMan.saltedPassword + params.connectPwd
-                password = password.encodeAsSHA1()
-
-                if (fishingMan.hashedPassword.equals(password)) {
-                    session.fishingMan = fishingMan
-                } else {
-                    errors.add(message(code: "fishandfriends.fishingMan.userNotFound"))
-                }
+            if (fishingManService.controlPassword(fishingMan, params.connectPwd)) {
+                session.fishingMan = fishingMan
             } else {
                 errors.add(message(code: "fishandfriends.fishingMan.userNotFound"))
             }

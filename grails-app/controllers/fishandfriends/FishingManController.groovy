@@ -64,17 +64,16 @@ class FishingManController {
         if (fishingManInstance.hasErrors()) {
             render(view: "edit", model:[fishingManInstance: fishingManInstance])
         }
-        def password = fishingManInstance.saltedPassword + params.oldPassword
-        password = password.encodeAsSHA1()
 
-        if (fishingManInstance.hashedPassword.equals(password)) {
-            fishingManInstance.hashedPassword =
-                    (fishingManInstance.saltedPassword + params.newPassword).encodeAsSHA1()
+        def errors= []
+
+        if (fishingManService.controlPassword(fishingManInstance, params.oldPassword)) {
             fishingManService.insertOrUpdateFishingMan(fishingManInstance)
             redirect action: "show", id: fishingManInstance.id
         } else {
             errors.add(message(code: "fishandfriends.fishingMan.userNotFound"))
         }
 
+        render(view: "edit", model:[fishingManInstance: fishingManInstance])
     }
 }
