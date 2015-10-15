@@ -15,7 +15,6 @@ class ScoreService {
             }
 
             projections {
-                groupProperty "fishingMan.id"
                 count 'id'
                 avg 'size'
                 avg 'weight'
