@@ -3,7 +3,10 @@ import fishandfriends.Comment
 import fishandfriends.FishingArea
 import fishandfriends.FishingMan
 import fishandfriends.Fish
+import fishandfriends.Note
+import grails.transaction.Transactional
 
+@Transactional
 class BootStrap {
 
     def fishingManList = []
@@ -11,6 +14,7 @@ class BootStrap {
     def fishList = []
     def catchList = []
     def commentList = []
+    def noteList = []
 
     def init = { servletContext ->
         // FishingMan
@@ -54,6 +58,10 @@ class BootStrap {
                                 fishingMan: fishingManList.get(1),
                                 fishingArea: fishingAreaList.get(1))
 
+        // Note
+        noteList << new Note(fishingMan: fishingMan, fishingArea: fishingAreaList.get(0), value:3)
+        noteList << new Note(fishingMan: fishingManList.get(1), fishingArea: fishingAreaList.get(0), value: 4)
+
         // Save them all !
         fishingManList.each {
             it.save(flush: true)
@@ -68,6 +76,9 @@ class BootStrap {
             it.save(flush: true)
         }
         catchList.each {
+            it.save(flush: true)
+        }
+        noteList.each {
             it.save(flush: true)
         }
 
@@ -87,6 +98,9 @@ class BootStrap {
             it.delete(flush: true)
         }
         catchList.each {
+            it.delete(flush: true)
+        }
+        noteList.each {
             it.delete(flush: true)
         }
     }
