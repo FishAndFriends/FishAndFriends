@@ -9,6 +9,7 @@ class FishingAreaController {
 
     CatchService catchService
     def fishingAreaDAOService
+    def scoreService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -19,7 +20,8 @@ class FishingAreaController {
 
     def show(FishingArea fishingAreaInstance) {
         def catchList = catchService.getCatchesByFishingArea(fishingAreaInstance)
-        render(view: "show", model:[fishingAreaInstance: fishingAreaInstance,catches:catchList])
+        def score = scoreService.computeScoresForFishingArea(fishingAreaInstance)
+        render(view: "show", model:[fishingAreaInstance: fishingAreaInstance,catches:catchList, score:score])
     }
 
     def create() {

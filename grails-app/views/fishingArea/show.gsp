@@ -13,19 +13,19 @@
 		<div class="col-md-offset-2 col-md-8">
 			<div class="homebox jumbotron">
 				<g class="row">
-
 					<div class="col-md-8">
 						<p>
-						<h2><i class="fa fa-map-marker"></i> <b>${fishingAreaInstance.name},</b> ${fishingAreaInstance.location}</h2>
-						Note : 3/5	<br/>
-						Total de prises : placeholder <br/>
-						Nombre de personnes : placeholder <br/>
-					</p>
+							<h2><i class="fa fa-map-marker"></i> <b>${fishingAreaInstance.name},</b> ${fishingAreaInstance.location}</h2>
+							Note : <g:if test="${score.note >= 0}">${score.note}/5</g:if><g:else>Aucune note</g:else><br/>
+							Total de prises : <g:if test="${score.nbCatch > 0}">${score.nbCatch}</g:if><g:else>Aucune prise</g:else>  <br/>
+							Nombre de personnes : <g:if test="${score.nbFishingMan > 0}">${score.nbFishingMan}</g:if><g:else>Aucun pêcheur abonné</g:else> <br/>
+						</p>
 					</div>
 
-						<div class="col-md-2">
-							<button type="button" class="btn btn-primary">Suivre</button>
-						</div>
+					<div class="col-md-2">
+						<button type="button" class="btn btn-primary">Suivre</button>
+					</div>
+					</g>
 			</div>
 		</div>
 	</div>

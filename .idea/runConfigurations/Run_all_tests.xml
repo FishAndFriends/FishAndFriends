@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run all tests" type="GrailsRunConfigurationType" factoryName="Grails">
+    <module name="FishAndFriends" />
+    <setting name="vmparams" value="" />
+    <setting name="cmdLine" value="test-app -coverage --echoOut" />
+    <setting name="depsClasspath" value="false" />
+    <setting name="passParentEnv" value="true" />
+    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <setting name="launchBrowser" value="false" />
+    <method />
+  </configuration>
+</component>
