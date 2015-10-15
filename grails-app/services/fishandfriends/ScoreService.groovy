@@ -13,7 +13,7 @@ class ScoreService {
     public FishingManScoreObject computeScoresForFishingMan(FishingMan f) {
         FishingManScoreObject scoreObject = new FishingManScoreObject()
 
-        def result = Catch.createCriteria().list {
+        def result = Catch.createCriteria().get {
 
             fishingMan {
                 idEq(f.id)
@@ -27,10 +27,10 @@ class ScoreService {
         }
 
         // Set object to return
-        if (result?.size() > 0) {
-            scoreObject.nbCatch = result[0][0]
-            scoreObject.averageSize = result[0][1]
-            scoreObject.averageWeight = result[0][2]
+        if (result) {
+            scoreObject.nbCatch = result[0]
+            scoreObject.averageSize = result[1]
+            scoreObject.averageWeight = result[2]
         }
 
         return scoreObject
@@ -45,8 +45,7 @@ class ScoreService {
         FishingAreaScoreObject fishingAreaScoreObject = new FishingAreaScoreObject()
 
         // nbCatch
-        def res1 = Catch.createCriteria().list {
-
+        def res1 = Catch.createCriteria().get {
             fishingArea {
                 idEq(f.id)
             }
@@ -54,21 +53,40 @@ class ScoreService {
             projections {
                 count 'id'
             }
+
+            cache true
         }
 
         // nbFishingMan
-        def res2 = FishingArea.createCriteria().list {
+        def res2 = FishingArea.createCriteria().get {
             projections {
                 count 'fishingMen'
             }
+
+            cache true
+        }
+
+        def res3 = Note.createCriteria().get {
+            fishingArea {
+                idEq(f.id)
+            }
+
+            projections {
+                avg 'value'
+            }
+
+            cache true
         }
 
         // Set object to return
-        if (res1?.size() > 0) {
-            fishingAreaScoreObject.nbCatch = res1[0]
+        if (res1) {
+            fishingAreaScoreObject.nbCatch = res1
         }
-        if (res2?.size() > 0) {
-            fishingAreaScoreObject.nbFishingMan = res2[0]
+        if (res2) {
+            fishingAreaScoreObject.nbFishingMan = res2
+        }
+        if (res3) {
+            fishingAreaScoreObject.note = res3
         }
 
         return fishingAreaScoreObject

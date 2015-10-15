@@ -1,5 +1,6 @@
 import fishandfriends.*
 
+@Transactional
 class BootStrap {
     FishingManService fishingManService
 
@@ -8,6 +9,7 @@ class BootStrap {
     def fishList = []
     def catchList = []
     def commentList = []
+    def noteList = []
 
     def init = { servletContext ->
         // FishingMan
@@ -23,6 +25,7 @@ class BootStrap {
         // Comment
         commentList << new Comment(fishingMan: fishingMan, commentable: fishingArea)
 
+
         //Fish
         fishList << new Fish(name: "Aligator", weightAverage: 10.2, sizeAverage: 10.0)
         fishList << new Fish(name: "anguille", weightAverage: 7.2, sizeAverage: 100)
@@ -32,6 +35,7 @@ class BootStrap {
         fishList << new Fish(name: "Poisson rouge", weightAverage: 10, sizeAverage: 5)
         fishList << new Fish(name: "Néon", weightAverage: 5, sizeAverage: 3)
         fishList << new Fish(name: "Combattant", weightAverage: 10, sizeAverage: 5)
+
 
         //Catch
         catchList << new Catch(date: new Date(year: 2002,month: 10,date: 25),weight: 34.5,
@@ -49,6 +53,10 @@ class BootStrap {
                                 fishingMan: fishingManList.get(1),
                                 fishingArea: fishingAreaList.get(1))
 
+        // Note
+        noteList << new Note(fishingMan: fishingMan, fishingArea: fishingAreaList.get(0), value:3)
+        noteList << new Note(fishingMan: fishingManList.get(1), fishingArea: fishingAreaList.get(0), value: 4)
+
         // Save them all !
         fishingManList.each {
             fishingManService.insertOrUpdateFishingMan(it)
@@ -63,6 +71,9 @@ class BootStrap {
             it.save(flush: true)
         }
         catchList.each {
+            it.save(flush: true)
+        }
+        noteList.each {
             it.save(flush: true)
         }
 
@@ -83,6 +94,9 @@ class BootStrap {
             it.delete(flush: true)
         }
         catchList.each {
+            it.delete(flush: true)
+        }
+        noteList.each {
             it.delete(flush: true)
         }
     }

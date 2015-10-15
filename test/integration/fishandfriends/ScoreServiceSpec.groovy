@@ -32,5 +32,6 @@ class ScoreServiceSpec extends IntegrationSpec {
         then:"on a bien les bons scores"
         result.nbCatch == 1
         result.nbFishingMan == 2
+        result.note == 3.5f
     }
 }

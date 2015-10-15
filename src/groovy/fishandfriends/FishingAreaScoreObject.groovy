@@ -7,4 +7,5 @@ package fishandfriends
 class FishingAreaScoreObject {
     int nbFishingMan = 0
     int nbCatch = 0
+    float note = 0f
 }
