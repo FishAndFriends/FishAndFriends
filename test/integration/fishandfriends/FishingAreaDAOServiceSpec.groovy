@@ -10,7 +10,7 @@ class FishingAreaDAOServiceSpec extends IntegrationSpec {
 
 
     def setup() {
-        fishingArea = new FishingArea(location: "Toulouse", name: "Lac rose")
+        fishingArea = new FishingArea(location: "Toulouse", name: "Lac rose",description :"desc")
     }
 
     def cleanup() {

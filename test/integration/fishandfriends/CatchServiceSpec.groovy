@@ -42,5 +42,39 @@ class CatchServiceSpec extends IntegrationSpec {
 
     }
 
+    void "test the research of a catch by fishingArea"() {
+        given: " a fishingArea"
+        FishingArea fishingArea = FishingArea.findById(1)
+
+        when:"searching for catches"
+        def result = catchService.getCatchesByFishingArea(fishingArea)
+
+        then:"the result is correct"
+        result.size() == 1
+    }
+
+
+    void "test the research of catches by fishingArea"() {
+        given: " a fishingArea"
+        FishingArea fishingArea = FishingArea.findById(2)
+
+        when:"searching for catches"
+        def result = catchService.getCatchesByFishingArea(fishingArea)
+
+        then:"the result is correct"
+        result.size() == 2
+    }
+
+    void "test a false research of a catch by fishingArea"() {
+        given: " a fishingArea"
+        FishingArea fishingArea = new FishingArea(name: "nom",location: "loc",description: "desc")
+
+        when:"searching for catches"
+        def result = catchService.getCatchesByFishingArea(fishingArea)
+
+        then:"the result is correct"
+        result.size() == 0
+    }
+
 
 }

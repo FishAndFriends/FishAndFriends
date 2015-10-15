@@ -26,7 +26,8 @@ class CatchSpec extends Specification {
         fishingArea =
                 new FishingArea(
                         name: 'azetr',
-                        location: 'loc')
+                        location: 'loc',
+                        description: 'desc')
         fish =
                 new Fish(
                         name: 'carpe',

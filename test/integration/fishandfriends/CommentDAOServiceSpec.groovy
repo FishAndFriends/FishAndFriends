@@ -14,7 +14,7 @@ class CommentDAOServiceSpec extends IntegrationSpec {
 
     def setup() {
         fishingMan = new FishingMan(firstname:"Jean-Michel",email:"jzevnk@yahoo.fr", hashedPassword: "mypassword",saltedPassword:'passwordtest',lastname: "Dupont",gender: "H")
-        fishingArea = new FishingArea(location: "zknvznv", name: "zonvzlnv")
+        fishingArea = new FishingArea(location: "zknvznv", name: "zonvzlnv", description: "desc")
         fishingArea.save(flush: true)
         //fishingMan.save(flush: true)
     }
