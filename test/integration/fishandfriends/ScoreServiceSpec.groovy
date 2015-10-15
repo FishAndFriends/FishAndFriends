@@ -11,13 +11,26 @@ class ScoreServiceSpec extends IntegrationSpec {
 
     def scoreService = new ScoreService()
 
-    void "test score"() {
+    void setup(){
+        // See bootstrap !
+    }
+
+    void "test score for a fishingMan"() {
         when: "je récupère les scores de peche"
-        ScoreObject result = scoreService.computeScores(FishingMan.findById(2))
+        FishingManScoreObject result = scoreService.computeScoresForFishingMan(FishingMan.findById(2))
 
         then:"on a bien les bons scores"
         result.nbCatch == 2
         result.averageWeight == 427.5f
         result.averageSize == 128.1f
+    }
+
+    void "test score for a fishingArea"() {
+        when:"je recup les scores d'une fishingArea"
+        FishingAreaScoreObject result = scoreService.computeScoresForFishingArea(FishingArea.findById(1))
+
+        then:"on a bien les bons scores"
+        result.nbCatch == 1
+        result.nbFishingMan == 2
     }
 }
