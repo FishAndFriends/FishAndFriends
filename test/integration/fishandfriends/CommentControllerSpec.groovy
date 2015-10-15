@@ -10,7 +10,7 @@ class CommentControllerSpec extends IntegrationSpec {
     def commentController = new CommentController()
 
     def setup() {
-        fishingArea = new FishingArea(location: "zkdv", name: "eknvenve")
+        fishingArea = new FishingArea(location: "zkdv", name: "eknvenve", description: "desc")
         fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl',saltedPassword:'zjhduzudhe', gender: 'H')
         fishingArea.save(flush: true)
         fishingMan.save(flush: true)

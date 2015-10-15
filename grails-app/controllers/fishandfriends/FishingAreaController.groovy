@@ -7,6 +7,7 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class FishingAreaController {
 
+    CatchService catchService
     def fishingAreaDAOService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -17,7 +18,8 @@ class FishingAreaController {
     }
 
     def show(FishingArea fishingAreaInstance) {
-        respond fishingAreaInstance
+        def catchList = catchService.getCatchesByFishingArea(fishingAreaInstance)
+        render(view: "show", model:[fishingAreaInstance: fishingAreaInstance,catches:catchList])
     }
 
     def create() {

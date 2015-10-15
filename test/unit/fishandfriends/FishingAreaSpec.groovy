@@ -24,6 +24,7 @@ class FishingAreaSpec extends Specification {
 
         fishingArea.name = aName
         fishingArea.location = aLocation
+        fishingArea.description = aDescription
 
         when:"validating the fishing area"
         def isValid = fishingArea.validate()
@@ -33,9 +34,9 @@ class FishingAreaSpec extends Specification {
 
         where:
 
-        aName         |  aLocation
-        "La garonne"  | "Toulouse"
-        "La garonne"  | "Toulouse"
+        aName         |  aLocation  | aDescription
+        "La garonne"  | "Toulouse"  | "Ce lieu est superbe"
+        "La garonne"  | "Toulouse"  | "ce super lieu"
 
     }
 
@@ -45,6 +46,7 @@ class FishingAreaSpec extends Specification {
 
         fishingArea.name = aName
         fishingArea.location = aLocation
+        fishingArea.description = aDescription
 
         when:"validating the fishing area"
         def isValid = fishingArea.validate()
@@ -53,11 +55,13 @@ class FishingAreaSpec extends Specification {
         isValid == false
 
         where:
-        aName         |  aLocation
-        "La garonne"  | null
-        "La garonne"  | ""
-        ""            | "Toulouse"
-        null          | "Toulouse"
+        aName         |  aLocation | aDescription
+        "La garonne"  | null       | "Lekekekke"
+        "La garonne"  | ""         | "Beau panorama"
+        ""            | "Toulouse" | "Belle vue"
+        null          | "Toulouse" | "Soleil levant"
+        "La garonne"  | "Paris "   | null
+        "La garonne"  | "Lyon"     | ""
 
     }
 

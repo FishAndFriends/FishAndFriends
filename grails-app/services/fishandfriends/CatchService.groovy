@@ -17,4 +17,18 @@ class CatchService {
         }
 
     }
+
+    def getCatchesByFishingArea(FishingArea afishingArea) {
+        def criteria = Catch.createCriteria()
+
+        def result = criteria.list() {
+            fishingArea {
+                idEq(afishingArea.id)
+
+            }
+        }
+
+    }
+
+
 }

@@ -12,6 +12,9 @@ class FishingArea extends AbstractCommentable {
     /** Location (e.g Toulouse)*/
     String location
 
+    /** Description du lieu) */
+    String description
+
     /** List of fishing man, fishes and catch for a FishingArea */
     static hasMany = [fishingMen: FishingMan, fishes: Fish, catches : Catch]
 
@@ -19,6 +22,7 @@ class FishingArea extends AbstractCommentable {
 
         name nullable: false, blank: false
         location nullable: false, blank: false
+        description nullable: false, blank: false
 
     }
 }

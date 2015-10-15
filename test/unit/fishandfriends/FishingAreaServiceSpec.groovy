@@ -11,10 +11,10 @@ class FishingAreaServiceSpec extends Specification {
     FishingArea fishingArea,fishingArea2,fishingArea3,fishingArea4
 
     def setup() {
-        fishingArea = new FishingArea(location: "Paris", name: "Lac rose").save(flush: true)
-        fishingArea2 = new FishingArea(location: "Montauban", name: "Lac des plaines").save(flush: true)
-        fishingArea3 = new FishingArea(location: "Perigueux", name: "Lac des places").save(flush: true)
-        fishingArea4 = new FishingArea(location: "Montauban", name: "super etang").save(flush: true)
+        fishingArea = new FishingArea(location: "Paris", name: "Lac rose", description: "Tres belle vue").save(flush: true)
+        fishingArea2 = new FishingArea(location: "Montauban", name: "Lac des plaines", description: "Super panorama").save(flush: true)
+        fishingArea3 = new FishingArea(location: "Perigueux", name: "Lac des places", description: "Tres beau soleil").save(flush: true)
+        fishingArea4 = new FishingArea(location: "Montauban", name: "super etang",description: "Magnifique paysage").save(flush: true)
     }
 
     def cleanup() {
