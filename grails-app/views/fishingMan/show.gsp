@@ -19,8 +19,9 @@
 						<div class="col-md-8">
 							<p>
 								<h2><b>${fishingManInstance.firstname}</b> ${fishingManInstance.lastname}</h2>
-								Poids moyen des prises : 0 kg <br/>
-								Taille moyenne des prises : 0 cm <br/>
+								Nombre de prises : ${score.nbCatch} <br/>
+								Poids moyen des prises : ${score.averageWeight} kg <br/>
+								Taille moyenne des prises : ${score.averageSize} cm <br/>
 							</p>
 						</div>
 						<g:if test="${fishingManInstance.id}.equals(${session.fishingMan.id})">

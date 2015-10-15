@@ -8,7 +8,7 @@ import grails.transaction.Transactional
 class FishingManController {
     FishingManService fishingManService
     CatchService catchService
-
+    def scoreService
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -16,10 +16,9 @@ class FishingManController {
     }
 
     def show(FishingMan fishingManInstance) {
-
         def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
-        render(view: "show", model:[fishingManInstance: fishingManInstance,catches:catchList])
-        //respond fishingManInstance
+        def score = scoreService.computeScoresForFishingMan(fishingManInstance)
+        render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score])
     }
 
     def edit(FishingMan fishingManInstance) {
@@ -43,7 +42,7 @@ class FishingManController {
         }
 
         if (fishingManInstance.hasErrors()) {
-            render(view: "edit", model:[fishingManInstance: fishingManInstance])
+            render(view: "edit", model: [fishingManInstance: fishingManInstance])
         }
 
         if (params.firstnameEdit) {
@@ -65,10 +64,10 @@ class FishingManController {
         }
 
         if (fishingManInstance.hasErrors()) {
-            render(view: "edit", model:[fishingManInstance: fishingManInstance])
+            render(view: "edit", model: [fishingManInstance: fishingManInstance])
         }
 
-        def errors= []
+        def errors = []
 
         if (fishingManService.controlPassword(fishingManInstance, params.oldPassword)) {
             fishingManService.insertOrUpdateFishingMan(fishingManInstance)
@@ -77,6 +76,6 @@ class FishingManController {
             errors.add(message(code: "fishandfriends.fishingMan.userNotFound"))
         }
 
-        render(view: "edit", model:[fishingManInstance: fishingManInstance])
+        render(view: "edit", model: [fishingManInstance: fishingManInstance])
     }
 }
