@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">-->
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.css')}">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'flaticon.css')}">
 
     %{--TODO: Penser à retirer ce debug à la fin--}%
     <style type="text/css">

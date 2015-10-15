@@ -77,4 +77,8 @@ class FishingManController {
         }
 
     }
+
+    def shareCatch(FishingMan fishingManInstance) {
+        render(view: "shareCatch", model:[fishingManInstance: fishingManInstance])
+    }
 }
