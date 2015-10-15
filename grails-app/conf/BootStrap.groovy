@@ -6,6 +6,7 @@ class BootStrap {
     def fishingManList = []
     def fishingAreaList = []
     def fishList = []
+    def catchList = []
     def commentList = []
 
     def init = { servletContext ->
@@ -15,7 +16,7 @@ class BootStrap {
         fishingManList << new FishingMan(firstname: "Jaqueline", email: "jaja@yahoo.fr", tmpPassword: "password", lastname: "Dupont", gender: "F")
 
         // FishingArea
-        FishingArea fishingArea = new FishingArea(location: "Toulouse", name: "L'étan du petit village")
+        FishingArea fishingArea = new FishingArea(location: "Toulouse", name: "L'étan du petit village", fishingMen: fishingManList)
         fishingAreaList << fishingArea
         fishingAreaList << new FishingArea(location: "Toutouland", name: "Pêche de chiens")
 
@@ -32,6 +33,22 @@ class BootStrap {
         fishList << new Fish(name: "Néon", weightAverage: 5, sizeAverage: 3)
         fishList << new Fish(name: "Combattant", weightAverage: 10, sizeAverage: 5)
 
+        //Catch
+        catchList << new Catch(date: new Date(year: 2002,month: 10,date: 25),weight: 34.5,
+                                size: 66.9 ,fish: fishList.get(0),
+                                fishingMan: fishingManList.get(0),
+                                fishingArea: fishingAreaList.get(0))
+
+        catchList << new Catch(date: new Date(year: 2010,month: 4,date: 7),weight: 66.5,
+                                size: 99.9 ,fish: fishList.get(1),
+                                fishingMan: fishingManList.get(1),
+                                fishingArea: fishingAreaList.get(1))
+
+        catchList << new Catch(date: new Date(year: 2011,month: 3,date: 9),weight: 788.5,
+                                size: 156.3 ,fish: fishList.get(1),
+                                fishingMan: fishingManList.get(1),
+                                fishingArea: fishingAreaList.get(1))
+
         // Save them all !
         fishingManList.each {
             fishingManService.insertOrUpdateFishingMan(it)
@@ -45,8 +62,12 @@ class BootStrap {
         fishList.each {
             it.save(flush: true)
         }
+        catchList.each {
+            it.save(flush: true)
+        }
 
     }
+    
     def destroy = {
         // Release them all !
         fishingManList.each {
@@ -59,6 +80,9 @@ class BootStrap {
             it.delete(flush: true)
         }
         fishList.each {
+            it.delete(flush: true)
+        }
+        catchList.each {
             it.delete(flush: true)
         }
     }

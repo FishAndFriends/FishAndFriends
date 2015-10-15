@@ -13,7 +13,7 @@ class FishingArea extends AbstractCommentable {
     String location
 
     /** List of fishing man, fishes and catch for a FishingArea */
-    static hasMany = [fishingMen: FishingMan, fishes: Fish, catches : Catch]
+    static hasMany = [fishingMen: FishingMan, fishes: Fish]
 
     static constraints = {
 

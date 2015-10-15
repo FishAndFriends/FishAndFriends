@@ -7,8 +7,8 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class FishingManController {
     FishingManService fishingManService
+    CatchService catchService
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
@@ -16,7 +16,10 @@ class FishingManController {
     }
 
     def show(FishingMan fishingManInstance) {
-        respond fishingManInstance
+
+        def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
+        render(view: "show", model:[fishingManInstance: fishingManInstance,catches:catchList])
+        //respond fishingManInstance
     }
 
     def edit(FishingMan fishingManInstance) {
