@@ -28,9 +28,9 @@ class ScoreService {
 
         // Set object to return
         if (result) {
-            scoreObject.nbCatch = result[0]
-            scoreObject.averageSize = result[1]
-            scoreObject.averageWeight = result[2]
+            scoreObject.nbCatch = (int) result[0]
+            scoreObject.averageSize = (float) result[1]
+            scoreObject.averageWeight = (float) result[2]
         }
 
         return scoreObject

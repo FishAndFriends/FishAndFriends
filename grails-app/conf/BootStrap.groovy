@@ -1,4 +1,5 @@
 import fishandfriends.*
+import grails.transaction.Transactional
 
 @Transactional
 class BootStrap {
