@@ -5,7 +5,13 @@ branches:
   only:
   - master
   - /^sprint\d+$/
-script: ./grailsw refresh-dependencies && ./grailsw "test-app unit:" && ./grailsw refresh-dependencies && ./grailsw "test-app functional:"
+before_install:
+  - openssl aes-256-cbc -K $encrypted_013b5f06e15b_key -iv $encrypted_013b5f06e15b_iv -in sonar-secret.txt.enc -out sonar-secret.txt -d
+script:
+  - ./grailsw refresh-dependencies
+  - ./grailsw "test-app unit:"
+  - ./grailsw refresh-dependencies
+  - ./grailsw "test-app functional:"
 deploy:
   provider: heroku
   api_key:
