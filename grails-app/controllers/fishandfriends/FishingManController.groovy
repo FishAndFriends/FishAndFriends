@@ -81,4 +81,31 @@ class FishingManController {
     def shareCatch(FishingMan fishingManInstance) {
         render(view: "shareCatch", model:[fishingManInstance: fishingManInstance])
     }
+
+    def shareCatchLocation(FishingMan fishingManInstance) {
+        if (fishingManInstance == null) {
+            notFound()
+            return
+        }
+
+        if (fishingManInstance.hasErrors()) {
+            render( view: "shareCatch",
+                    model:[fishingManInstance: fishingManInstance])
+        }
+
+        Catch aCatch = null
+        if (params.fishingAreaNameShared || params.fishNameShared
+            || params.fishWeightShared || params.fishSizeShared) {
+            aCatch = new Catch(
+                    date: new Date(),
+                    fishingMan: fishingManInstance,
+                    fishingArea: params.fishingAreaNameShared,
+                    fish: params.fishNameShared,
+                    weight: params.fishWeightShared,
+                    size: params.fishSizeShared,
+            )
+
+        }
+        aCatch.insertO
+    }
 }
