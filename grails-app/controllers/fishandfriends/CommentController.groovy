@@ -54,6 +54,7 @@ class CommentController {
      *
      * @return to the same page (normally)
      */
+    @SuppressWarnings('GrailsMassAssignment') // We don't want to modify that code when the model is updated
     def createComment() {
         Comment comment = new Comment(params)
         commentDAOService.saveComment(comment)

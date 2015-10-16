@@ -9,10 +9,8 @@ import grails.transaction.Transactional
 class CommentService {
 
     def getAllCommentsForCommentable(AbstractCommentable abstractCommentable) {
-        int max = 10
-        int offset = 0
 
-        def result = Comment.createCriteria().list() {//max: max, offset: offset) {
+        def result = Comment.createCriteria().list() {
             commentable {
                 idEq(abstractCommentable.id)
             }

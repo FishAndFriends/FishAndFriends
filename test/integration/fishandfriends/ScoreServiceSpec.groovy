@@ -11,9 +11,9 @@ class ScoreServiceSpec extends IntegrationSpec {
 
     def scoreService = new ScoreService()
 
-    void setup(){
-        // See bootstrap !
-    }
+//    void setup(){
+//        // See bootstrap !
+//    }
 
     void "test score for a fishingMan"() {
         when: "je récupère les scores de peche"

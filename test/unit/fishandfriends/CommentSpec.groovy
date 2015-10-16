@@ -13,13 +13,11 @@ class CommentSpec extends Specification {
     Comment comment
     @Shared FishingArea fishingArea
     @Shared FishingMan fishingMan
+
     def setup() {
         fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl', gender: 'H')
         fishingArea = new FishingArea(name: 'azetr', location: 'loc')
         comment = new Comment()
-    }
-
-    def cleanup() {
     }
 
     void "test validate"() {

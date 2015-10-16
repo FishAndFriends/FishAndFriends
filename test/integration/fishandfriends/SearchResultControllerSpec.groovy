@@ -1,6 +1,5 @@
 package fishandfriends
 
-import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 /**
@@ -10,11 +9,9 @@ class SearchResultControllerSpec extends Specification {
 
     def searchResultController = new SearchResultController()
 
-    def setup() {
-    }
-
-    def cleanup() {
-    }
+//    def setup() {
+//        //See bootstrap
+//    }
 
     void "test index"() {
         given:

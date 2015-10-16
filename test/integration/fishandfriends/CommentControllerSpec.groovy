@@ -54,7 +54,6 @@ class CommentControllerSpec extends IntegrationSpec {
     void "Test show all comments works well"() {
         given:
         commentController.params.commentable = fishingArea
-        def result = commentController.render(template: "showAllComments", model: [comments: [comment]]).toString()
 
         when: "The index action is executed"
         commentController.showAllComment()

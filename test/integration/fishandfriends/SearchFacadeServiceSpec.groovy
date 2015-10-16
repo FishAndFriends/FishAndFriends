@@ -9,12 +9,9 @@ class SearchFacadeServiceSpec extends IntegrationSpec {
 
     def searchFacadeService = new SearchFacadeService()
 
-    def setup() {
-        // See Bootstrap
-    }
-
-    def cleanup() {
-    }
+//    def setup() {
+//        // See Bootstrap
+//    }
 
     void "test search fishingArea only one"() {
         when: "search fishingArea"
@@ -40,7 +37,7 @@ class SearchFacadeServiceSpec extends IntegrationSpec {
         when: "search with an unknown type"
         boolean isError = false
         try{
-            def result = searchFacadeService.search(0,"Roll your head on your keyboard !", "It's fun, you know !")
+            searchFacadeService.search(0,"Roll your head on your keyboard !", "It's fun, you know !")
             isError = false
         }catch(RuntimeException e){
             isError = true
