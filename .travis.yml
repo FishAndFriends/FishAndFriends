@@ -10,6 +10,7 @@ before_install:
   - mv sonar-secret.txt /home/travis/
   - wget http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip
   - unzip sonar-runner-dist-2.4.zip
+  - rm sonar-runner-dist-2.4.zip
   - sudo mv sonar-runner-2.4 /opt/sonar-runner
   - sudo rm /opt/sonar-runner/conf/sonar-runner.properties
   - sudo mv sonar-runner.properties /opt/sonar-runner/conf/
@@ -18,7 +19,8 @@ before_install:
 script:
   - ./grailsw refresh-dependencies
   - ./grailsw "test-app -coverage -xml"
-before_deploy:
+after_success:
+  - ./grailsw coveralls
   - sonar-runner
 deploy:
   provider: heroku
