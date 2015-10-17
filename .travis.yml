@@ -13,6 +13,8 @@ before_install:
   - sudo mv sonar-runner-2.4 /opt/sonar-runner
   - sudo rm /opt/sonar-runner/conf/sonar-runner.properties
   - sudo mv sonar-runner.properties /opt/sonar-runner/conf/
+  - export SONAR_RUNNER_HOME=/opt/sonar-runner
+  - export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 script:
   - ./grailsw refresh-dependencies
   - ./grailsw "test-app -coverage -xml"
