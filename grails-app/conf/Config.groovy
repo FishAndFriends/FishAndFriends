@@ -122,11 +122,3 @@ log4j = {
 
 // Projet mis à la racine
 grails.app.context = "/"
-
-codenarcTest {
-    excludes "**"
-}
-
-codenarcMain {
-    excludes "**"
-}
