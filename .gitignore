@@ -1,6 +1,13 @@
+#Database
 /prodDb.lock.db
 /prodDb.h2.db
+
+#Cobertura
 /cobertura.ser
+
+#Sonar temp files
+/.sonar
+
 # Created by .ignore support plugin (hsz.mobi)
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
