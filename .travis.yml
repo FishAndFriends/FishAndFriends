@@ -18,10 +18,13 @@ before_install:
   - export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 script:
   - ./grailsw refresh-dependencies
-  - ./grailsw "test-app -coverage -xml"
+  - ./grailsw "test-app -echoOut -echoErr -coverage -xml"
 after_success:
   - ./grailsw coveralls
   - sonar-runner
+cache:
+  directories:
+  - $HOME/.m2
 deploy:
   provider: heroku
   api_key:
