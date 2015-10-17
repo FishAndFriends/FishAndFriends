@@ -93,3 +93,9 @@ grails.project.dependency.resolution = {
         }
     }
 }
+
+//cobertura exclusions
+coverage {
+    exclusions = [
+            '**/test/**']
+}
