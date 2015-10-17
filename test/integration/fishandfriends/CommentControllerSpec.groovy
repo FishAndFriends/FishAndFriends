@@ -14,8 +14,12 @@ class CommentControllerSpec extends IntegrationSpec {
         fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl',saltedPassword:'zjhduzudhe', gender: 'H')
         fishingArea.save(flush: true)
         fishingMan.save(flush: true)
-        comment = new Comment(text: "edvk,kv,", fishingMan: fishingMan, fishingArea: fishingArea)
+        comment = new Comment(text: "edvk,kv,", fishingMan: fishingMan, commentable: fishingArea)
         comment.save(flush: true)
+    }
+
+    def cleanup(){
+        comment.delete(flush: true)
     }
 
     void "Test the index action works well"() {
