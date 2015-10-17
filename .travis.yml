@@ -10,6 +10,8 @@ before_install:
 script:
   - ./grailsw refresh-dependencies
   - ./grailsw "test-app"
+before_deploy:
+  - ls
 deploy:
   provider: heroku
   api_key:
