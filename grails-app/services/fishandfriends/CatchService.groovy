@@ -13,4 +13,5 @@ class CatchService {
     Catch insertOrUpdateCatch(Catch aCatch) {
         aCatch.save(flush: true)
     }
+
 }

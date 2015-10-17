@@ -82,6 +82,13 @@ class FishingManController {
         render(view: "shareCatch", model:[fishingManInstance: fishingManInstance])
     }
 
+    /**
+     * Method used when a FishingMan <i>fishingManInstance</i> want to share a
+     * <b>Catch</b>. A catch concerns a fish (name, size and weight) taken in a
+     * location given.
+     * @param fishingManInstance FishingMan who share a <b>Catch</b>.
+     * @return a catch
+     */
     def shareCatchLocation(FishingMan fishingManInstance) {
         if (fishingManInstance == null) {
             notFound()
@@ -93,10 +100,9 @@ class FishingManController {
                     model:[fishingManInstance: fishingManInstance])
         }
 
-        Catch aCatch = null
         if (params.fishingAreaNameShared || params.fishNameShared
-            || params.fishWeightShared || params.fishSizeShared) {
-            aCatch = new Catch(
+                || params.fishWeightShared || params.fishSizeShared) {
+            Catch aCatch = new Catch(
                     date: new Date(),
                     fishingMan: fishingManInstance,
                     fishingArea: params.fishingAreaNameShared,
@@ -104,8 +110,10 @@ class FishingManController {
                     weight: params.fishWeightShared,
                     size: params.fishSizeShared,
             )
-
+            CatchService.insertOrUpdateCatch(aCatch)
+            render(view: "newsfeed")
         }
-        aCatch.insertO
+
     }
+
 }

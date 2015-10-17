@@ -1,0 +1,6 @@
+package fishandfriends
+
+class CatchController {
+
+
+}

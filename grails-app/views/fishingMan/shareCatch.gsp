@@ -14,7 +14,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-offset-2 col-md-4">
-                <h1>Partager votre prise</h1>
+                <h1>Partager votre prise ${fishingManInstance.firstname}
+                    lalala ${fishingManInstance.lastname}</h1>
             </div>
             <div class="col-md-offset-2 col-md-8">
                 <div class="homebox jumbotron">
@@ -25,8 +26,11 @@
                             <g:select class="form-control"
                                       name="fishingAreaNameShared"
                                       from="${FishingArea.list()}"
-                                      value="${fishandfriends?.FishingArea.name}"
-                                      optionKey="name" />
+                                      value="${FishingArea?.name}"
+                                      noSelection="${['null':'Lieu de pêche']}"
+                                      optionKey="id"
+                                      optionValue="name"
+                            />
                         </div>
                         <h2><i class="flaticon-fish"></i> Poisson</h2>
                         <div class="form-group">
@@ -34,15 +38,23 @@
                             <g:select class="form-control"
                                       name="fishNameShared"
                                       from="${Fish.list()}"
-                                      value="${fishandfriends?.Fish.name}"
-                                      optionKey="name" />
+                                      value="${Fish?.name}"
+                                      noSelection="${['null':'Choisir un poisson']}"
+                                      optionKey="id"
+                                      optionValue="name"
+                            />
                             <label for="fishWeightShared" class="col-md-1 control-label">Poids (kg)</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="fishWeightShared" name="fishWeightShared" placeholder="3.2">
+                                <input type="text" class="form-control"
+                                       id="fishWeightShared"
+                                       name="fishWeightShared"
+                                       placeholder="0.0">
                             </div>
                             <label for="fishSizeShared" class="col-md-2 control-label">Taille (cm)</label>
                             <div class="col-sm-4">
-                                <input type="text" class="form-control" id="fishSizeShared" name="fishSizeShared" placeholder="56.2">
+                                <input type="text" class="form-control"
+                                       id="fishSizeShared"
+                                       name="fishSizeShared" placeholder="0.0">
                             </div>
                         </div>
                         <div class="col-md-offset-10">

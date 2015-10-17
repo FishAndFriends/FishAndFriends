@@ -10,7 +10,6 @@ class FishingManService implements ISearchService {
      * @param the fishingMan to insert or update
      * @return the fishingMan just inserted
      */
-
     FishingMan insertOrUpdateFishingMan(FishingMan fishingMan){
         fishingMan.save(flush:true)
     }
