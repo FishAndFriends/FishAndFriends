@@ -11,7 +11,6 @@ class FishingManService implements ISearchService {
      * @param the fishingMan to insert or update
      * @return the fishingMan just inserted
      */
-
     FishingMan insertOrUpdateFishingMan(FishingMan fishingMan) {
         if (fishingMan.tmpPassword != null) {
             // http://stackoverflow.com/a/8138604

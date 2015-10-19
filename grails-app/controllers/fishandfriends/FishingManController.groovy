@@ -78,4 +78,43 @@ class FishingManController {
 
         render(view: "edit", model: [fishingManInstance: fishingManInstance])
     }
+
+    def shareCatch(FishingMan fishingManInstance) {
+        render(view: "shareCatch", model:[fishingManInstance: fishingManInstance])
+    }
+
+    /**
+     * Method used when a FishingMan <i>fishingManInstance</i> want to share a
+     * <b>Catch</b>. A catch concerns a fish (name, size and weight) taken in a
+     * location given.
+     * @param fishingManInstance FishingMan who share a <b>Catch</b>.
+     * @return a catch
+     */
+    def shareCatchLocation(FishingMan fishingManInstance) {
+        if (fishingManInstance == null) {
+            notFound()
+            return
+        }
+
+        if (fishingManInstance.hasErrors()) {
+            render( view: "shareCatch",
+                    model:[fishingManInstance: fishingManInstance])
+        }
+
+        if (params.fishingAreaNameShared || params.fishNameShared
+                || params.fishWeightShared || params.fishSizeShared) {
+            Catch aCatch = new Catch(
+                    date: new Date(),
+                    fishingMan: session.fishingMan,
+                    fishingArea: params.fishingAreaNameShared,
+                    fish: params.fishNameShared,
+                    weight: params.fishWeightShared,
+                    size: params.fishSizeShared,
+            )
+            CatchService.insertOrUpdateCatch(aCatch)
+            render(view: "login.newsfeed")
+        }
+
+    }
+
 }

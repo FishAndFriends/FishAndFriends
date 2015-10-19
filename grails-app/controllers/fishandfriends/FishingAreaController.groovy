@@ -97,6 +97,10 @@ class FishingAreaController {
         }
     }
 
+    def share(FishingArea fishingAreaInstance) {
+        respond fishingAreaInstance
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

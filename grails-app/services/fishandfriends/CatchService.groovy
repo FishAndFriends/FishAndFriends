@@ -5,7 +5,6 @@ import grails.transaction.Transactional
 @Transactional
 class CatchService {
 
-
     def getCatchesByFishingMan(FishingMan afishingMan) {
         def criteria = Catch.createCriteria()
 
@@ -15,7 +14,6 @@ class CatchService {
 
             }
         }
-
     }
 
     def getCatchesByFishingArea(FishingArea afishingArea) {
@@ -24,11 +22,17 @@ class CatchService {
         def result = criteria.list() {
             fishingArea {
                 idEq(afishingArea.id)
-
             }
         }
-
     }
 
 
+    /**
+     * Insert or update the Catch define by <i>aCatch</i>.
+     * @param aCatch Catch to save into database.
+     * @return Catch stored.
+     */
+    Catch insertOrUpdateCatch(Catch aCatch) {
+        aCatch.save(flush: true)
+    }
 }
