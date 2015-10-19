@@ -8,14 +8,14 @@
 <html>
 <head>
     <meta name="layout" content="main">
-    <title>${fishingManInstance.firstname} ${fishingManInstance.lastname}</title>
+    <g:set var="entityName" value="${message(code: 'fishingMan.label', default: 'FishingMan')}" />
+    <title><g:message code="default.edit.label" args="[entityName]" /></title>
 </head>
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-offset-2 col-md-4">
-                <h1>Partager votre prise ${fishingManInstance.firstname}
-                    lalala ${fishingManInstance.lastname}</h1>
+                <h1>Partager votre prise</h1>
             </div>
             <div class="col-md-offset-2 col-md-8">
                 <div class="homebox jumbotron">

@@ -104,14 +104,14 @@ class FishingManController {
                 || params.fishWeightShared || params.fishSizeShared) {
             Catch aCatch = new Catch(
                     date: new Date(),
-                    fishingMan: fishingManInstance,
+                    fishingMan: session.fishingMan,
                     fishingArea: params.fishingAreaNameShared,
                     fish: params.fishNameShared,
                     weight: params.fishWeightShared,
                     size: params.fishSizeShared,
             )
             CatchService.insertOrUpdateCatch(aCatch)
-            render(view: "newsfeed")
+            render(view: "login.newsfeed")
         }
 
     }

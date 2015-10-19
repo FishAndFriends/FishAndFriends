@@ -16,7 +16,8 @@
             <div class="homebox jumbotron">
                 %{--<g:if test="${fishingManInstance.id}.equals(${session.fishingMan.id})">--}%
                     <div class="col-md-12">
-                        <label class="col-md-2 control-label">Partager une prise</label>
+                        <label class="col-md-2 control-label">Partager une
+                        prise</label>
                         <g:form url="[action: 'shareCatch', controller: 'fishingMan', resource: fishingManInstance]">
                             <button type="submit" class="btn btn-success"><i class="fa fa-share"></i> Partager</button>
                         </g:form>
