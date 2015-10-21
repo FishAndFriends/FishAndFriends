@@ -17,15 +17,13 @@
 }
 </style>
 
-<div class="panel panel-primary commentDisplay">
+<div class="panel panel-info commentDisplay catchPanel">
     <div class="panel-heading">
         <table class="">
             <tbody>
             <tr>
                 <td>
-                    <span>${comment?.fishingMan?.firstname} ${comment?.fishingMan?.lastname}</span>
-                    <br/>
-                    <span>${comment?.dateCreated}</span>
+                    <b><span>${comment?.fishingMan?.firstname} ${comment?.fishingMan?.lastname}</span> <span>-</span> <span><g:formatDate format="yyyy-MM-dd HH:mm" date="${comment?.dateCreated}"/></span></b>
                 </td>
                 <td>
                     <!--button disabled style="float:right" class="btn btn-default">Supprimer</button-->

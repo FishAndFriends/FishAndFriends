@@ -1,34 +1,57 @@
 body {
-	padding-top: 50px;
+    padding-top: 50px;
 }
 
 .homebox {
-	padding-left: 30px !important;
-	padding-right: 30px !important;
-	margin-top: 16px !important;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    margin-top: 16px !important;
 }
 
 .pagination-btn {
-	text-align: center;
-	padding-top: 10px;
+    text-align: center;
+    padding-top: 10px;
 }
 
 .warning-text {
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .error {
-	color: red;
-	text-align: center;
+    color: red;
+    text-align: center;
 }
 
 .icon-cust {
-	display: inline-block;
+    display: inline-block;
 }
 
-.search-block{
-	margin-top: 30px;
-	margin-bottom: 0px !important;
+.search-block {
+    margin-top: 30px;
+    margin-bottom: 0px !important;
+}
+
+.catchPanel {
+    margin-top: 15px;
+}
+
+.catchPanel .panel-body {
+    background-color: #eee;
+}
+
+.select-note {
+    width:50px !important;
+}
+
+.more {
+    text-align: center;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.custom_modal-body {
+    display: block;
+    overflow-y: scroll;
 }

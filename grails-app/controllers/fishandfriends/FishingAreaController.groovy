@@ -19,9 +19,10 @@ class FishingAreaController {
     }
 
     def show(FishingArea fishingAreaInstance) {
-        def catchList = catchService.getCatchesByFishingArea(fishingAreaInstance)
+        def catchList = catchService.getCatchesWithNbCommentsByFishingArea(fishingAreaInstance)
         def score = scoreService.computeScoresForFishingArea(fishingAreaInstance)
-        render(view: "show", model:[fishingAreaInstance: fishingAreaInstance,catches:catchList, score:score])
+
+        render(view: "show", model: [fishingAreaInstance: fishingAreaInstance, catches: catchList, score: score])
     }
 
     def create() {
@@ -124,6 +125,6 @@ class FishingAreaController {
 
         redirect action: "index"
     }
-    
 
-    }
+
+}

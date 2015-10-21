@@ -27,16 +27,20 @@ class ScoreService {
         }
 
         // Set object to return
-        if (result) {
-            if(result[0]) {
-                scoreObject.nbCatch = (int) result[0]
-            }
-            if(result[1]) {
-                scoreObject.averageSize = (float) result[1]
-            }
-            if(result[2]) {
-                scoreObject.averageWeight = (float) result[2]
-            }
+        if (result[0]) {
+            scoreObject.nbCatch = (int) result[0]
+        } else {
+            scoreObject.nbCatch = 0
+        }
+        if (result[1]) {
+            scoreObject.averageSize = (float) result[1]
+        } else {
+            scoreObject.averageSize = 0
+        }
+        if (result[2]) {
+            scoreObject.averageWeight = (float) result[2]
+        } else {
+            scoreObject.averageWeight = 0
         }
 
         return scoreObject
@@ -91,12 +95,18 @@ class ScoreService {
         // Set object to return
         if (res1) {
             fishingAreaScoreObject.nbCatch = res1
+        } else {
+            fishingAreaScoreObject.nbCatch = 0
         }
         if (res2) {
             fishingAreaScoreObject.nbFishingMan = res2
+        } else {
+            fishingAreaScoreObject.nbFishingMan = 0
         }
         if (res3) {
             fishingAreaScoreObject.note = res3
+        } else {
+            fishingAreaScoreObject.note = -1
         }
 
         return fishingAreaScoreObject

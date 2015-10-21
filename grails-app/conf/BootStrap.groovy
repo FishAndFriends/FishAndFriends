@@ -23,10 +23,6 @@ class BootStrap {
         fishingAreaList << fishingArea
         fishingAreaList << new FishingArea(location: "Toutouland", name: "Pêche de chiens", description : "desc")
 
-        // Comment
-        commentList << new Comment(fishingMan: fishingMan, commentable: fishingArea)
-
-
         //Fish
         fishList << new Fish(name: "Aligator", weightAverage: 10.2, sizeAverage: 10.0)
         fishList << new Fish(name: "anguille", weightAverage: 7.2, sizeAverage: 100)
@@ -54,6 +50,11 @@ class BootStrap {
                                 fishingMan: fishingManList.get(1),
                                 fishingArea: fishingAreaList.get(1))
 
+        // Comment
+        commentList << new Comment(fishingMan: fishingMan, commentable: fishingArea,text:"Trop bien, je passe mes journées à pêcher des poisssssons !")
+        commentList << new Comment(fishingMan: fishingMan, commentable: catchList.get(0), text:"Trop fort !")
+        commentList << new Comment(fishingMan: fishingMan, commentable: catchList.get(0), text:"En y repenssant ... t'es pas si fort que ça !")
+
         // Note
         noteList << new Note(fishingMan: fishingMan, fishingArea: fishingAreaList.get(0), value:3)
         noteList << new Note(fishingMan: fishingManList.get(1), fishingArea: fishingAreaList.get(0), value: 4)
@@ -65,19 +66,18 @@ class BootStrap {
         fishingAreaList.each {
             it.save(flush: true)
         }
-        commentList.each {
-            it.save(flush: true)
-        }
         fishList.each {
             it.save(flush: true)
         }
         catchList.each {
             it.save(flush: true)
         }
+        commentList.each {
+            it.save(flush: true)
+        }
         noteList.each {
             it.save(flush: true)
         }
-
     }
     
     def destroy = {
