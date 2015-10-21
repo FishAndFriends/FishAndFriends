@@ -10,11 +10,6 @@ class FishingManController {
     CatchService catchService
     def scoreService
 
-    def index(Integer max) {
-        params.max = Math.min(max ?: 10, 100)
-        respond FishingMan.list(params), model: [fishingManInstanceCount: FishingMan.count()]
-    }
-
     def show(FishingMan fishingManInstance) {
         def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
         def score = scoreService.computeScoresForFishingMan(fishingManInstance)
@@ -70,6 +65,7 @@ class FishingManController {
         def errors = []
 
         if (fishingManService.controlPassword(fishingManInstance, params.oldPassword)) {
+            fishingManInstance.tmpPassword = params.newPassword
             fishingManService.insertOrUpdateFishingMan(fishingManInstance)
             redirect action: "show", id: fishingManInstance.id
         } else {
