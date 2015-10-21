@@ -20,6 +20,7 @@ script:
   - ./grailsw refresh-dependencies
   - ./grailsw "test-app -echoOut -echoErr -coverage -xml"
 after_success:
+  - ./grailsw codenarc
   - ./grailsw coveralls
   - sonar-runner
 cache:
