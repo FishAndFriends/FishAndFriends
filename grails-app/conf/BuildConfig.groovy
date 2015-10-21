@@ -99,10 +99,11 @@ grails.project.dependency.resolution = {
             exclude "spock-grails-support"
         }
     }
+
+    //cobertura exclusions
+    coverage {
+        exclusions = [
+                '**/test/**']
+    }
 }
 
-//cobertura exclusions
-coverage {
-    exclusions = [
-            '**/test/**']
-}
