@@ -28,30 +28,14 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form id="sub" url="[action: 'createComment', controller: 'comment']">
-        <div class="panel panel-primary commentDisplay">
-            <div class="panel-heading">Ajouter un commentaire</div>
+    <g:form id="${formid}" url="[action: 'createComment', controller: 'comment']">
+        <div class="panel panel-info commentDisplay catchPanel">
+            <div class="panel-heading"><b>Ajouter un commentaire</b></div>
 
             <div class="panel-body">
                 <fieldset class="form">
-                    <g:render template="form"/>
+                    <g:render template="../comment/form"/>
                 </fieldset>
-
-                <!-- FIXME : REMOVE IT ! -->
-                <div class="debug" style="border: 1px solid; color:red">
-                    <p>Options de debug</p>
-                    <span>Objet à commenter :</span>
-                    <g:select name="debug0" id="commentable" readonly="true" disabled="true"
-                              from="${fishandfriends.AbstractCommentable.list()}"
-                              optionKey="id"
-                              required="" value="${commentable?.id}" class="many-to-one"/>
-                    <br/>
-                    <span>Pêcheur :</span>
-                    <g:select name="debug1" id="fishingMan" readonly="true" disabled="true"
-                              from="${fishandfriends.FishingMan.list()}" optionKey="id"
-                              required=""
-                              value="${fishingMan?.id}" class="many-to-one"/>
-                </div>
 
                 <input type="hidden" name="commentable.id" value="${commentable?.id}"/>
                 <input type="hidden" name="fishingMan.id" value="${fishingMan?.id}"/>
@@ -66,13 +50,13 @@
     </g:form>
     <script>
 
-        $("#sub").submit(function (ev) {
+        $("${'#'+formid}").submit(function (ev) {
             ev.preventDefault();
 
             $.ajax({
                 type: 'POST',
                 url: '${createLink(action: "createComment", controller: "comment")}',
-                data: $("#sub").serialize(),
+                data: $("${'#'+formid}").serialize(),
                 success: function (data) {
                     location.reload();
                 }

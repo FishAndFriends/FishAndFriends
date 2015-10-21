@@ -11,15 +11,19 @@ class ScoreServiceSpec extends IntegrationSpec {
 
     def scoreService = new ScoreService()
     FishingMan user
+    FishingArea fishingArea
 
     void setup(){
         // See bootstrap !
         user = new FishingMan(firstname: "Jean-Michel", email: "jseknm@yahoo.fr", tmpPassword: "password", lastname: "Dupont", gender: "H")
+        fishingArea = new FishingArea(name: "Pêche aux canards", location: "le parc d'attraction", description: "Même bourré, on peut pêcher !")
         user.save(flush: true)
+        fishingArea.save(flush: true)
     }
 
     void cleanup(){
         user.delete(flush: true)
+        fishingArea.delete(flush: true)
     }
 
     void "test score for a fishingMan"() {
@@ -50,5 +54,15 @@ class ScoreServiceSpec extends IntegrationSpec {
         result.nbCatch == 1
         result.nbFishingMan == 2
         result.note == 3.5f
+    }
+
+    void "test score for a new fishingArea"() {
+        when:"je recup les scores d'une fishingArea"
+        FishingAreaScoreObject result = scoreService.computeScoresForFishingArea(fishingArea)
+
+        then:"on a bien les bons scores"
+        result.nbCatch == 0
+        result.nbFishingMan == 0
+        result.note == -1
     }
 }

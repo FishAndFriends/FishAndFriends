@@ -3,7 +3,7 @@ package fishandfriends
 /**
  * Catch for an only fish by a fishing man.
  */
-class Catch {
+class Catch extends AbstractCommentable {
 
     /** Date of the catch */
     Date date
