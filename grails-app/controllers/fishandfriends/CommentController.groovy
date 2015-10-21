@@ -39,7 +39,6 @@ class CommentController {
      */
     @SuppressWarnings('GrailsMassAssignment') // We don't want to modify that code when the model is updated
     def createComment() {
-        println params
         Comment comment = new Comment(params)
         commentDAOService.saveComment(comment)
 
