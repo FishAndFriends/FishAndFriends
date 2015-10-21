@@ -119,11 +119,19 @@ class FishingAreaController {
     }
 
     def createFishingArea() {
-        FishingArea fishingArea = new FishingArea(params)
+        FishingArea fishingArea = new FishingArea(name:params.fishingAreaName ,
+                location: params.fishingAreaLocation, description: params.fishingAreaDescription )
+        fishingArea.addToFishingMen(session.fishingMan)
         fishingAreaDAOService.saveFishingArea(fishingArea)
-
-        redirect action: "index"
+        redirect (controller:"login" , view: "newsfeed")
     }
-    
 
+    def addNewArea(FishingMan fishingManInstance) {
+        render(view: "create", model:[fishingManInstance: fishingManInstance])
     }
+
+
+
+
+
+}
