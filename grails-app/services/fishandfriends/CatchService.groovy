@@ -66,8 +66,8 @@ class CatchService {
                                         count(*) as comments,
                                         comment.COMMENTABLE_ID as ident
                                     FROM Comment as comment
-                                    GROUP BY ident)
-                                ON catch.id = ident
+                                    GROUP BY ident) as t
+                                ON catch.id = t.ident
                                 WHERE
                                     catch.FISHING_AREA_ID = ${fishingAreaObj.id}
                             ) as TMP
