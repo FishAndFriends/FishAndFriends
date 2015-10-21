@@ -28,9 +28,15 @@ class ScoreService {
 
         // Set object to return
         if (result) {
-            scoreObject.nbCatch = (int) result[0]
-            scoreObject.averageSize = (float) result[1]
-            scoreObject.averageWeight = (float) result[2]
+            if(result[0]) {
+                scoreObject.nbCatch = (int) result[0]
+            }
+            if(result[1]) {
+                scoreObject.averageSize = (float) result[1]
+            }
+            if(result[2]) {
+                scoreObject.averageWeight = (float) result[2]
+            }
         }
 
         return scoreObject
@@ -59,8 +65,12 @@ class ScoreService {
 
         // nbFishingMan
         def res2 = FishingArea.createCriteria().get {
+            idEq(f.id)
+
             projections {
-                count 'fishingMen'
+                fishingMen {
+                    count 'id'
+                }
             }
 
             cache true
