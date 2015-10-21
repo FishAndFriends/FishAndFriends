@@ -10,10 +10,17 @@ import grails.test.spock.IntegrationSpec
 class ScoreServiceSpec extends IntegrationSpec {
 
     def scoreService = new ScoreService()
+    FishingMan user
 
-//    void setup(){
-//        // See bootstrap !
-//    }
+    void setup(){
+        // See bootstrap !
+        user = new FishingMan(firstname: "Jean-Michel", email: "jseknm@yahoo.fr", tmpPassword: "password", lastname: "Dupont", gender: "H")
+        user.save(flush: true)
+    }
+
+    void cleanup(){
+        user.delete(flush: true)
+    }
 
     void "test score for a fishingMan"() {
         when: "je récupère les scores de peche"
@@ -23,6 +30,16 @@ class ScoreServiceSpec extends IntegrationSpec {
         result.nbCatch == 2
         result.averageWeight == 427.5f
         result.averageSize == 128.1f
+    }
+
+    void "test score for a new fishingMan"() {
+        when: "je récupère les scores de peche"
+        FishingManScoreObject result = scoreService.computeScoresForFishingMan(user)
+
+        then:"on a bien les bons scores"
+        result.nbCatch == 0
+        result.averageWeight == 0
+        result.averageSize == 0
     }
 
     void "test score for a fishingArea"() {
