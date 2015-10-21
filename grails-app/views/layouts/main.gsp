@@ -11,15 +11,7 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'font-awesome.css')}">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'flaticon.css')}">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'button_style.css')}">
 
-
-    %{--TODO: Penser à retirer ce debug à la fin--}%
-    <style type="text/css">
-    /*.debug {
-        diplay: none;
-    }*/
-    </style>
     <r:require modules="bootstrap"/>
     <g:layoutHead/>
     <g:javascript library="application"/>
