@@ -6,7 +6,8 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+<div class="container-fluid">
+    <div class="col-md-offset-3 col-md-6">
         <g:if test="${error}">
             <h3 class="error">Une erreur est survenue lors de la recherche</h3>
         </g:if>
@@ -15,10 +16,12 @@
             <g:if test="${result.size > 0}">
                 <g:each in="${result}" var="r">
                     <g:if test="${r instanceof fishandfriends.FishingMan}">
-                        <g:render template="fishingManResultItem" model="[r: r]"/>
+                        <g:render template="fishingManResultItem"
+                                  model="[r: r]"/>
                     </g:if>
                     <g:elseif test="${r instanceof fishandfriends.FishingArea}">
-                        <g:render template="fishingAreaResultItem" model="[r: r]"/>
+                        <g:render template="fishingAreaResultItem"
+                                  model="[r: r]"/>
                     </g:elseif>
                     <g:elseif test="${r instanceof fishandfriends.Fish}">
                         <g:render template="fishResultItem" model="[r: r]"/>
@@ -32,15 +35,18 @@
             <g:if test="${result.size == 0}">
                 <p class="warning-text">Aucun résultat</p>
             </g:if>
-
             <!-- Pagination buttons -->
             <span class="input-group-btn pagination-btn">
-                <g:link action="prevPage" controller="searchResult" params="[page:page,want:want, query:query]">
-                    <button class="btn btn-default" <g:if test="${params.page == 0}">disabled</g:if>>Précédent</button>
+                <g:link action="prevPage" controller="searchResult"
+                        params="[page: page, want: want, query: query]">
+                    <button class="btn btn-default"
+                            <g:if test="${params.page == 0}">disabled</g:if>>Précédent</button>
                 </g:link>
                 - ${page + 1}
-                <g:link action="nextPage" controller="searchResult" params="[page:page,want:want, query:query]">
-                    <button class="btn btn-default" style="margin-left: 5px;"<g:if test="${!params.hasMore}">disabled</g:if>>Suivant</button>
+                <g:link action="nextPage" controller="searchResult"
+                        params="[page: page, want: want, query: query]">
+                    <button class="btn btn-default" style="margin-left: 5px;"
+                            <g:if test="${!params.hasMore}">disabled</g:if>>Suivant</button>
                 </g:link>
             </span>
 
@@ -51,5 +57,7 @@
             </script>
         </g:else>
     </div>
+</div>
+
 </body>
 </html>
