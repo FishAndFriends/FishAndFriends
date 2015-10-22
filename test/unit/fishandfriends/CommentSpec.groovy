@@ -11,45 +11,47 @@ import spock.lang.Specification
 class CommentSpec extends Specification {
 
     Comment comment
-    @Shared FishingArea fishingArea
-    @Shared FishingMan fishingMan
+    @Shared
+    FishingArea fishingArea
+    @Shared
+    FishingMan fishingMan
 
     def setup() {
-        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl', gender: 'H')
+        fishingMan = new FishingMan(firstname: 'azerty', lastname: 'azertry', email: 'azert@azert.fr', hashedPassword: 'qksjnfl', saltedPassword: 'zkvjbzkv', gender: 'H')
         fishingArea = new FishingArea(name: 'azetr', location: 'loc')
         comment = new Comment()
     }
 
     void "test validate"() {
-        given:"a comment"
+        given: "a comment"
         comment.fishingMan = fishingMan
         comment.commentable = fishingArea
         comment.text = "text"
 
-        when:"validating the fishingman"
+        when: "validating the fishingman"
         def isValid = comment.validate()
 
-        then:"the fishingman is valid"
+        then: "the fishingman is valid"
         isValid == true
     }
 
     void "test invalidate"() {
-        given:"a comment"
+        given: "a comment"
         comment.fishingMan = fishingManTest
         comment.commentable = commentableTest
         comment.text = textTest
 
-        when:"validating the fishingman"
+        when: "validating the fishingman"
         def isValid = comment.validate()
 
-        then:"the fishingman is valid"
+        then: "the fishingman is valid"
         isValid == false
 
         where:
-        fishingManTest      | commentableTest      |  textTest
-        null                | fishingArea          |  "text"
-        null                | fishingArea          |  ""
-        fishingMan          | fishingArea          |  null
-        fishingMan          | null                 |  "text"
+        fishingManTest | commentableTest | textTest
+        null           | fishingArea     | "text"
+        null           | fishingArea     | ""
+        fishingMan     | fishingArea     | null
+        fishingMan     | null            | "text"
     }
 }
