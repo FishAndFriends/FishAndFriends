@@ -85,9 +85,9 @@ class FishingManController {
      */
     def shareCatchLocation() {
 
-        if (session.id == null) {
+        if (session.fishingMan == null) {
             render( view: "shareCatch",
-                    model:[fishingManInstance: fishingManInstance])
+                    model:[fishingManInstance: session.fishingMan])
         } else {
             if (params.fishingAreaNameShared || params.fishNameShared
                     || params.fishWeightShared || params.fishSizeShared) {
@@ -99,8 +99,17 @@ class FishingManController {
                         weight: params.fishWeightShared,
                         size: params.fishSizeShared,
                 )
-                catchService.insertOrUpdateCatch(aCatch)
-                redirect view: "index", controller: "login"
+
+                if (aCatch.fishingMan != null && aCatch.fishingArea != null
+                    && aCatch.fish != null
+                    && aCatch.weight > 0.0 && aCatch.size > 0.0) {
+                    catchService.insertOrUpdateCatch(aCatch)
+                    redirect view: "index", controller: "login"
+                } else {
+                    render( view: "shareCatch",
+                            model:[fishingManInstance: session.fishingMan])
+                }
+
             }
         }
 

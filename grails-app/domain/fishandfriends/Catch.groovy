@@ -25,7 +25,7 @@ class Catch extends AbstractCommentable {
 
     static constraints = {
         date nullable: false, validator: {
-            val, obj -> val?.after(new Date())
+            val -> (val?.compareTo(new Date()) <= 0)
         }
         weight min: 0.1F, nullable: false
         size min: 0.1F, nullable: false
