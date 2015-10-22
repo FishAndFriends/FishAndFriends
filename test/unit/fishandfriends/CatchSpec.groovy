@@ -57,8 +57,8 @@ class CatchSpec extends Specification {
 
         where:
         catchDate               | weightCatch   | sizeCatch
-        new Date(2012, 2, 12)   | 12.2          | 66.1
-        new Date(2015, 3, 2)    | 9             | 22
+        new Date(112, 2, 12)    | 12.2          | 66.1
+        new Date(114, 3, 2)     | 9             | 22
 
 
 
