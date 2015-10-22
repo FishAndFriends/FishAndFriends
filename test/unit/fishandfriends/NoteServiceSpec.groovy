@@ -56,4 +56,24 @@ class NoteServiceSpec extends Specification {
         res.value == 1
         Note.count() == n
     }
+
+    void "test retrieve note given by a fishingMan"() {
+        when: "Note not given by the fishingMan"
+        def val = service.getNoteGivenByAFishingMan(FishingMan.findById(1), FishingArea.findById(1))
+
+        then: "The result is 0"
+        val == 0
+    }
+
+    void "test retrieve note given by a fishingMan - exist "() {
+        given:
+        note = new Note(fishingMan: fishingMan, fishingArea: fishingArea, value: 5)
+        note.save(flush: true)
+
+        when: "Note not given by the fishingMan"
+        def val = service.getNoteGivenByAFishingMan(FishingMan.findById(1), FishingArea.findById(1))
+
+        then: "The result is 5"
+        val == 5
+    }
 }

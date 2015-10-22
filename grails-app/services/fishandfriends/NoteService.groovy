@@ -25,4 +25,29 @@ class NoteService {
 
         result.save(flush: true)
     }
+
+    def getNoteGivenByAFishingMan(FishingMan aFishingMan, FishingArea aFishingArea){
+        def res = Note.createCriteria().get {
+            fishingArea {
+                idEq(aFishingArea.id)
+            }
+
+            fishingMan {
+                idEq(aFishingMan.id)
+            }
+
+            projections {
+                property 'value'
+            }
+
+            cache true
+        }
+
+        if(!res){
+            return 0
+        }
+        else{
+            return res
+        }
+    }
 }

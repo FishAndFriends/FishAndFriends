@@ -13,8 +13,8 @@ class FishingAreaController {
     def show(FishingArea fishingAreaInstance) {
         def catchList = catchService.getCatchesWithNbCommentsByFishingArea(fishingAreaInstance)
         def score = scoreService.computeScoresForFishingArea(fishingAreaInstance)
-
-        render(view: "show", model: [fishingAreaInstance: fishingAreaInstance, catches: catchList, score: score])
+        def noteGiven = noteService.getNoteGivenByAFishingMan(session.fishingMan, fishingAreaInstance)
+        render(view: "show", model: [fishingAreaInstance: fishingAreaInstance, catches: catchList, score: score, noteGiven: noteGiven])
     }
 
     def doSearchFishingArea() {
