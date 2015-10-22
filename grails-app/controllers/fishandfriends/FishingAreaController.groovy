@@ -1,8 +1,5 @@
 package fishandfriends
 
-import grails.transaction.Transactional
-
-@Transactional(readOnly = true)
 class FishingAreaController {
 
     CatchService catchService
