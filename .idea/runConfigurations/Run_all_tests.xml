@@ -7,6 +7,8 @@
     <setting name="passParentEnv" value="true" />
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <setting name="launchBrowser" value="false" />
+    <RunnerSettings RunnerId="Run" />
+    <ConfigurationWrapper RunnerId="Run" />
     <method />
   </configuration>
 </component>
