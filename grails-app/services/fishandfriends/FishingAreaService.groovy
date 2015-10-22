@@ -16,4 +16,18 @@ class FishingAreaService implements ISearchService{
         }
         result
     }
+
+
+    def getFishingAreaByFishingMan(FishingMan afishingMan) {
+        def criteria = FishingArea.createCriteria()
+
+        def result = criteria.list() {
+            fishingMen {
+                idEq(afishingMan.id)
+            }
+        }
+        result
+    }
+
+
 }

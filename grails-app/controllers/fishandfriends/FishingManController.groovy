@@ -1,19 +1,18 @@
 package fishandfriends
 
-
 import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
 class FishingManController {
     FishingManService fishingManService
     CatchService catchService
+    FishingAreaService fishingAreaService
     def scoreService
 
     def show(FishingMan fishingManInstance) {
         def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
         def score = scoreService.computeScoresForFishingMan(fishingManInstance)
-        render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score])
+        def fishingArea = fishingAreaService.getFishingAreaByFishingMan(fishingManInstance)
+        render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score ,fishingAreas: fishingArea])
     }
 
     def edit(FishingMan fishingManInstance) {
@@ -86,29 +85,34 @@ class FishingManController {
      * @param fishingManInstance FishingMan who share a <b>Catch</b>.
      * @return a catch
      */
-    def shareCatchLocation(FishingMan fishingManInstance) {
-        if (fishingManInstance == null) {
-            notFound()
-            return
-        }
+    def shareCatchLocation() {
 
-        if (fishingManInstance.hasErrors()) {
+        if (session.fishingMan == null) {
             render( view: "shareCatch",
-                    model:[fishingManInstance: fishingManInstance])
-        }
+                    model:[fishingManInstance: session.fishingMan])
+        } else {
+            if (params.fishingAreaNameShared || params.fishNameShared
+                    || params.fishWeightShared || params.fishSizeShared) {
+                Catch aCatch = new Catch(
+                        date: new Date(),
+                        fishingMan: session.fishingMan,
+                        fishingArea: params.fishingAreaNameShared,
+                        fish: params.fishNameShared,
+                        weight: params.fishWeightShared,
+                        size: params.fishSizeShared,
+                )
 
-        if (params.fishingAreaNameShared || params.fishNameShared
-                || params.fishWeightShared || params.fishSizeShared) {
-            Catch aCatch = new Catch(
-                    date: new Date(),
-                    fishingMan: session.fishingMan,
-                    fishingArea: params.fishingAreaNameShared,
-                    fish: params.fishNameShared,
-                    weight: params.fishWeightShared,
-                    size: params.fishSizeShared,
-            )
-            CatchService.insertOrUpdateCatch(aCatch)
-            render(view: "login.newsfeed")
+                if (aCatch.fishingMan != null && aCatch.fishingArea != null
+                    && aCatch.fish != null
+                    && aCatch.weight > 0.0 && aCatch.size > 0.0) {
+                    catchService.insertOrUpdateCatch(aCatch)
+                    redirect view: "index", controller: "login"
+                } else {
+                    render( view: "shareCatch",
+                            model:[fishingManInstance: session.fishingMan])
+                }
+
+            }
         }
 
     }

@@ -16,7 +16,7 @@ class ScoreServiceSpec extends IntegrationSpec {
     void setup(){
         // See bootstrap !
         user = new FishingMan(firstname: "Jean-Michel", email: "jseknm@yahoo.fr", tmpPassword: "password", lastname: "Dupont", gender: "H")
-        fishingArea = new FishingArea(name: "Pêche aux canards", location: "le parc d'attraction", description: "Même bourré, on peut pêcher !")
+        fishingArea = new FishingArea(name: "Pï¿½che aux canards", location: "le parc d'attraction", description: "Mï¿½me bourrï¿½, on peut pï¿½cher !")
         user.save(flush: true)
         fishingArea.save(flush: true)
     }
@@ -27,7 +27,7 @@ class ScoreServiceSpec extends IntegrationSpec {
     }
 
     void "test score for a fishingMan"() {
-        when: "je récupère les scores de peche"
+        when: "je rï¿½cupï¿½re les scores de peche"
         FishingManScoreObject result = scoreService.computeScoresForFishingMan(FishingMan.findById(2))
 
         then:"on a bien les bons scores"
@@ -37,7 +37,7 @@ class ScoreServiceSpec extends IntegrationSpec {
     }
 
     void "test score for a new fishingMan"() {
-        when: "je récupère les scores de peche"
+        when: "je rï¿½cupï¿½re les scores de peche"
         FishingManScoreObject result = scoreService.computeScoresForFishingMan(user)
 
         then:"on a bien les bons scores"
@@ -52,7 +52,7 @@ class ScoreServiceSpec extends IntegrationSpec {
 
         then:"on a bien les bons scores"
         result.nbCatch == 1
-        result.nbFishingMan == 2
+        result.nbFishingMan == 3
         result.note == 3.5f
     }
 
