@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-offset-2 col-md-8">
                 <div class="homebox jumbotron">
-                    <g:form url="[action: 'shareCatchLocation', controller: 'fishingMan', resource: fishingManInstance]" class="form-horizontal">
+                    <g:form url="[action: 'shareCatchLocation', controller: 'fishingMan']" class="form-horizontal">
                         <h2><i class="fa fa-location-arrow"></i> Lieu</h2>
                         <div class="form-group">
                             <label  for="fishingAreaNameShared" class="control-label">Lieux</label>

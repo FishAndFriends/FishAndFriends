@@ -1,7 +1,11 @@
-<div class="jumbotron">
-    <p>
-        <h2>${singleCatch.fishingArea.name}, ${singleCatch.fishingArea.location}</h2>
-${singleCatch.date} <br/>
-Poids: ${singleCatch.weight} kg, Taille: ${singleCatch.size} cm
-    </p>
-</div>
+
+<h3><i class="fa fa-user"></i> ${singleCatch.fishingMan.firstname} ${singleCatch.fishingMan.lastname}</h3>
+<p>
+    <i class="flaticon-fish13"></i> ${singleCatch.fish.name}
+        (${singleCatch.weight}kg, ${singleCatch.size} cm),
+        le <i>${singleCatch.date.dateString}</i><br/>
+    <i class="fa-location-arrow"></i> ${singleCatch.fishingArea.name}, ${singleCatch.fishingArea.location}<br/>
+</p>
+
+
+%{--</div>--}%

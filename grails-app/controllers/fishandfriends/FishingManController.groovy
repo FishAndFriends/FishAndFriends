@@ -90,29 +90,25 @@ class FishingManController {
      * @param fishingManInstance FishingMan who share a <b>Catch</b>.
      * @return a catch
      */
-    def shareCatchLocation(FishingMan fishingManInstance) {
-        if (fishingManInstance == null) {
-            notFound()
-            return
-        }
+    def shareCatchLocation() {
 
-        if (fishingManInstance.hasErrors()) {
+        if (session.id == null) {
             render( view: "shareCatch",
                     model:[fishingManInstance: fishingManInstance])
-        }
-
-        if (params.fishingAreaNameShared || params.fishNameShared
-                || params.fishWeightShared || params.fishSizeShared) {
-            Catch aCatch = new Catch(
-                    date: new Date(),
-                    fishingMan: session.fishingMan,
-                    fishingArea: params.fishingAreaNameShared,
-                    fish: params.fishNameShared,
-                    weight: params.fishWeightShared,
-                    size: params.fishSizeShared,
-            )
-            CatchService.insertOrUpdateCatch(aCatch)
-            render(view: "login.newsfeed")
+        } else {
+            if (params.fishingAreaNameShared || params.fishNameShared
+                    || params.fishWeightShared || params.fishSizeShared) {
+                Catch aCatch = new Catch(
+                        date: new Date(),
+                        fishingMan: session.fishingMan,
+                        fishingArea: params.fishingAreaNameShared,
+                        fish: params.fishNameShared,
+                        weight: params.fishWeightShared,
+                        size: params.fishSizeShared,
+                )
+                catchService.insertOrUpdateCatch(aCatch)
+                redirect view: "index", controller: "login"
+            }
         }
 
     }
