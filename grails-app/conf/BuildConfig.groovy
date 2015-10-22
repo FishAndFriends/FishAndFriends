@@ -109,12 +109,12 @@ coverage {
 // Codenarc
 codenarc.reports = {
     MyXmlReport('xml') {                       // The report name "MyXmlReport" is user-defined; Report type is 'xml'
-        outputFile = 'target/test-reports/codenarc/CodeNarcReport.xml'      // Set the 'outputFile' property of the (XML) Report
+        outputFile = 'target/CodeNarcReport.xml'      // Set the 'outputFile' property of the (XML) Report
         title = 'CodeNarc report'  // Set the 'title' property of the (XML) Report
     }
 
     MyHtmlReport('html') {                     // Report type is 'html'
-        outputFile = 'target/test-reports/codenarc/CodeNarcReport.html'
+        outputFile = 'target/CodeNarcReport.html'
         title = 'CodeNarc report'
     }
 }
