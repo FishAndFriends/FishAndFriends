@@ -45,14 +45,22 @@
                 <br/>
 
                 <h2>Note</h2>
-                <select id="note" name="note" class="selectpicker select-note">
-                    <option value="note1">1</option>
-                    <option value="note2">2</option>
-                    <option value="note3">3</option>
-                    <option value="note4">4</option>
-                    <option value="note5">5</option>
-                </select>
-                <button type="button" class="btn btn-primary">OK</button>
+                <g:form controller="fishingArea" action="note">
+                    <select id="note" name="note" class="selectpicker select-note">
+                        <option value="1" <g:if test="${noteGiven == 1}">selected</g:if>>1</option>
+                        <option value="2" <g:if test="${noteGiven == 2}">selected</g:if>>2</option>
+                        <option value="3" <g:if test="${noteGiven == 3}">selected</g:if>>3</option>
+                        <option value="4" <g:if test="${noteGiven == 4}">selected</g:if>>4</option>
+                        <option value="5" <g:if test="${noteGiven == 5}">selected</g:if>>5</option>
+                    </select>
+                    <g:hiddenField name="fishingArea" value="${fishingAreaInstance.id}"/>
+                    <g:if test="${noteGiven > 0}">
+                        <g:submitButton name="submit" class="btn btn-primary" value="Changer" />
+                    </g:if>
+                    <g:else>
+                        <g:submitButton name="submit" class="btn btn-primary" value="Noter" />
+                    </g:else>
+                </g:form>
             </div>
 
             <h2>Derniers commentaires</h2>

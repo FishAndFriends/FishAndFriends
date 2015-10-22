@@ -1,10 +1,7 @@
 package fishandfriends
 
-
 import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
 
-@Transactional(readOnly = true)
 class FishingManController {
     FishingManService fishingManService
     CatchService catchService
