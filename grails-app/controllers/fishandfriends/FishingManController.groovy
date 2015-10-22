@@ -8,12 +8,14 @@ import grails.transaction.Transactional
 class FishingManController {
     FishingManService fishingManService
     CatchService catchService
+    FishingAreaService fishingAreaService
     def scoreService
 
     def show(FishingMan fishingManInstance) {
         def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
         def score = scoreService.computeScoresForFishingMan(fishingManInstance)
-        render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score])
+        def fishingArea = fishingAreaService.getFishingAreaByFishingMan(fishingManInstance)
+        render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score ,fishingAreas: fishingArea])
     }
 
     def edit(FishingMan fishingManInstance) {

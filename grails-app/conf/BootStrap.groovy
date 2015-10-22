@@ -17,6 +17,7 @@ class BootStrap {
         FishingMan fishingMan = new FishingMan(firstname: "Jean-Michel", email: "jm@yahoo.fr", tmpPassword: "password", lastname: "Dupont", gender: "H")
         fishingManList << fishingMan
         fishingManList << new FishingMan(firstname: "Jaqueline", email: "jaja@yahoo.fr", tmpPassword: "password", lastname: "Dupont", gender: "F")
+        fishingManList << new FishingMan(firstname: "Mike", email: "miketyson@yahoo.fr", tmpPassword: "password", lastname: "Tyson", gender: "H")
 
         // FishingArea
         FishingArea fishingArea = new FishingArea(location: "Toulouse", name: "L'étan du petit village", fishingMen: fishingManList,description:"desc")
