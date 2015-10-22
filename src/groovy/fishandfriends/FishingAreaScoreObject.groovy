@@ -5,7 +5,7 @@ package fishandfriends
  * Created by Alexandre on 15/10/2015.
  */
 class FishingAreaScoreObject {
-    int nbFishingMan = 0
-    int nbCatch = 0
-    float note = -1f
+    int nbFishingMan
+    int nbCatch
+    float note
 }

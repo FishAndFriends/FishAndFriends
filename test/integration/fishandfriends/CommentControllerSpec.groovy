@@ -22,19 +22,6 @@ class CommentControllerSpec extends IntegrationSpec {
         comment.delete(flush: true)
     }
 
-    void "Test the index action works well"() {
-        given:
-        commentController.params.commentable = fishingArea
-        commentController.params.fishingMan = fishingMan
-
-        when: "The index action is executed"
-        commentController.index()
-
-        then: "The model is correct"
-        commentController.modelAndView.model.fishingMan == fishingMan
-        commentController.modelAndView.model.commentable == fishingArea
-    }
-
     void "Test create comment works well"() {
         given:
         int nb = Comment.count()
@@ -53,7 +40,6 @@ class CommentControllerSpec extends IntegrationSpec {
      * This test will just make sure that params are good.
      * For the behavior, refer to CommentService!
      *
-     * TODO: try to improve the behavior of this test !
      */
     void "Test show all comments works well"() {
         given:
@@ -61,6 +47,24 @@ class CommentControllerSpec extends IntegrationSpec {
 
         when: "The index action is executed"
         commentController.showAllComment()
+
+        then: "The the comment is created"
+        commentController.response.text.contains(comment.text)
+        commentController.response.text.contains(comment.fishingMan.firstname)
+        commentController.response.text.contains(comment.fishingMan.lastname)
+    }
+
+    /**
+     * This test will just make sure that params are good.
+     * For the behavior, refer to CommentService!
+     *
+     */
+    void "Test show 5 comments works well"() {
+        given:
+        commentController.params.commentable = fishingArea
+
+        when: "The index action is executed"
+        commentController.show5Comments()
 
         then: "The the comment is created"
         commentController.response.text.contains(comment.text)

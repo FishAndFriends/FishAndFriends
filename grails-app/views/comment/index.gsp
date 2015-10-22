@@ -10,6 +10,6 @@
 
 <h1>Liste des commentaires</h1>
 <g:include controller="comment" action="showAllComment" params="[commentable: commentable]"/>
-<g:render template="createComment" model="[commentable: commentable, fishingMan: fishingMan]"/>
+<g:render template="createComment" model="[commentable: commentable, fishingMan: fishingMan,formid:'sub']"/>
 </body>
 </html>

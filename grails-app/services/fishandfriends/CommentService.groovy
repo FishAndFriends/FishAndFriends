@@ -8,14 +8,64 @@ import grails.transaction.Transactional
 @Transactional
 class CommentService {
 
-    def getAllCommentsForCommentable(AbstractCommentable abstractCommentable) {
+    def getAllCommentsForCommentable(def obj) {
+
+        long id = extractId(obj)
 
         def result = Comment.createCriteria().list() {
             commentable {
-                idEq(abstractCommentable.id)
+                idEq(id)
             }
         }
 
         return result
+    }
+
+    def get5CommentsForCommentable(def obj) {
+
+        long id = extractId(obj)
+
+        def result = Comment.createCriteria().list(max: 5) {
+            commentable {
+                idEq(id)
+            }
+
+            order('dateCreated', 'desc')
+        }
+
+        return result
+    }
+
+    /**
+     * Extract id from an object.
+     * This allow us more flexibility with templating.
+     *
+     * @param obj
+     * @return -1 if not found, else, the id as long object.
+     */
+    private long extractId(def obj) {
+        long id
+
+        if (obj instanceof String) {
+            try {
+                id = Long.parseLong(obj)
+            } catch (Exception) {
+                id = -1l
+            }
+        } else if (obj instanceof Long) {
+            id = obj
+        } else if (obj instanceof AbstractCommentable) {
+            if (obj.id) {
+                id = obj.id
+            } else {
+                id = -1l;
+            }
+        } else if (obj instanceof Integer) {
+            id = obj
+        } else {
+            id = -1l
+        }
+
+        return id
     }
 }

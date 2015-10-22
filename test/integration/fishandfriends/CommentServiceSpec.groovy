@@ -40,7 +40,7 @@ class CommentServiceSpec extends IntegrationSpec {
         comment2.save(flush: true)
 
         when:
-        def result = commentService.getAllCommentsForCommentable(fishingArea)
+        def result = commentService.getAllCommentsForCommentable(fishingArea.id)
 
         then:
         result.size() == 2
@@ -51,5 +51,49 @@ class CommentServiceSpec extends IntegrationSpec {
         comment.delete()
         comment1.delete()
         comment2.delete()
+    }
+
+    void "test behavior extractID"(){
+        when: "extract id from int object"
+        def result = commentService.extractId(10)
+
+        then: "ok"
+        result == 10
+
+        when: "extract id from long object"
+        result = commentService.extractId(10l)
+
+        then: "ok"
+        result == 10
+
+        when: "extract id from string object"
+        result = commentService.extractId("10")
+
+        then: "ok"
+        result == 10
+
+        when: "extract id from wrong AbstractCommentable"
+        result = commentService.extractId(new FishingArea())
+
+        then: "ok"
+        result == -1
+
+        when: "extract id from good AbstractCommentable"
+        result = commentService.extractId(FishingArea.findById(1))
+
+        then: "ok"
+        result == 1
+
+        when: "extract id from wrong string"
+        result = commentService.extractId("azerty")
+
+        then: "ko"
+        result == -1
+
+        when: "extract id from object"
+        result = commentService.extractId(new Object())
+
+        then: "ko"
+        result == -1
     }
 }
