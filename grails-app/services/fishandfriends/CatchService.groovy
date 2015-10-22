@@ -19,19 +19,6 @@ class CatchService {
         }
     }
 
-    // TODO : remove
-    def getCatchesByFishingArea(FishingArea afishingArea) {
-        def criteria = Catch.createCriteria()
-
-        def result = criteria.list() {
-            fishingArea {
-                idEq(afishingArea.id)
-            }
-        }
-
-        return result
-    }
-
     /**
      * Retrieves all catches with the number of comments on it, for a fishingArea.
      *
@@ -98,14 +85,5 @@ class CatchService {
         }
 
         return listCatchWithComments
-    }
-
-    /**
-     * Insert or update the Catch define by <i>aCatch</i>.
-     * @param aCatch Catch to save into database.
-     * @return Catch stored.
-     */
-    Catch insertOrUpdateCatch(Catch aCatch) {
-        aCatch.save(flush: true)
     }
 }

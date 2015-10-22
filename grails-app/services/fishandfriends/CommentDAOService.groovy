@@ -6,7 +6,7 @@ import grails.transaction.Transactional
 class CommentDAOService {
 
     def saveComment(Comment comment){
-        comment.fishingMan = comment.fishingMan.save(flush: true, failOnError: true)
+        comment.fishingMan = comment.fishingMan.save(flush: true)
         comment.commentable = comment.commentable.save(flush: true)
 
         comment.save(flush: true, failOnError: true)

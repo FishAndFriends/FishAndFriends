@@ -1,13 +1,17 @@
 package fishandfriends
 
-import grails.test.spock.IntegrationSpec
+import grails.test.mixin.Mock
+import grails.test.mixin.TestFor
+import spock.lang.Specification
 
 /**
  * Test for the CommentDAOService.
  */
-class CommentDAOServiceSpec extends IntegrationSpec {
+@TestFor(CommentDAOService)
+@Mock([FishingMan, FishingArea, Comment])
+class CommentDAOServiceSpec extends Specification {
 
-    def commentDAOService = new CommentDAOService()
+    //def commentDAOService = new CommentDAOService()
 
     FishingMan fishingMan
     FishingArea fishingArea
@@ -15,7 +19,7 @@ class CommentDAOServiceSpec extends IntegrationSpec {
     def setup() {
         fishingMan = new FishingMan(firstname:"Jean-Michel",email:"jzevnk@yahoo.fr", hashedPassword: "mypassword",saltedPassword:'passwordtest',lastname: "Dupont",gender: "H")
         fishingArea = new FishingArea(location: "zknvznv", name: "zonvzlnv", description: "desc")
-        fishingArea.save(flush: true)
+        //fishingArea.save(flush: true)
         //fishingMan.save(flush: true)
     }
 
@@ -32,7 +36,7 @@ class CommentDAOServiceSpec extends IntegrationSpec {
         comment.commentable = fishingArea
 
         when: "save"
-        def commentSaved = commentDAOService.saveComment(comment)
+        def commentSaved = service.saveComment(comment)
 
         then: "the instance is stored in db"
         commentSaved != null

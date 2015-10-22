@@ -105,7 +105,7 @@ class FishingManController {
                 if (aCatch.fishingMan != null && aCatch.fishingArea != null
                     && aCatch.fish != null
                     && aCatch.weight > 0.0 && aCatch.size > 0.0) {
-                    catchService.insertOrUpdateCatch(aCatch)
+                    aCatch.save(flush: true)
                     redirect view: "index", controller: "login"
                 } else {
                     render( view: "shareCatch",
