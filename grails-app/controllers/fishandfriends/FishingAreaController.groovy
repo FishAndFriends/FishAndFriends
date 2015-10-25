@@ -9,6 +9,7 @@ class FishingAreaController {
 
     CatchService catchService
     def fishingAreaDAOService
+    def fishingAreaService
     def scoreService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -21,8 +22,9 @@ class FishingAreaController {
     def show(FishingArea fishingAreaInstance) {
         def catchList = catchService.getCatchesWithNbCommentsByFishingArea(fishingAreaInstance)
         def score = scoreService.computeScoresForFishingArea(fishingAreaInstance)
+        def isAlreadySuscribing = fishingAreaService.isSuscriberToArea(fishingAreaInstance,session.fishingMan)
 
-        render(view: "show", model: [fishingAreaInstance: fishingAreaInstance, catches: catchList, score: score])
+        render(view: "show", model: [fishingAreaInstance: fishingAreaInstance, catches: catchList, score: score, isAlreadySuscribing : isAlreadySuscribing])
     }
 
     def create() {
@@ -131,4 +133,8 @@ class FishingAreaController {
         render(view: "create", model:[fishingManInstance: fishingManInstance])
     }
 
+    def suscribeUnsuscribeToArea(FishingArea fishingAreaInstance) {
+        fishingAreaDAOService.suscribeUnsuscribeToArea(fishingAreaInstance,session.fishingMan)
+        redirect(action: "show", id: fishingAreaInstance.id)
+    }
 }
