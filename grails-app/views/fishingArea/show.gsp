@@ -28,7 +28,10 @@
                     </div>
 
                     <div class="col-md-offset-2 col-md-2">
-                        <h2 style="float:right"><button type="button" class="btn btn-success">Suivre</button></h2>
+                        <g:form url="[action: 'suscribeUnsuscribeToArea', controller: 'fishingArea', resource: fishingAreaInstance]">
+                            <h2 style="float:right"><button type="submit" class="btn btn-success" style="width:115px;weight:35px"><g:if
+                                    test="${isAlreadySuscribing}">Ne plus suivre</g:if><g:else>Suivre</g:else></button></h2>
+                        </g:form>
                     </div>
                 </div>
             </div>
