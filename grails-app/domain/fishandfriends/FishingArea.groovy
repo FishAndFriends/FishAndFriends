@@ -25,4 +25,10 @@ class FishingArea extends AbstractCommentable {
         description nullable: false, blank: false
 
     }
+
+    static mapping = {
+
+        description type: 'text'
+
+    }
 }
