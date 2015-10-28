@@ -9,7 +9,16 @@ class LoginController {
             // redirect(controller:"newsfeed",action:"index")
             render(view: "newsfeed")
         } else {
-            render(view: "index")
+            def model = [:]
+            if (flash.containsKey('fishingMan')) {
+                model['fishingManInstance'] = flash.fishingMan
+            }
+
+            if (flash.containsKey('errors')){
+                model['errors'] = flash.errors
+            }
+
+            render(view: "index", model: model)
         }
     }
 
@@ -22,8 +31,8 @@ class LoginController {
         if (fishingMan.id != null) {
             session.fishingMan = fishingMan
         }
-
-        redirect(view: "index", model: [fishingManInstance: fishingMan])
+        flash.fishingMan = fishingMan
+        redirect(view: "index")
     }
 
     def connexion() {
@@ -46,7 +55,8 @@ class LoginController {
             }
         }
 
-        redirect(view: "index", model: [errors: errors])
+        flash.errors = errors
+        redirect(view: "index")
     }
 
     def deconnexion() {
