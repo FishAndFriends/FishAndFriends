@@ -1,5 +1,8 @@
 package fishandfriends
 
+/**
+ * Abstract class to define a <b>AbstractCommentable</b>.
+ */
 abstract class AbstractCommentable {
 
     /**

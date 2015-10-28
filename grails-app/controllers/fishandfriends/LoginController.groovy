@@ -1,20 +1,30 @@
 package fishandfriends
 
 class LoginController {
+    /** Service of a <b>FishingManS</b>. */
     FishingManService fishingManService
 
+    /**
+     * Return the login ("index") page if user is not connected ; otherwise return
+     * "newsfeed" page of the user.
+     * @return correct index page.
+     */
     def index() {
         if (session.fishingMan != null) {
-            // Quand on aura fait un controller dédié
-            // redirect(controller:"newsfeed",action:"index")
             render(view: "newsfeed")
         } else {
             render(view: "index")
         }
     }
 
+    /**
+     * Return index page after to have sign up of a fishingMan with information
+     * entered by the user.
+     * @return index page of the user connected.
+     */
     def inscription(){
-        FishingMan fishingMan = new FishingMan(firstname:params.signupFirstname,lastname:params.signupLastname,email:params.signupMail,
+        FishingMan fishingMan = new FishingMan(firstname:params.signupFirstname,
+                lastname:params.signupLastname,email:params.signupMail,
                 gender:params.radioGender, tmpPassword: params.signupPwd)
 
         fishingManService.insertOrUpdateFishingMan(fishingMan)
@@ -26,6 +36,11 @@ class LoginController {
         redirect(view: "index", model: [fishingManInstance: fishingMan])
     }
 
+    /**
+     * Return index page when a user try to sign in.
+     * Check if email address and password is valid.
+     * @return index page.
+     */
     def connexion() {
         def errors= []
 
@@ -49,6 +64,10 @@ class LoginController {
         redirect(view: "index", model: [errors: errors])
     }
 
+    /**
+     * Return index page after disconnecting the user.
+     * @return index page
+     */
     def deconnexion() {
         session.removeAttribute("fishingMan")
         redirect(view: "index")
