@@ -42,18 +42,20 @@
 <div class="row">
     <div class="col-md-offset-2 col-md-2">
 
-            <div class=" panel panel-warning catchPanel">
-                <div class="panel-heading">
-                    <b>Lieux</b>
-                </div>
-
-                <div class="panel-body">
-                    <g:each var="fishingArea" in="${fishingAreas}">
-                        <li>${fishingArea.name}, ${fishingArea.location}</li>
-                    </g:each>
-
-                </div>
+        <div class=" panel panel-warning catchPanel">
+            <div class="panel-heading">
+                <b>Lieux</b>
             </div>
+
+            <div class="panel-body">
+                <g:each var="fishingArea" in="${fishingAreas}">
+                    <g:link action="show" controller="fishingArea" id="${fishingArea.id}">
+                        <li>${fishingArea.name}, ${fishingArea.location}</li>
+                    </g:link>
+                </g:each>
+
+            </div>
+        </div>
 
     </div>
 
