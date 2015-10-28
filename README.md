@@ -15,16 +15,21 @@ Le projet est développé par :
 
 
 ## Le Projet
-“Fish&Friends” est un site permettant de fédérer une communauté de passionnés de pêche.
+“Fish&Friends” est un site permettant de fédérer une communauté de passionnés de pêche. Vous pouvez trouver différentes informations du projet à travers ces liens :
+- [Github](https://github.com/FishAndFriends/FishAndFriends)
+- [Travis](https://travis-ci.org/FishAndFriends/FishAndFriends)
+- [Heroku](http://fishandfriends.herokuapp.com/)
+- [Sonar](http://sonarfish.ddns.net/dashboard/index/fishandfriends)
+- [Coveralls](https://coveralls.io/github/FishAndFriends/FishAndFriends)
 
 ## Environment
 
 |           Environment           |                Version                |
 |              ---                |                  ---                  |
 | Development Framework           | Grails 2.3.11                         |
-| IDE                             | IntelliJ version 14.1.1               |
-| Test framework                  | Spock (Grails version)                |
-| SGBDR                           | H2 (Grails version)                   |
+| IDE                             | IntelliJ 14.1.1                       |
+| Test framework                  | Spock                                 |
+| SGBDR                           | H2 (dev), PostgreSQL (prod)           |
 | Test coverage                   | Plugin coverage 2.0.3-3 (Cobertura)   |
 | Intégration continue            | Travis CI                             |
 | Version Controle System         | Git                                   |
