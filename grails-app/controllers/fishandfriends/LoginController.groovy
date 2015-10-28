@@ -29,6 +29,10 @@ class LoginController {
         if (fishingMan.id != null) {
             session.fishingMan = fishingMan
         }
+        else {
+            session.fishingMan = null
+        }
+
         flash.fishingMan = fishingMan
         redirect(view: "index")
     }

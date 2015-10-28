@@ -23,6 +23,7 @@ class FishingAreaControllerSpec extends IntegrationSpec {
         fishingAreaController.modelAndView.model.score.note == 3.5f
         fishingAreaController.modelAndView.model.isAlreadySuscribing == true
         fishingAreaController.modelAndView.model.noteGiven == 3
+        fishingAreaController.modelAndView.viewName == '/fishingArea/show'
     }
 
     void "test create fishingArea"(){
