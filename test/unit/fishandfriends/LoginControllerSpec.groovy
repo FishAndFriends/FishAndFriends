@@ -19,14 +19,28 @@ class LoginControllerSpec extends Specification {
         params["tmpPassword"] = "tototo42"
     }
 
-//    void "test inscription of a new user"() {
-//        when: "a user is signed in"
-//        controller.inscription()
-//
-//        then: "inscription is validated"
-//        view == '/login/index'
-//        response.status == 200
-//    }
+    void "test redirection newsfeed logged user"(){
+        given: "A user logged"
+        populateValidParams(params)
+        controller.session.fishingMan = new FishingMan(params)
+
+        when: "I want to go to the newsfeed"
+        controller.index()
+
+        then: "I'm redirected to the newsfeed"
+        controller.modelAndView.viewName == "/login/newsfeed"
+    }
+
+    void "test redirection newsfeed not logged"() {
+        given: "A user not logged"
+        controller.session.fishingMan = null
+
+        when: "I want to the newsfeed"
+        controller.index()
+
+        then: "I'm redirected to the login page"
+        controller.modelAndView.viewName == "/login/index"
+    }
 
     void "test connexion for a valid user"() {
         given: "user connexion information"

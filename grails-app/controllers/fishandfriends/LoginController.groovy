@@ -5,8 +5,6 @@ class LoginController {
 
     def index() {
         if (session.fishingMan != null) {
-            // Quand on aura fait un controller dédié
-            // redirect(controller:"newsfeed",action:"index")
             render(view: "newsfeed")
         } else {
             render(view: "index")

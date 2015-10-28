@@ -3,7 +3,7 @@ package fishandfriends
 import grails.transaction.Transactional
 
 @Transactional
-class FishingAreaService implements ISearchService{
+class FishingAreaService implements ISearchService {
 
     def search(int max, int offset, String query) {
         def criteria = FishingArea.createCriteria()
@@ -11,7 +11,7 @@ class FishingAreaService implements ISearchService{
         List<FishingArea> result = criteria.list(max: max, offset: offset) {
             or {
                 ilike 'name', "%${query}%"
-                ilike 'location',"%${query}%"
+                ilike 'location', "%${query}%"
             }
         }
         result
@@ -19,7 +19,8 @@ class FishingAreaService implements ISearchService{
 
     def isSuscriberToArea(FishingArea fishingAreaInstance, FishingMan fishingMan) {
         fishingMan = FishingMan.findById(fishingMan.id)
-        //Test already suscriber
+
+        //Test already suscribed
         def isIn = FishingArea.createCriteria().get {
             idEq(fishingAreaInstance.id)
 
@@ -32,19 +33,9 @@ class FishingAreaService implements ISearchService{
             }
 
         }
-        Boolean result;
-        if (isIn > 0) {
-            //Le fishing Man se désabonne
-            result = true
-        } else {
-           result = false
-        }
-        result
+
+        return isIn > 0
     }
-
-
-
-
 
     def getFishingAreaByFishingMan(FishingMan afishingMan) {
         def criteria = FishingArea.createCriteria()
@@ -56,6 +47,4 @@ class FishingAreaService implements ISearchService{
         }
         result
     }
-
-
 }
