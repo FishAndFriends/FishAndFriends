@@ -27,8 +27,8 @@ class Catch extends AbstractCommentable {
         date nullable: false, validator: {
             val -> (val?.compareTo(new Date()) <= 0)
         }
-        weight min: 0.1F, nullable: false
-        size min: 0.1F, nullable: false
+        weight min: 0.0F, nullable: false
+        size min: 0.0F, nullable: false
         fishingMan nullable: false
         fishingArea nullable: false
         fish nullable: false
