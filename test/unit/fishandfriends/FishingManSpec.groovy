@@ -25,7 +25,6 @@ class FishingManSpec extends Specification {
         fishingMan.firstname = aFirstname
         fishingMan.email = anEmail
         fishingMan.hashedPassword = aPassword
-        fishingMan.saltedPassword = aPassword
         fishingMan.lastname = aLastname
         fishingMan.gender = aGender
         fishingMan.tmpPassword = aTmpPassword
@@ -51,7 +50,6 @@ class FishingManSpec extends Specification {
         fishingMan.firstname = aFirstname
         fishingMan.email = anEmail
         fishingMan.hashedPassword = aPassword
-        fishingMan.saltedPassword = aPassword
         fishingMan.lastname = aLastname
         fishingMan.gender = aGender
         fishingMan.tmpPassword = aTmpPassword

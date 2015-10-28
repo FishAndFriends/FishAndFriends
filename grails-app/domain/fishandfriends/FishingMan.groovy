@@ -33,7 +33,7 @@ class FishingMan {
         lastname nullable: false, blank: false
         email email: true, nullable: false, blank: false, unique: true
         hashedPassword nullable: false, blank: false
-        saltedPassword nullable: false, blank: false
+        saltedPassword nullable: true, blank: true
         gender inList: ["H", "F"]
         tmpPassword nullable: true, validator: { val ->
             val == null || val.length() >= 8
