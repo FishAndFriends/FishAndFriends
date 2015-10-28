@@ -4,7 +4,7 @@
     <i class="flaticon-fish13"></i> ${singleCatch.fish.name}
         (${singleCatch.weight}kg, ${singleCatch.size} cm),
         le <i>${singleCatch.date.dateString}</i><br/>
-    <i class="fa-location-arrow"></i> ${singleCatch.fishingArea.name}, ${singleCatch.fishingArea.location}<br/>
+    <i class="fa fa-location-arrow"></i> ${singleCatch.fishingArea.name}, ${singleCatch.fishingArea.location}<br/>
 </p>
 
 
