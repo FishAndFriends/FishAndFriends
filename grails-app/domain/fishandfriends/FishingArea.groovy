@@ -18,12 +18,16 @@ class FishingArea extends AbstractCommentable {
     /** List of fishing man, fishes and catch for a FishingArea */
     static hasMany = [fishingMen: FishingMan, fishes: Fish]
 
+    /**
+     * Define constraints for an <b>FishingArea</b>.
+     *  - A Fishing area need to have a no empty name
+     *  - A Fishing area need to have a no empty location
+     *  - A Fishing area need to have a no empty description
+     */
     static constraints = {
-
         name nullable: false, blank: false
         location nullable: false, blank: false
         description nullable: false, blank: false
-
     }
 
     static mapping = {

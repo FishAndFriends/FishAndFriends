@@ -35,19 +35,5 @@ class FishingAreaDAOService {
             fishingAreaInstance.addToFishingMen(fishingMan)
             fishingAreaInstance.save(flush: true)
         }
-
-/*
-            if(fishingAreaInstance?.getFishingMen()?.contains(fishingMan.id)){
-                //Unsuscribe
-                fishingAreaInstance.removeFromFishingMen(fishingMan)
-                fishingAreaInstance.save(flush: true)
-            } else {
-                //Suscribe
-                fishingAreaInstance.addToFishingMen(fishingMan)
-                fishingAreaInstance.save(flush: true)
-            }
-            */
     }
-
-
 }
