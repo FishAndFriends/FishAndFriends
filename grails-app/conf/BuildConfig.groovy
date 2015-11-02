@@ -6,6 +6,9 @@ grails.project.work.dir = "target/work"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
+grails.war.resources = { stagingDir ->
+    delete(file:"${stagingDir}/WEB-INF/lib/DisableOptimizationsTransformation-0.1-SNAPSHOT.jar")
+}
 
 //grails.project.fork = [
 //    // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
