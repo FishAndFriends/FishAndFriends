@@ -70,7 +70,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <a href="${createLink(controller:'login', action:'deconnexion')}" class="btn btn-danger" role="button">Se déconnecter</a>
+                    <a id="logoutbtn" href="${createLink(controller:'login', action:'deconnexion')}" class="btn btn-danger" role="button">Se déconnecter</a>
                 </div>
             </div>
         </div>

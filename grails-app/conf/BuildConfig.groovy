@@ -60,6 +60,10 @@ grails.project.dependency.resolution = {
         test "org.grails:grails-datastore-test-support:1.0-grails-2.3"
         test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
         runtime 'postgresql:postgresql:8.4-702.jdbc3'
+
+        test "org.gebish:geb-spock:0.12.2"
+        test("org.seleniumhq.selenium:selenium-firefox-driver:2.45.0")
+        compile 'org.codehaus.groovy:groovy-backports-compat23:2.4.5'
     }
 
     plugins {
@@ -101,6 +105,8 @@ grails.project.dependency.resolution = {
         test(":spock:0.7") {
             exclude "spock-grails-support"
         }
+
+        test("org.grails.plugins:geb:0.12.2")
     }
 
 }

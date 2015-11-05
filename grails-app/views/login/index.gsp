@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <input type="password" class="form-control" name="connectPwd" value="${params.connectPwd}" placeholder="Mot de passe">
                     </div>
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-user"></i> Se connecter</button>
+                    <button type="submit" id="sublogin" class="btn btn-primary"><i class="fa fa-user"></i> Se connecter</button>
                 </g:form>
             </div>
         </div>
@@ -47,7 +47,7 @@
                             <input type="radio" name="radioGender" id="female" value="F"/>Femme
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i> S'inscrire</button>
+                    <button type="submit" id="subsignin" class="btn btn-success"><i class="fa fa-user-plus"></i> S'inscrire</button>
                 </g:form>
             </div>
         </div>
