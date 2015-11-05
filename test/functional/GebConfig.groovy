@@ -45,6 +45,10 @@ String phantomJsFullDownloadPath = "https://bitbucket.org/ariya/phantomjs/downlo
 File phantomJSDriverLocalFile = downloadDriver(phantomJsFullDownloadPath, phantomjsExecPath, archiveExtension)
 
 System.setProperty('phantomjs.binary.path', phantomJSDriverLocalFile.absolutePath)
+if (Platform.current.is(Platform.LINUX)) {
+    System.setProperty('phantomjs.binary.path', '')
+}
+
 driver = {
     Capabilities caps = DesiredCapabilities.phantomjs()
     def phantomJsDriver = new PhantomJSDriver(PhantomJSDriverService.createDefaultService(caps), caps)
@@ -62,6 +66,9 @@ private File downloadDriver(String driverDownloadFullPath, String driverFilePath
     File driverFile = new File("${destinationDirectory.absolutePath}/${driverFilePath}")
     println driverFilePath
     String localArchivePath = "target/driver.${archiveFileExtension}"
+    new File(localArchivePath).listFiles().each {
+        println it.name
+    }
 
     if (!driverFile.exists()) {
         def ant = new AntBuilder()
