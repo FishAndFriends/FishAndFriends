@@ -22,8 +22,8 @@ before_install:
   - export PATH=$PATH:$SONAR_RUNNER_HOME/bin
 script:
   - ./grailsw refresh-dependencies
-  - ./grailsw run-app  # start a Web server
-  - sleep 10 # give Web server some time to bind to sockets, etc
+#  - ./grailsw run-app & # start a Web server as daemon
+#  - sleep 10 # give Web server some time to bind to sockets, etc
   - ./grailsw "test-app -echoOut -echoErr -coverage -xml"
 after_success:
   - ./grailsw codenarc
