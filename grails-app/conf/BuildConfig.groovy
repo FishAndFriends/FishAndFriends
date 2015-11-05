@@ -62,7 +62,11 @@ grails.project.dependency.resolution = {
         runtime 'postgresql:postgresql:8.4-702.jdbc3'
 
         test "org.gebish:geb-spock:0.12.2"
-        test("org.seleniumhq.selenium:selenium-firefox-driver:2.45.0")
+        test "org.seleniumhq.selenium:selenium-remote-driver:2.45.0"
+        test( "com.github.detro.ghostdriver:phantomjsdriver:1.0.1" ) {
+            transitive = false
+        }
+
         compile 'org.codehaus.groovy:groovy-backports-compat23:2.4.5'
     }
 

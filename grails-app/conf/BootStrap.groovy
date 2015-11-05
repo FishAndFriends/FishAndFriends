@@ -109,8 +109,5 @@ class BootStrap {
         noteList.each {
             it.delete(flush: true)
         }
-
-        def hibSession = sessionFactory.getCurrentSession()
-        hibSession.flush()
     }
 }
