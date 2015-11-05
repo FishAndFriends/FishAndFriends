@@ -11,14 +11,7 @@ import org.openqa.selenium.remote.DesiredCapabilities
 	See: http://www.gebish.org/manual/current/configuration.html
 */
 
-//driver = {
-//    //see http://stackoverflow.com/questions/9822717 for more details
-//    def driverInstance = new PhantomJSDriver(new DesiredCapabilities())
-//    driverInstance.manage().window().setSize(new Dimension(1920, 1080))
-//    driverInstance
-//}
-
-String phantomJSVersion = '2.0.0'
+String phantomJSVersion = '1.9.8'
 
 String platform
 String archiveExtension
