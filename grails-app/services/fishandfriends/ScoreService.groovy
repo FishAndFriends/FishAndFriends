@@ -2,6 +2,9 @@ package fishandfriends
 
 import grails.transaction.Transactional
 
+/**
+ * Service to compute Score for a Fishing Man or a Fishing Area.
+ */
 @Transactional
 class ScoreService {
 

@@ -2,6 +2,9 @@ package fishandfriends
 
 import grails.transaction.Transactional
 
+/**
+ * Service to insert, modify or get information of a Note from the database.
+ */
 @Transactional
 class NoteService {
 

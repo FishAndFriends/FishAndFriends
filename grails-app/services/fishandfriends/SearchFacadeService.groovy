@@ -2,6 +2,10 @@ package fishandfriends
 
 import grails.transaction.Transactional
 
+/**
+ * Service to do search information in the database according text entered by
+ * the FishingMan connected.
+ */
 @Transactional
 class SearchFacadeService {
 
