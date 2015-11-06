@@ -22,8 +22,8 @@ class CatchService {
     /**
      * Retrieves all catches with the number of comments on it, for a fishingArea.
      *
-     * @param fishingAreaObj
-     * @return
+     * @param fishingAreaObj the fishingArea where the catches are.
+     * @return the list of catches with the number of comment on them.
      */
     def getCatchesWithNbCommentsByFishingArea(FishingArea fishingAreaObj) {
         def listCatchWithComments = []

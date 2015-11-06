@@ -5,13 +5,23 @@ import grails.transaction.Transactional
 @Transactional
 class SearchFacadeService {
 
-    /** Result per page */
+    /** Result per page. */
     private final static int MAX_RESULT_PER_PAGE = 25;
 
+    /** Search service for fishingAreas. */
     def fishingAreaService
+    /** Search service for fishes. */
     def fishService
+    /** Search service for fishingMen. */
     def fishingManService
 
+    /**
+     * Retrieve all objects according to the query.
+     * @param page the current page wanted.
+     * @param qType the type of the search. Basically, it's 'fishingArea' or 'fish' or 'fishingMan'.
+     * @param query the query.
+     * @return the result of the query.
+     */
     public SearchResultObject search(int page, String qType, String query) {
         // Compute parameters
         int max = MAX_RESULT_PER_PAGE + 1
