@@ -2,10 +2,15 @@ package fishandfriends
 
 class FishingAreaController {
     /**
-     * Service
+     * Service to get catches from data.
      */
     CatchService catchService
+
+    /**
+     *
+     */
     def fishingAreaDAOService
+
     def fishingAreaService
     def scoreService
     def noteService
