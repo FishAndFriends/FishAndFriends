@@ -3,11 +3,25 @@ package fishandfriends
 import grails.transaction.Transactional
 import groovy.sql.Sql
 
+/**
+ * Service of a Catch uses to get Catch information according data :
+ *     - Catches of a given Fishing Man
+ *     - Catches with these comments for a given fishing area.
+ */
 @Transactional
 class CatchService {
 
+    /**
+     * Session Factory to access to database.
+     */
     def sessionFactory
 
+    /**
+     * Return the list of Catches for a given Fishing Man <i>afishingMan</i>.
+     *
+     * @param afishingMan Fishing Man where we want to get Catches.
+     * @return list of Catches.
+     */
     def getCatchesByFishingMan(FishingMan afishingMan) {
         def criteria = Catch.createCriteria()
 
