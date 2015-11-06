@@ -1,5 +1,8 @@
 package fishandfriends
 
+/**
+ * Controller of Comment.
+ */
 class CommentController {
 
     /** the DAO service. */

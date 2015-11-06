@@ -1,5 +1,8 @@
 package fishandfriends
 
+/**
+ * Search result Controller.
+ */
 class SearchResultController {
 
     /** The search facade object. */
