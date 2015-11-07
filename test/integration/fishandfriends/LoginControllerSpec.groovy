@@ -1,5 +1,6 @@
 package fishandfriends
 
+import com.megatome.grails.RecaptchaService
 import grails.test.spock.IntegrationSpec
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
@@ -7,6 +8,10 @@ import grails.test.spock.IntegrationSpec
 class LoginControllerSpec extends IntegrationSpec {
 
     def controller = new LoginController()
+
+    void cleanup() {
+        controller.recaptchaService.metaClass = null
+    }
 
     void "test redirection newsfeed logged user"(){
         given: "A user logged"
@@ -145,6 +150,29 @@ class LoginControllerSpec extends IntegrationSpec {
         controller.params.radioGender = "F"
         controller.params.signupPwd = "azertyuio"
         def n = FishingMan.count()
+
+        when: "I sign in"
+        controller.inscription()
+
+        then: "A user is saved"
+        FishingMan.count() == n
+        controller.session.fishingMan == null
+        controller.response.redirectUrl.startsWith('/')
+    }
+
+    void "test recaptcha KO"(){
+        given: "A sign in form completed"
+        controller.params.signupFirstname = "AZzreknv"
+        controller.params.signupLastname = "ajknvbzlknvzlkv"
+        controller.params.signupMail = "qkbvsj@zjkb.fr"
+        controller.params.radioGender = "F"
+        controller.params.signupPwd = "azertyuio"
+        def n = FishingMan.count()
+
+        /* Overiding du service de recaptcha */
+        controller.recaptchaService.metaClass.verifyAnswer = { session, remoteAddress, params ->
+            return false
+        }
 
         when: "I sign in"
         controller.inscription()
