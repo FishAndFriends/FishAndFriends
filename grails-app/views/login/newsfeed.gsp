@@ -43,7 +43,7 @@
         </div>
 
         <div class="col-md-8">
-            <g:each var="singleCatch" in="${fishandfriends.Catch.list()}">
+            <g:each var="singleCatch" in="${fishandfriends.Catch.list(sort: "date", order: "desc")}">
                 <div class="jumbotron">
                     <g:render template="showNewsFeedsCatch" model="[singleCatch: singleCatch]"></g:render>
                 </div>
