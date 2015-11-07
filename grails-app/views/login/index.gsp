@@ -47,6 +47,10 @@
                             <input type="radio" name="radioGender" id="female" value="F"/>Femme
                         </label>
                     </div>
+                    <recaptcha:ifEnabled>
+                        <recaptcha:recaptcha/>
+                    </recaptcha:ifEnabled>
+                    <br/>
                     <button type="submit" id="subsignin" class="btn btn-success"><i class="fa fa-user-plus"></i> S'inscrire</button>
                 </g:form>
             </div>

@@ -116,7 +116,7 @@ class LoginControllerSpec extends IntegrationSpec {
         controller.deconnexion()
 
         then: "user is redirected to connexion menu"
-        controller.response.redirectUrl == '/'
+        controller.response.redirectUrl.startsWith('/')
     }
 
     void "test inscription OK"(){
@@ -134,7 +134,7 @@ class LoginControllerSpec extends IntegrationSpec {
         then: "A user is saved"
         FishingMan.count() == n + 1
         controller.session.fishingMan.id == FishingMan.findByEmail(controller.params.signupMail).id
-        controller.response.redirectUrl == '/'
+        controller.response.redirectUrl.startsWith('/')
 
         FishingMan.findByEmail(controller.params.signupMail).delete(flush: true)
     }
@@ -153,6 +153,6 @@ class LoginControllerSpec extends IntegrationSpec {
         then: "A user is saved"
         FishingMan.count() == n
         controller.session.fishingMan == null
-        controller.response.redirectUrl == '/'
+        controller.response.redirectUrl.startsWith('/')
     }
 }

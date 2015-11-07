@@ -74,15 +74,14 @@ grails.project.dependency.resolution = {
     plugins {
         // plugins for the build system only
         build ":tomcat:7.0.54"
-        build ":codenarc:0.24.1"
-        build(':coveralls:0.1.3', ':rest-client-builder:1.0.3') {
-            export = false
-        }
 
         // plugins for the compile step
         compile ":scaffolding:2.0.3"
         compile ':cache:1.1.7'
         compile ":codenarc:0.24.1"
+        compile ":coveralls:0.1.3"
+        compile ":rest-client-builder:2.1.1"
+        compile ":recaptcha:1.6.0"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.16" // or ":hibernate4:4.3.5.4"
