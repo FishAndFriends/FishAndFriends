@@ -1,5 +1,6 @@
 package fishandfriends
 
+import fishandfriends.exception.ServiceNotFoundException
 import grails.transaction.Transactional
 
 /**
@@ -40,7 +41,7 @@ class SearchFacadeService {
         } else if (qType == "fishingMan") {
             searchService = fishingManService
         } else {
-            throw new RuntimeException("Unable to catch the service")
+            throw new ServiceNotFoundException("Unable to catch the service")
         }
 
         // Do search

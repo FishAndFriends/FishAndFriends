@@ -37,9 +37,6 @@ class CatchSpec extends Specification {
                 )
     }
 
-    def cleanup() {
-    }
-
     void "test a valid catch"() {
         given:"a catch"
         fishCatch.date = catchDate

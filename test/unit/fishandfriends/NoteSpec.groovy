@@ -15,9 +15,6 @@ class NoteSpec extends Specification {
         note = new Note()
     }
 
-    def cleanup() {
-    }
-
     @Unroll
     def "test a valid note"() {
         given:"a note"

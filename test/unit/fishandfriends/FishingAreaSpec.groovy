@@ -15,9 +15,6 @@ class FishingAreaSpec extends Specification {
         fishingArea = new FishingArea()
     }
 
-    def cleanup() {
-    }
-
     @Unroll
     def "test a valid fishing area"() {
         given:"a fishing area"

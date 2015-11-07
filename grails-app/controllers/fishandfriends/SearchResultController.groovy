@@ -1,5 +1,7 @@
 package fishandfriends
 
+import fishandfriends.exception.ServiceNotFoundException
+
 /**
  * Search result Controller.
  */
@@ -44,7 +46,7 @@ class SearchResultController {
         try {
             SearchResultObject resultObject = searchFacadeService.search(p.page, p.want, p.query)
             return render(view: "index", model: [page: params.page, want: params.want, query: params.query, result: resultObject.result, hasMore: resultObject.hasMore])
-        }catch (RuntimeException e){
+        }catch (ServiceNotFoundException e){
             return render(view: "index", model: [error:true])
         }
     }

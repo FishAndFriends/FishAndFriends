@@ -1,7 +1,6 @@
 package fishandfriends
 
 import grails.test.spock.IntegrationSpec
-import spock.lang.Specification
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions
  */
