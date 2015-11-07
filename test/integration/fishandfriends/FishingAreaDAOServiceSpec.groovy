@@ -19,9 +19,6 @@ class FishingAreaDAOServiceSpec extends IntegrationSpec {
 
     }
 
-    def cleanup() {
-    }
-
     void "test comment creation"() {
         given: "a fishingArea"
 

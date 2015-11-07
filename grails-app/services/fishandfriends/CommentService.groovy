@@ -8,6 +8,11 @@ import grails.transaction.Transactional
 @Transactional
 class CommentService {
 
+    /**
+     * Retrieve all comments on a commentable object.
+     * @param obj to retrieve comments on.
+     * @return all comments on the object.
+     */
     def getAllCommentsForCommentable(def obj) {
 
         long id = extractId(obj)
@@ -21,6 +26,11 @@ class CommentService {
         return result
     }
 
+    /**
+     * Get the 5 lastest comments on a commentable object.
+     * @param obj to retrieve comments on.
+     * @return the 5 lastest comments on the object.
+     */
     def get5CommentsForCommentable(def obj) {
 
         long id = extractId(obj)

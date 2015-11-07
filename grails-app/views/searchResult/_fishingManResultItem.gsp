@@ -2,7 +2,7 @@
     <p>
 
     <div class="icon-cust">
-        <g:link action="show" controller="fishingMan" id="${r.id}">
+        <g:link action="show" data-id="${r.id}" controller="fishingMan" id="${r.id}">
             <h2><i class="fa fa-user"></i> ${r.firstname} ${r.lastname}</h2>
         </g:link>
     </div>

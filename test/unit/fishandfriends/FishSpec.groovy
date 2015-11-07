@@ -15,9 +15,6 @@ class FishSpec extends Specification {
         fish = new Fish()
     }
 
-    def cleanup() {
-    }
-
     @Unroll
     def "test a valid fish"() {
         given:"a fish"

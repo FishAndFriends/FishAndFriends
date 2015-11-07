@@ -16,9 +16,6 @@ class FishingManSpec extends Specification {
         fishingMan = new FishingMan()
     }
 
-    def cleanup() {
-    }
-
     @Unroll
     def "test a valid fishingman"() {
         given:"a fishingman"

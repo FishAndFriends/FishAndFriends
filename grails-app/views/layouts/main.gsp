@@ -48,7 +48,7 @@
                     <div class="input-group">
                         <input type="text" id="query" name="query" class="form-control" placeholder="Rechercher...">
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            <button class="btn btn-primary" id="searchbtn" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                         </span>
                     </div><!-- /input-group -->
                 </g:form>

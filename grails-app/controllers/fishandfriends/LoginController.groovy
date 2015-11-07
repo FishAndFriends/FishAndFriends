@@ -2,6 +2,9 @@ package fishandfriends
 
 import com.megatome.grails.RecaptchaService
 
+/**
+ * Controller of Login.
+ */
 class LoginController {
     /** Service of a <b>FishingManS</b>. */
     FishingManService fishingManService

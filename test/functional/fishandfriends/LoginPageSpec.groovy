@@ -9,9 +9,6 @@ import org.openqa.selenium.By
  * Created by Alexandre on 05/11/2015.
  */
 class LoginPageSpec extends GebSpec {
-    def setup() {
-
-    }
 
     def cleanup() {
         CachingDriverFactory.clearCache()
@@ -54,5 +51,19 @@ class LoginPageSpec extends GebSpec {
         $('body').text().contains('Fil d\'actualités')
         $('body').text().contains('Jean-Michel Dupont')
         $('body').text().contains('Déconnexion')
+    }
+
+    def "test wrong inscription"(){
+        when: "Fill the form"
+        to LoginPage
+        $("[name='signupFirstname']").value('USER_NAME')
+        $("[name='signupLastname']").value('USER_LAST_NAME')
+        $("[name='signupMail']").value('jm@yahoo.fr')
+        $("[name='signupPwd']").value('PASSWORD')
+        $("#male").click()
+        $("#subsignin").click()
+
+        then: "error is displayed"
+        js.($('.alert-danger')[0] != null)
     }
 }

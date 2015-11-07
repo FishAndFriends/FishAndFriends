@@ -2,12 +2,32 @@ package fishandfriends
 
 import static org.springframework.http.HttpStatus.*
 
+/**
+ * Controller of the FishingMan.
+ */
 class FishingManController {
+    /** Service to set and get information on a FishingMan in database. */
     FishingManService fishingManService
+
+    /** Service to get Catches */
     CatchService catchService
+
+    /**
+     * Service to get information of fishing areas.
+     */
     FishingAreaService fishingAreaService
+
+    /**
+     * Service to compute score of the Fishing Man.
+     */
     def scoreService
 
+    /**
+     * Return default page view of the Fishing Man <i>fishingManInstance</i>.
+     *
+     * @param fishingManInstance
+     * @return View of the Fishing Man.
+     */
     def show(FishingMan fishingManInstance) {
         def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
         def score = scoreService.computeScoresForFishingMan(fishingManInstance)
@@ -15,10 +35,19 @@ class FishingManController {
         render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score ,fishingAreas: fishingArea])
     }
 
+    /**
+     * Return FishingMan <i>fishingManInstance</i> to modify.
+     *
+     * @param fishingManInstance FishingMan to modify.
+     * @return FishingMan
+     */
     def edit(FishingMan fishingManInstance) {
         respond fishingManInstance
     }
 
+    /**
+     * Return a 404 page not found when URL is not valid.
+     */
     protected void notFound() {
         request.withFormat {
             form multipartForm {
@@ -29,6 +58,12 @@ class FishingManController {
         }
     }
 
+    /**
+     * Return FishingMan <i>fishingManInstance</i> to edit.
+     *
+     * @param fishingManInstance FishingMan to edit.
+     * @return FishingMan.
+     */
     def editProfile(FishingMan fishingManInstance) {
         if (fishingManInstance == null) {
             notFound()
@@ -51,6 +86,12 @@ class FishingManController {
         redirect action: "show", id: fishingManInstance.id
     }
 
+    /**
+     * Return view to edit password of the FishingMan <i>fishingManInstance</i>.
+     *
+     * @param fishingManInstance FishingMan who want modify it password.
+     * @return Edit password view.
+     */
     def editPassword(FishingMan fishingManInstance) {
         if (fishingManInstance == null) {
             notFound()
@@ -74,6 +115,12 @@ class FishingManController {
         render(view: "edit", model: [fishingManInstance: fishingManInstance])
     }
 
+    /**
+     * Return view to share a Catch by the FishingMan <i>fishingManInstance</i>.
+     *
+     * @param fishingManInstance Fishing Man who share a Catch.
+     * @return Catch share view.
+     */
     def shareCatch(FishingMan fishingManInstance) {
         render(view: "shareCatch", model:[fishingManInstance: fishingManInstance])
     }

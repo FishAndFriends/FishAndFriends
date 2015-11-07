@@ -1,5 +1,6 @@
 package fishandfriends
 
+import fishandfriends.exception.ServiceNotFoundException
 import grails.test.spock.IntegrationSpec
 
 /**
@@ -39,7 +40,7 @@ class SearchFacadeServiceSpec extends IntegrationSpec {
         try{
             searchFacadeService.search(0,"Roll your head on your keyboard !", "It's fun, you know !")
             isError = false
-        }catch(RuntimeException e){
+        }catch(ServiceNotFoundException e){
             isError = true
         }
 
