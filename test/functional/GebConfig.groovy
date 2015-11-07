@@ -7,7 +7,10 @@ import org.openqa.selenium.firefox.FirefoxDriver
 */
 
 driver = {
-    new FirefoxDriver()
+    def driverInstance = new FirefoxDriver()
+    driverInstance.manage().window().maximize();
+
+    driverInstance
 }
 
 waiting = {
