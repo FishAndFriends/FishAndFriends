@@ -16,7 +16,7 @@ class FishingManService implements ISearchService {
      * @return the fishingMan just inserted
      */
     FishingMan insertOrUpdateFishingMan(FishingMan fishingMan) {
-        if (fishingMan.tmpPassword != null) {
+        if (fishingMan.tmpPassword != null && fishingMan.validate(['tmpPassword'])) {
             // http://stackoverflow.com/a/8138604
             fishingMan.saltedPassword = generator((('A'..'Z') + ('0'..'9')).join(), 9)
             fishingMan.hashedPassword = SHA1Codec.encode(fishingMan.saltedPassword + fishingMan.tmpPassword)

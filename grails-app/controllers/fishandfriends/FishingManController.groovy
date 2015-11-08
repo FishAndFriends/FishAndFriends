@@ -1,7 +1,4 @@
 package fishandfriends
-
-import static org.springframework.http.HttpStatus.*
-
 /**
  * Controller of the FishingMan.
  */
@@ -32,7 +29,7 @@ class FishingManController {
         def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
         def score = scoreService.computeScoresForFishingMan(fishingManInstance)
         def fishingArea = fishingAreaService.getFishingAreaByFishingMan(fishingManInstance)
-        render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score ,fishingAreas: fishingArea])
+        render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score, fishingAreas: fishingArea])
     }
 
     /**
@@ -42,20 +39,22 @@ class FishingManController {
      * @return FishingMan
      */
     def edit(FishingMan fishingManInstance) {
-        respond fishingManInstance
-    }
-
-    /**
-     * Return a 404 page not found when URL is not valid.
-     */
-    protected void notFound() {
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.not.found.message', args: [message(code: 'fishingMan.label', default: 'FishingMan'), params.id])
-                redirect action: "index", method: "GET"
-            }
-            '*' { render status: NOT_FOUND }
+        if (!fishingManInstance.id.equals(request.session.fishingMan.id)) {
+            redirect(action: "show", id: fishingManInstance.id)
         }
+
+        def model = [:]
+        model['fishingManInstance'] = fishingManInstance
+
+        if (flash.containsKey('errors')) {
+            model['errors'] = flash.errors
+        }
+
+        if (flash.containsKey('fishingMan')) {
+            model['fishingManInstance'] = flash.fishingMan
+        }
+
+        render(view: "edit", model: model)
     }
 
     /**
@@ -65,25 +64,22 @@ class FishingManController {
      * @return FishingMan.
      */
     def editProfile(FishingMan fishingManInstance) {
-        if (fishingManInstance == null) {
-            notFound()
+        if (!fishingManInstance.id.equals(request.session.fishingMan.id)) {
+            redirect(action: "show", id: fishingManInstance.id)
             return
         }
 
-        if (fishingManInstance.hasErrors()) {
-            render(view: "edit", model: [fishingManInstance: fishingManInstance])
-        }
-
-        if (params.firstnameEdit) {
-            fishingManInstance.firstname = params.firstnameEdit
-        }
-
-        if (params.lastnameEdit) {
-            fishingManInstance.lastname = params.lastnameEdit
-        }
+        fishingManInstance.firstname = params.firstnameEdit
+        fishingManInstance.lastname = params.lastnameEdit
 
         fishingManService.insertOrUpdateFishingMan(fishingManInstance)
-        redirect action: "show", id: fishingManInstance.id
+
+        if (fishingManInstance.hasErrors()) {
+            flash.fishingMan = fishingManInstance
+            redirect action: "edit", id: fishingManInstance.id
+        } else {
+            redirect action: "show", id: fishingManInstance.id
+        }
     }
 
     /**
@@ -93,13 +89,9 @@ class FishingManController {
      * @return Edit password view.
      */
     def editPassword(FishingMan fishingManInstance) {
-        if (fishingManInstance == null) {
-            notFound()
+        if (!fishingManInstance.id.equals(request.session.fishingMan.id)) {
+            redirect(action: "show", id: fishingManInstance.id)
             return
-        }
-
-        if (fishingManInstance.hasErrors()) {
-            render(view: "edit", model: [fishingManInstance: fishingManInstance])
         }
 
         def errors = []
@@ -107,12 +99,17 @@ class FishingManController {
         if (fishingManService.controlPassword(fishingManInstance, params.oldPassword)) {
             fishingManInstance.tmpPassword = params.newPassword
             fishingManService.insertOrUpdateFishingMan(fishingManInstance)
-            redirect action: "show", id: fishingManInstance.id
         } else {
-            errors.add(message(code: "fishandfriends.fishingMan.userNotFound"))
+            errors.add(message(code: "fishandfriends.fishingMan.wrongOldPassword"))
         }
 
-        render(view: "edit", model: [fishingManInstance: fishingManInstance])
+        flash.errors = errors
+        if (fishingManInstance.hasErrors() || !errors.isEmpty()) {
+            flash.fishingMan = fishingManInstance
+            redirect action: "edit", id: fishingManInstance.id
+        } else {
+            redirect action: "show", id: fishingManInstance.id
+        }
     }
 
     /**
@@ -122,7 +119,7 @@ class FishingManController {
      * @return Catch share view.
      */
     def shareCatch(FishingMan fishingManInstance) {
-        render(view: "shareCatch", model:[fishingManInstance: fishingManInstance])
+        render(view: "shareCatch", model: [fishingManInstance: fishingManInstance])
     }
 
     /**
@@ -135,8 +132,8 @@ class FishingManController {
     def shareCatchLocation() {
 
         if (session.fishingMan == null) {
-            render( view: "shareCatch",
-                    model:[fishingManInstance: session.fishingMan])
+            render(view: "shareCatch",
+                    model: [fishingManInstance: session.fishingMan])
         } else {
             if (params.fishingAreaNameShared || params.fishNameShared
                     || params.fishWeightShared || params.fishSizeShared) {
@@ -150,18 +147,16 @@ class FishingManController {
                 )
 
                 if (aCatch.fishingMan != null && aCatch.fishingArea != null
-                    && aCatch.fish != null
-                    && aCatch.weight > 0.0 && aCatch.size > 0.0) {
+                        && aCatch.fish != null
+                        && aCatch.weight > 0.0 && aCatch.size > 0.0) {
                     aCatch.save(flush: true)
                     redirect view: "index", controller: "login"
                 } else {
-                    render( view: "shareCatch",
-                            model:[fishingManInstance: session.fishingMan])
+                    render(view: "shareCatch",
+                            model: [fishingManInstance: session.fishingMan])
                 }
 
             }
         }
-
     }
-
 }

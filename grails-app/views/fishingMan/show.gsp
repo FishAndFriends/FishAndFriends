@@ -8,33 +8,31 @@
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-offset-2 col-md-8">
-            <div class="homebox jumbotron">
-                <g class="row">
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="homebox jumbotron">
+            <g class="row">
+                <div class="col-md-2">
+                    <i class="fa ${fishingManInstance.gender.equals("H") ? 'fa-male' : 'fa-female'} fa-5x"></i>
+                </div>
+
+                <div class="col-md-8">
+                    <p>
+
+                    <h2><b>${fishingManInstance.firstname}</b> ${fishingManInstance.lastname}
+                    </h2>
+                    Nombre de prises : ${score.nbCatch} <br/>
+                    Poids moyen des prises : ${score.averageWeight} kg <br/>
+                    Taille moyenne des prises : ${score.averageSize} cm <br/>
+                </p>
+                </div>
+                <g:if test="${fishingManInstance.id.equals(session.fishingMan.id)}">
                     <div class="col-md-2">
-                        <i class="fa ${fishingManInstance.gender.equals("H") ? 'fa-male' : 'fa-female'} fa-5x"></i>
+                        <a href="${createLink(action: "edit", controller: "fishingMan", resource: fishingManInstance)}"
+                           class="btn btn-success" role="button"><i
+                                class="fa fa-pencil"></i> Modifier</a>
                     </div>
-
-                    <div class="col-md-8">
-                        <p>
-
-                        <h2><b>${fishingManInstance.firstname}</b> ${fishingManInstance.lastname}
-                        </h2>
-                        Nombre de prises : ${score.nbCatch} <br/>
-                        Poids moyen des prises : ${score.averageWeight} kg <br/>
-                        Taille moyenne des prises : ${score.averageSize} cm <br/>
-                    </p>
-                    </div>
-                    <g:if test="${fishingManInstance.id}.equals(${session.fishingMan.id})">
-                        <div class="col-md-2">
-                            <a href="${createLink(action: "edit", controller: "fishingMan", resource: fishingManInstance)}"
-                               class="btn btn-success" role="button"><i
-                                    class="fa fa-pencil"></i> Modifier</a>
-                        </div>
-                    </g:if>
-            </div>
+                </g:if>
         </div>
     </div>
 </div>
@@ -69,7 +67,6 @@
             </div>
         </g:each>
     </div>
-</div>
 </div>
 </body>
 </html>
