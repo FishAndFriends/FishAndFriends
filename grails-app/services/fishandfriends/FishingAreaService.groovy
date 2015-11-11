@@ -76,7 +76,7 @@ class FishingAreaService implements ISearchService {
     def getFishingAreaByFishingMan(FishingMan afishingMan) {
         def criteria = FishingArea.createCriteria()
 
-        def result = criteria.list() {
+        def result = criteria.list(fetch: [fishingMen: "eager"]) {
             fishingMen {
                 idEq(afishingMan.id)
             }

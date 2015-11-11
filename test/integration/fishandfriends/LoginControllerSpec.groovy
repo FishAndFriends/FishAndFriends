@@ -1,6 +1,5 @@
 package fishandfriends
 
-import com.megatome.grails.RecaptchaService
 import grails.test.spock.IntegrationSpec
 /**
  * See the API for {@link grails.test.mixin.support.GrailsUnitTestMixin} for usage instructions

@@ -32,8 +32,8 @@ class ScoreServiceSpec extends IntegrationSpec {
 
         then:"on a bien les bons scores"
         result.nbCatch == 2
-        result.averageWeight == 427.5f
-        result.averageSize == 128.1f
+        result.averageWeight == 334.0f
+        result.averageSize == 57.600002f
     }
 
     void "test score for a new fishingMan"() {

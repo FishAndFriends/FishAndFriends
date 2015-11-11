@@ -25,10 +25,9 @@ class CatchService {
     def getCatchesByFishingMan(FishingMan afishingMan) {
         def criteria = Catch.createCriteria()
 
-        def result = criteria.list() {
+        criteria.list(fetch: [fishingMan: "eager"]) {
             fishingMan {
                 idEq(afishingMan.id)
-
             }
         }
     }

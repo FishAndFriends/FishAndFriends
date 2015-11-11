@@ -13,8 +13,8 @@ class FishingManControllerSpec extends IntegrationSpec {
         fishingManController.session.fishingMan = fishingMan
     }
 
-    def cleanup() {
-    }
+//    def cleanup() {
+//    }
 
     void "Test the show view works well"() {
         when: "The index action is executed"
