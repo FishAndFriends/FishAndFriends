@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div class="container-fluid homebox">
+<div class="container-fluid">
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
             <div class="row">
