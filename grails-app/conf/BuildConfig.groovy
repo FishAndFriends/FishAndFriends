@@ -60,7 +60,7 @@ grails.project.dependency.resolution = {
         test "org.grails:grails-datastore-test-support:1.0-grails-2.3"
         test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
 //        runtime 'postgresql:postgresql:8.4-702.jdbc3'
-        runtime 'org.postgresql:postgresql:9.4-1205-jdbc42'
+        runtime 'postgresql:postgresql:9.1-901.jdbc4'
 
         test "org.gebish:geb-spock:0.12.2"
         test "org.seleniumhq.selenium:selenium-remote-driver:2.45.0"
