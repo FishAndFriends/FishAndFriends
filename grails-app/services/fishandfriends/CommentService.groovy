@@ -17,7 +17,7 @@ class CommentService {
 
         long id = extractId(obj)
 
-        def result = Comment.createCriteria().list() {
+        def result = Comment.createCriteria().list(fetch: [fishingMan: "eager"]) {
             commentable {
                 idEq(id)
             }
@@ -35,7 +35,7 @@ class CommentService {
 
         long id = extractId(obj)
 
-        def result = Comment.createCriteria().list(max: 5) {
+        def result = Comment.createCriteria().list(max: 5, fetch: [fishingMan: "eager"]) {
             commentable {
                 idEq(id)
             }
