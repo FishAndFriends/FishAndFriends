@@ -169,6 +169,11 @@ class CatchService {
     def getCatchesWithNbCommentsForNewsfeed(FishingMan fishingMan) {
         def listCatchWithComments = []
         def fishingAreas = fishingAreaService.getFishingAreaByFishingMan(fishingMan)
+
+        if (fishingAreas.isEmpty()) {
+            return listCatchWithComments
+        }
+
         def sql = new Sql(sessionFactory.currentSession.connection())
         def result = sql.rows("""
                         SELECT

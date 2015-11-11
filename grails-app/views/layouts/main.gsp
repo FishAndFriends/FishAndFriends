@@ -132,8 +132,11 @@
         });
     }
 
-    $(".showComment").on("click", function () {
+    $(".showComment").on("click", function (event) {
         showModal(event, $(this).data('ident'));
+    });
+
+    function applyFormCommentBehavior() {
         $(".formComment").on('submit', function (ev) {
             ev.preventDefault();
 
@@ -147,7 +150,11 @@
             });
             return false;
         });
-    })
+    };
+
+    $(function() {
+        applyFormCommentBehavior();
+    });
 </script>
 </body>
 </html>

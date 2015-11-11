@@ -94,15 +94,27 @@
         </div>
 
         <div class="col-md-4">
-            <g:set var="counter" value="${1}"/>
+            <g:if test="${isAlreadySuscribing}">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4>Vous avez eu une prise ? <g:link action="shareFromArea" controller="catch"
+                                                                     class="btn btn-success" id="${fishingAreaInstance.id}">
+                                    <i class="fa fa-share"></i> Partager
+                                </g:link></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </g:if>
             <g:each var="singleCatch" in="${catches}">
                 <div class="row">
                     <div class="col-md-12">
                         <g:render template="showCatch"
-                                  model="[singleCatch: singleCatch.aCatch, counter: counter, nbComments: singleCatch.nbComments]"/>
+                                  model="[singleCatch: singleCatch.aCatch, nbComments: singleCatch.nbComments]"/>
                     </div>
                 </div>
-                <g:set var="counter" value="${counter + 1}"/>
             </g:each>
         </div>
     </div>

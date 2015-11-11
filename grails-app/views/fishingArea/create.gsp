@@ -17,7 +17,7 @@
 							<input type="text" class="form-control" name="fishingAreaLocation" value="${params.fishingAreaLocation}" placeholder="Lieux" required>
 						</div>
 					<div class="form-group">
-                        <textarea class="span6 form-control" rows="10" name="fishingAreaDescription" placeholder="Description" value="${params.fishingAreaDescription}" required="required"></textarea>
+                        <textarea style="resize:vertical" class="span6 form-control" rows="10" name="fishingAreaDescription" placeholder="Description" value="${params.fishingAreaDescription}" required="required"></textarea>
 
                     </div>
 

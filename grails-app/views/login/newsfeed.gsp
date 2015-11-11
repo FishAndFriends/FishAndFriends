@@ -9,39 +9,25 @@
 <body>
 <div class="container-fluid homebox">
     <div class="row">
-        <div class="col-md-2 ">
-
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4>Options</h4>
-                </div>
-                <br/>
-                <br/>
-
-                <div class="panel-body">
-                    <g:form url="[action: 'share', controller: 'catch']">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-share"></i> Partager</button>
-                    </g:form>
-                    <br/>
-                    <br/>
-                    <g:form url="[action: 'addNewArea', controller: 'fishingArea']">
-                        <button type="submit" class="btn btn-success"></button>
-                    </g:form>
-                    <br/>
-                    <br/>
-
+        <div class="col-md-offset-2 col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>Fil d'actualités</h1>
                 </div>
             </div>
 
-            %{--<g:if test="${fishingManInstance.id}.equals(${session.fishingMan.id})">--}%
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4>Vous avez eu une prise ? <g:link action="share" controller="catch" class="btn btn-success">
+                            <i class="fa fa-share"></i> Partager
+                        </g:link></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        </div>
-
-        <div class="col-md-4">
-            <h1>Fil d'actualités</h1>
-        </div>
-
-        <div class="col-md-8">
             <div class="row">
                 <div class="col-md-12">
                     <g:each var="singleCatch" in="${catches}">
@@ -52,8 +38,6 @@
             </div>
         </div>
     </div>
-
-</div>
 </div>
 
 </body>

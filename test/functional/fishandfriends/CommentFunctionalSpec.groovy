@@ -25,8 +25,8 @@ class CommentFunctionalSpec extends GebSpec {
         sleep(2000)
         $("[data-id]").click()
         sleep(2000)
-        $("#sub0 [name='text']")[0].value('Ceci est un commentaire posté par un test fonctionnel automatique')
-        $("#sub0 [type='submit']").click()
+        $(".col-md-offset-2").find(".formComment [name='text']")[0].value('Ceci est un commentaire posté par un test fonctionnel automatique')
+        $(".col-md-offset-2").find(".formComment [type='submit']")[0].click()
         sleep(2000)
 
         then: "We are redirect to the same page, and the comment is displayed"
@@ -48,8 +48,8 @@ class CommentFunctionalSpec extends GebSpec {
         def text = Integer.parseInt($('[data-ident]')[0].text().split(" ")[0])
         $('[data-ident]')[0].click()
         sleep(5000)
-        $("#sub1 [name='text']")[0].value('Ceci est un commentaire posté par un test fonctionnel automatique')
-        $("#sub1 [type='submit']").click()
+        $("#commentModal").find(".formComment [name='text']")[0].value('Ceci est un commentaire posté par un test fonctionnel automatique')
+        $("#commentModal").find(".formComment [type='submit']")[0].click()
         sleep(2000)
 
         then: "We are redirect to the same page and the number of comment is increased for the first catch"

@@ -43,7 +43,8 @@ class SearchSpec extends GebSpec {
 
         then: "We are redirect to a page which contains the results with good links"
         $('body').text().contains('Nemo')
-        $('body').text().contains('Poids: 2.0 kg, Taille: 5.0 cm')
+        $('body').text().contains('2.0 kg')
+        $('body').text().contains('5.0 cm')
     }
 
     def "test search fishingMan"() {
