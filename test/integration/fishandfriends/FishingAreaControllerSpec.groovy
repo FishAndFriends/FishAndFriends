@@ -45,11 +45,10 @@ class FishingAreaControllerSpec extends IntegrationSpec {
 
     void "test add create area"(){
         when: "I want to create a fishingArea"
-        fishingAreaController.addNewArea(FishingMan.findById(1))
+        fishingAreaController.addNewArea()
 
         then: "I'm redirected to use create page"
         fishingAreaController.modelAndView.viewName == "/fishingArea/create"
-        fishingAreaController.modelAndView.model.fishingManInstance == FishingMan.findById(1)
     }
 
     void "test ajout de note"() {

@@ -53,13 +53,11 @@ class FishingAreaController {
 
     /**
      * Return view to add a new Fishing Area by the Fishing Man
-     * <i>fishingManInstance</i>.
      *
-     * @param fishingManInstance FishingMan who want to create a new area.
      * @return View to create a new Area.
      */
-    def addNewArea(FishingMan fishingManInstance) {
-        render(view: "create", model: [fishingManInstance: fishingManInstance])
+    def addNewArea() {
+        render(view: "create")
     }
 
     /**

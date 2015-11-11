@@ -19,12 +19,12 @@
                 <br/>
 
                 <div class="panel-body">
-                        <g:form url="[action: 'shareCatch', controller: 'fishingMan', resource: fishingManInstance]">
+                        <g:form url="[action: 'share', controller: 'catch']">
                             <button type="submit" class="btn btn-success"><i class="fa fa-share"></i> Partager</button>
                         </g:form>
                     <br/>
                     <br/>
-                    <g:form url="[action: 'addNewArea', controller: 'fishingArea', resource: fishingManInstance]">
+                    <g:form url="[action: 'addNewArea', controller: 'fishingArea']">
                         <button type="submit" class="btn btn-success"><i
                                 class="fa fa-plus"></i> Ajouter un lieu</button>
                     </g:form>

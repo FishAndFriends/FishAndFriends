@@ -129,12 +129,4 @@ class FishingManControllerSpec extends IntegrationSpec {
         fishingManController.response.redirectedUrl.equals("/fishingMan/edit/1")
         fishingManService.controlPassword(FishingMan.findById(1), "nope") == false
     }
-
-    void "Test the share catch view works well"() {
-        when: "The edit action is executed"
-        fishingManController.shareCatch(fishingMan)
-
-        then: "The model is correct"
-        fishingManController.modelAndView.model.fishingManInstance == fishingMan
-    }
 }
