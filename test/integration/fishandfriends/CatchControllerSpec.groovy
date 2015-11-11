@@ -19,6 +19,23 @@ class CatchControllerSpec extends IntegrationSpec {
         controller.modelAndView.model.catchInstance.id == null
     }
 
+
+    void "Test the share view vith given arguments works well"() {
+        given: "A catch and a fishing area"
+        FishingArea fishingArea = FishingArea.findById(1)
+        Catch aCatch = new Catch()
+        controller.flash.fishingArea = fishingArea
+        controller.flash.catchInstance = aCatch
+
+
+        when: "The share action is executed"
+        controller.share()
+
+        then: "The model is correct"
+        controller.modelAndView.model.catchInstance == aCatch
+        controller.modelAndView.model.fishingArea == fishingArea
+    }
+
     void "Test the share from location view works well"() {
         given: "A fishing area"
         FishingArea fishingArea = FishingArea.findById(1)

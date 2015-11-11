@@ -32,6 +32,20 @@ class FishingManControllerSpec extends IntegrationSpec {
         fishingManController.modelAndView.model.fishingManInstance == fishingMan
     }
 
+    void "Test the edit view with given arguments works well"() {
+        given: "An error array and a fishing man"
+        def errors = ['I will never use Grails in my entire life']
+        fishingManController.flash.errors = errors
+        fishingManController.flash.fishingManInstance = fishingMan
+
+        when: "The edit action is executed"
+        fishingManController.edit(fishingMan)
+
+        then: "The model is correct"
+        fishingManController.modelAndView.model.fishingManInstance == fishingMan
+        fishingManController.modelAndView.model.errors == errors
+    }
+
     void "Test to edit the profile"() {
         given:
         fishingManController.params.firstnameEdit = "toto"
