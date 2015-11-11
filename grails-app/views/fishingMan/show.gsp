@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-md-offset-2 col-md-8">
         <div class="homebox jumbotron">
-            <g class="row">
+            <div class="row">
                 <div class="col-md-2">
                     <i class="fa ${fishingManInstance.gender.equals("H") ? 'fa-male' : 'fa-female'} fa-5x"></i>
                 </div>
@@ -33,6 +33,7 @@
                                 class="fa fa-pencil"></i> Modifier</a>
                     </div>
                 </g:if>
+            </div>
         </div>
     </div>
 </div>
