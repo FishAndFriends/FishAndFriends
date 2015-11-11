@@ -1,14 +1,9 @@
 package fishandfriends
-
-import grails.transaction.Transactional
-
 /**
  * Controller of the catch.
  */
-@Transactional(readOnly = true)
 class CatchController {
     FishingAreaService fishingAreaService
-
 
     /**
      * Return view to share a Catch by the FishingMan from a given FishingArea
@@ -50,7 +45,6 @@ class CatchController {
      * @param catchInstance Instanceof the catch
      * @return The share catch view if it has errors. Else it goes back to the newsfeed
      */
-    @Transactional
     def save(Catch catchInstance) {
         catchInstance.date = new Date()
         catchInstance.fishingMan = session.fishingMan
