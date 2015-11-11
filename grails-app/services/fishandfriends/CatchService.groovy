@@ -206,7 +206,7 @@ class CatchService {
                                     GROUP BY ident) as t
                                 ON catch.id = t.ident
                                 WHERE
-                                    catch.FISHING_AREA_ID IN (${fishingAreas*.id.join(',')})
+                                    catch.FISHING_AREA_ID IN (${fishingAreas*.id.join(", ")})
                             ) as TMP
                         WHERE
                             TMP.FISHING_MAN_ID = fishingman.id
