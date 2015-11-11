@@ -28,7 +28,7 @@
             </g:eachError>
         </ul>
     </g:hasErrors>
-    <g:form id="${formid}" url="[action: 'createComment', controller: 'comment']">
+    <g:form class="formComment" url="[action: 'createComment', controller: 'comment']">
         <div class="panel panel-info commentDisplay catchPanel">
             <div class="panel-heading"><b>Ajouter un commentaire</b></div>
 
@@ -43,25 +43,9 @@
                 <br/>
 
                 <fieldset class="buttons">
-                    <input type="submit" class="btn btn-primary btn-block" value="Poster"/>
+                    <button type="submit" class="btn btn-primary btn-block">Poster</button>
                 </fieldset>
             </div>
         </div>
     </g:form>
-    <script>
-
-        $("${'#'+formid}").submit(function (ev) {
-            ev.preventDefault();
-
-            $.ajax({
-                type: 'POST',
-                url: '${createLink(action: "createComment", controller: "comment")}',
-                data: $("${'#'+formid}").serialize(),
-                success: function (data) {
-                    location.reload();
-                }
-            });
-        });
-
-    </script>
 </div>

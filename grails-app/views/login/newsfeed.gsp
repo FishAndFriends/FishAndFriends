@@ -19,14 +19,13 @@
                 <br/>
 
                 <div class="panel-body">
-                        <g:form url="[action: 'share', controller: 'catch']">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-share"></i> Partager</button>
-                        </g:form>
+                    <g:form url="[action: 'share', controller: 'catch']">
+                        <button type="submit" class="btn btn-success"><i class="fa fa-share"></i> Partager</button>
+                    </g:form>
                     <br/>
                     <br/>
                     <g:form url="[action: 'addNewArea', controller: 'fishingArea']">
-                        <button type="submit" class="btn btn-success"><i
-                                class="fa fa-plus"></i> Ajouter un lieu</button>
+                        <button type="submit" class="btn btn-success"></button>
                     </g:form>
                     <br/>
                     <br/>
@@ -43,11 +42,14 @@
         </div>
 
         <div class="col-md-8">
-            <g:each var="singleCatch" in="${fishandfriends.Catch.list(sort: "date", order: "desc")}">
-                <div class="jumbotron">
-                    <g:render template="showNewsFeedsCatch" model="[singleCatch: singleCatch]"></g:render>
+            <div class="row">
+                <div class="col-md-12">
+                    <g:each var="singleCatch" in="${catches}">
+                        <g:render template="showNewsFeedsCatch"
+                                  model="[singleCatch: singleCatch.aCatch, nbComments: singleCatch.nbComments]"></g:render>
+                    </g:each>
                 </div>
-            </g:each>
+            </div>
         </div>
     </div>
 

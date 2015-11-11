@@ -9,6 +9,7 @@ class LoginController {
     /** Service of a <b>FishingManS</b>. */
     FishingManService fishingManService
     RecaptchaService recaptchaService
+    CatchService catchService
     /**
      * Return the login ("index") page if user is not connected ; otherwise return
      * "newsfeed" page of the user.
@@ -16,7 +17,8 @@ class LoginController {
      */
     def index() {
         if (session.fishingMan != null) {
-            render(view: "newsfeed")
+            def catchList = catchService.getCatchesWithNbCommentsForNewsfeed(session.fishingMan)
+            render(view: "newsfeed", model: [catches: catchList])
         } else {
             def model = [:]
             if (flash.containsKey('fishingMan')) {

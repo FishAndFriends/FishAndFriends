@@ -1,12 +1,28 @@
-<g:link action="show" controller="fishingMan" id="${singleCatch.fishingMan.id}">
-    <h3><i class="fa fa-user"></i> ${singleCatch.fishingMan.firstname} ${singleCatch.fishingMan.lastname}</h3>
-</g:link>
-<p>
-    <i class="flaticon-fish13"></i> ${singleCatch.fish.name}
-        (${singleCatch.weight}kg, ${singleCatch.size} cm),
-        le <i>${singleCatch.date.dateString}</i><br/>
-    <i class="fa fa-location-arrow"></i> ${singleCatch.fishingArea.name}, ${singleCatch.fishingArea.location}<br/>
-</p>
+<div class="panel panel-info catchPanel">
+    <div class="panel-heading">
+        <i class="fa fa-user"></i> <b><g:link action="show" controller="fishingMan"
+                                           id="${singleCatch.fishingMan.id}">${singleCatch.fishingMan.firstname} ${singleCatch.fishingMan.lastname}</b></g:link>
+        <div class="pull-right">Le <g:formatDate format="dd MMM yyyy à HH:mm" date="${singleCatch.date}"/></div>
+    </div>
+
+    <div class="panel-body">
+        <i class="fa fa-location-arrow"></i> <b><g:link action="show" controller="fishingArea"
+                      id="${singleCatch.fishingArea.id}">${singleCatch.fishingArea.name}, ${singleCatch.fishingArea.location}</g:link></b><br/>
+        Poisson péché : <b>${singleCatch.fish.name}</b>
+        <ul>
+            <li>Poids: ${singleCatch.weight} kg</li>
+            <li>Taille: ${singleCatch.size} cm</li>
+        </ul>
+    </div>
+
+    <div class="panel-footer">
+        <a href="#" class="showComment" data-ident="${singleCatch.id}">
+            <g:if test="${nbComments > 1}">${nbComments} commentaires</g:if>
+            <g:elseif test="${nbComments == 1}">${nbComments} commentaire</g:elseif>
+            <g:else>Aucun commentaire. Soyez le premier à commenter</g:else>
+        </a>
+    </div>
+</div>
 
 
 %{--</div>--}%

@@ -1,24 +1,11 @@
-<div class="jumbotron search-block">
-    <p>
-
-    <div class="icon-cust">
+<div class="panel panel-success">
+    <div class="panel-heading">
         <g:link action="show" data-id="${r.id}" controller="fishingMan" id="${r.id}">
-            <h2><i class="fa fa-user"></i> ${r.firstname} ${r.lastname}</h2>
+            <h4><i class="fa ${session.fishingMan.gender.equals("H") ? 'fa-male':'fa-female'}"></i> ${r.firstname} ${r.lastname}</h4>
         </g:link>
     </div>
 
-<br/>
-<br/>
-Email : ${r.email} <br/>
-Sexe :
-<g:if test="${r.gender == "H"}">
-    Homme
-</g:if>
-<g:else>
-    Femme
-</g:else>
-
-</p>
-
-
+    <div class="panel-body">
+        <i class="fa fa-envelope-o"></i> ${r.email}
+    </div>
 </div>

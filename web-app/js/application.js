@@ -1,3 +1,3 @@
-$("#signout").on("click", function() {
+$("#signout").on("click", function () {
     $('#myModal').modal('show')
 });

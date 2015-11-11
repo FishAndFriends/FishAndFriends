@@ -26,7 +26,7 @@ class FishingManController {
      * @return View of the Fishing Man.
      */
     def show(FishingMan fishingManInstance) {
-        def catchList = catchService.getCatchesByFishingMan(fishingManInstance)
+        def catchList = catchService.getCatchesWithNbCommentsByFishingMan(fishingManInstance)
         def score = scoreService.computeScoresForFishingMan(fishingManInstance)
         def fishingArea = fishingAreaService.getFishingAreaByFishingMan(fishingManInstance)
         render(view: "show", model: [fishingManInstance: fishingManInstance, catches: catchList, score: score, fishingAreas: fishingArea])

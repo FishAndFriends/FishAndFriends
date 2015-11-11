@@ -32,10 +32,18 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li ${controllerName == null ? 'class="active"' : ''}><a href="/"><i class="fa fa-home"></i> Accueil</a></li>
                 <g:if test="${session.fishingMan != null}">
                     <li><a href="${createLink(controller:'fishingMan', action:'show', id:"${session.fishingMan.id}") }"><i class="fa ${session.fishingMan.gender.equals("H") ? 'fa-male':'fa-female'}"></i> ${session.fishingMan.firstname} ${session.fishingMan.lastname}</a></li>
+                    <li><g:link action="addNewArea" controller="fishingArea">
+                        <i class="fa fa-plus"></i> Ajouter un lieu</g:link></li>
                     <li><a href="#" id="signout"><i class="fa fa-sign-out"></i> Déconnexion</a></li>
+                    %{--<li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-location-arrow"></i> Lieux <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><g:link action="addNewArea" controller="fishingArea">
+                                <i class="fa fa-plus"></i> Ajouter un lieu</g:link></li>
+                        </ul>
+                    </li>--}%
                 </g:if>
             </ul>
             <g:if test="${session.fishingMan != null}">
@@ -75,12 +83,71 @@
             </div>
         </div>
     </div>
+    <div id="commentModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Liste des commentaires</h4>
+                </div>
+
+                <div class="modal-body custom_modal-body">
+                    <div id="modal-comment-body">
+                        <!-- Contains all comments provided by AJAX -->
+                    </div>
+                    <g:render template="../comment/createComment"
+                              model="[commentable: fishingAreaInstance, fishingMan: session.fishingMan]"/>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </g:if>
 <r:layoutResources/>
 <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-select.min.css')}">
 <g:javascript src="bootstrap-select.min.js" />
 <script>
     $('.selectpicker').selectpicker();
+    function showModal(event, ident) {
+        event.preventDefault();
+
+        $('#commentModal').modal('show');
+
+        // Change the value of the commentable.id
+        $("[name = 'commentable.id']").val(ident);
+
+        // Retrieve all comments for the commentable
+        $.ajax({
+            type: 'POST',
+            url: '${createLink(action: "showAllComment", controller: "comment")}',
+            data: {'commentable': ident},
+            success: function (data) {
+                $("#modal-comment-body").html(data);
+            }
+        });
+    }
+
+    $(".showComment").on("click", function () {
+        showModal(event, $(this).data('ident'));
+        $(".formComment").on('submit', function (ev) {
+            ev.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '${createLink(action: "createComment", controller: "comment")}',
+                data: $(this).serialize(),
+                success: function (data) {
+                    location.reload();
+                }
+            });
+            return false;
+        });
+    })
 </script>
 </body>
 </html>

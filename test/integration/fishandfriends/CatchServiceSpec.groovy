@@ -22,11 +22,10 @@ class CatchServiceSpec extends IntegrationSpec {
         FishingMan fishingman = FishingMan.findById(1)
 
         when:"searching for  catches"
-        def result = catchService.getCatchesByFishingMan(fishingman)
+        def result = catchService.getCatchesWithNbCommentsByFishingMan(fishingman)
 
         then:"the result is correct"
         result.size() == 1
-        result.contains(Catch.findById(3))
     }
 
 
@@ -35,7 +34,7 @@ class CatchServiceSpec extends IntegrationSpec {
         FishingMan fishingman = FishingMan.findById(2)
 
         when:"searching for  catches"
-        def result = catchService.getCatchesByFishingMan(fishingman)
+        def result = catchService.getCatchesWithNbCommentsByFishingMan(fishingman)
 
         then:"the result is correct"
         result.size() == 2

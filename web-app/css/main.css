@@ -1,5 +1,5 @@
 body {
-    padding-top: 50px;
+    padding-top: 60px;
 }
 
 .homebox {
@@ -34,7 +34,7 @@ body {
 }
 
 .catchPanel {
-    margin-top: 15px;
+    /*margin-top: 15px;*/
 }
 
 .catchPanel .panel-body {

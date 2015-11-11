@@ -62,7 +62,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <g:render template="showCatch"
-                              model="[singleCatch: singleCatch]"></g:render>
+                              model="[singleCatch: singleCatch.aCatch, nbComments: singleCatch.nbComments]"></g:render>
                 </div>
             </div>
         </g:each>
