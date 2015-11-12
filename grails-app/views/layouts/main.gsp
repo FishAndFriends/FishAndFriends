@@ -16,6 +16,9 @@
     <g:layoutHead/>
     <g:javascript library="application"/>
     <r:layoutResources/>
+
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-select.min.css')}">
+    <g:javascript src="bootstrap-select.min.js" />
 </head>
 
 <body>
@@ -109,8 +112,6 @@
     </div>
 </g:if>
 <r:layoutResources/>
-<link rel="stylesheet" href="${resource(dir: 'css', file: 'bootstrap-select.min.css')}">
-<g:javascript src="bootstrap-select.min.js" />
 <script>
     $('.selectpicker').selectpicker();
     function showModal(event, ident) {
