@@ -91,25 +91,25 @@ class BootStrap {
         }
     }
 
-    def destroy = {
-        // Release them all !
-        fishingManList.each {
-            it.delete(flush: true)
-        }
-        fishingAreaList.each {
-            it.delete(flush: true)
-        }
-        commentList.each {
-            it.delete(flush: true)
-        }
-        fishList.each {
-            it.delete(flush: true)
-        }
-        catchList.each {
-            it.delete(flush: true)
-        }
-        noteList.each {
-            it.delete(flush: true)
-        }
-    }
+//    def destroy = {
+//        // Release them all !
+//        fishingManList.each {
+//            it.delete(flush: true)
+//        }
+//        fishingAreaList.each {
+//            it.delete(flush: true)
+//        }
+//        commentList.each {
+//            it.delete(flush: true)
+//        }
+//        fishList.each {
+//            it.delete(flush: true)
+//        }
+//        catchList.each {
+//            it.delete(flush: true)
+//        }
+//        noteList.each {
+//            it.delete(flush: true)
+//        }
+//    }
 }
