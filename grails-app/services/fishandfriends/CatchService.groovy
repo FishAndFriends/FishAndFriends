@@ -82,7 +82,7 @@ class CatchService {
             fishingManF = new FishingMan(firstname: it.fishingMan_firstname, lastname: it.fishingMan_lastname)
             fishingManF.id = it.fishingMan_id
 
-            aCatchF = new Catch(weight: it.weight, size: it.size, date: it.date, fish: fishF, fishingMan: afishingMan, fishingArea: fishingAreaF)
+            aCatchF = new Catch(weight: it.weight, size: it.size, date: it.date, fish: fishF, fishingMan: fishingManF, fishingArea: fishingAreaF)
             aCatchF.id = it.id
 
             listCatchWithComments << new CatchWithComments(aCatchF, it.comments ? it.comments : 0l)
@@ -230,7 +230,7 @@ class CatchService {
             fishingManF = new FishingMan(firstname: it.fishingMan_firstname, lastname: it.fishingMan_lastname)
             fishingManF.id = it.fishingMan_id
 
-            aCatchF = new Catch(weight: it.weight, size: it.size, date: it.date, fish: fishF, fishingMan: fishingMan, fishingArea: fishingAreaF)
+            aCatchF = new Catch(weight: it.weight, size: it.size, date: it.date, fish: fishF, fishingMan: fishingManF, fishingArea: fishingAreaF)
             aCatchF.id = it.id
 
             listCatchWithComments << new CatchWithComments(aCatchF, it.comments ? it.comments : 0l)
